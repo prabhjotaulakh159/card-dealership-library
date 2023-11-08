@@ -1,4 +1,7 @@
-package com.dealer.models;
+package com.dealer.models.cars;
+
+import com.dealer.models.Location;
+import com.dealer.models.Promotion;
 
 /**
  * RecreationalVehicle is a type of Car

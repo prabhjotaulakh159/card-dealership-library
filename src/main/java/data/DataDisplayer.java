@@ -1,6 +1,6 @@
 package data;
 
-public interface Displayer {
+public interface DataDisplayer {
     
     public void displayCars();
 

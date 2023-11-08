@@ -1,10 +1,9 @@
 package com.dealer.models;
 
-import com.dealer.models.people.Employee;
-
 import java.util.Date;
 
 import com.dealer.models.people.Customer;
+import com.dealer.models.people.Employee;
 
 /**
  * Implementing Appointments for Customers and Employees
@@ -95,6 +94,4 @@ public class Appointment {
     public void setDate(Date date) {
         throw new UnsupportedOperationException("not implemented");
     }
-    
-    
 }

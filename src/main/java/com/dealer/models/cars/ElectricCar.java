@@ -1,5 +1,7 @@
-package com.dealer.models;
+package com.dealer.models.cars;
 
+import com.dealer.models.Location;
+import com.dealer.models.Promotion;
 
 /**
  * ElectricCar is a type of Car
@@ -55,6 +57,4 @@ public class ElectricCar extends Car {
     public void setChargerType(String chargerType) {
         throw new UnsupportedOperationException("not implemented");
     }
-
-    
 }

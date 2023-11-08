@@ -77,6 +77,4 @@ public class Car {
     public void setPrice(int price) {
         throw new UnsupportedOperationException("not implemented");
     }
-
-    
 }   
