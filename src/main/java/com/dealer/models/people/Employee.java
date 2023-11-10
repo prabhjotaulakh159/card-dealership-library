@@ -18,25 +18,8 @@ public class Employee extends Person {
      * @throws IllegalArgumentException If name is empty/null or location is 
      * null or salary is negative 
      */
-    public Employee(String name, String phone, Location location, int salary) {
+    public Employee(String name, String phone, int salary) {
         super(name, phone); 
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-    /**
-     * Accessor for location
-     * @return Where the employee works
-     */
-    public Location getLocation() {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-    
-    /**
-     * Mutator for location
-     * @param location Where the employee works
-     * @throws IllegalArgumentException If location is null
-     */
-    public void setLocation(Location location) {
         throw new UnsupportedOperationException("Not implemented");
     }
     

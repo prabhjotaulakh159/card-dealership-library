@@ -23,8 +23,8 @@ public class RecreationalVehicle extends Car {
      * @param numberOfBeds max beds inside the R.V
      * @param hasKitchen if they have one or not
      */
-    public RecreationalVehicle(String model, int year, String color, Promotion promotion, Location location, int price, int maxPassengers, int numberOfBeds, boolean hasKitchen){
-        super(model, year, color, promotion, location, price);
+    public RecreationalVehicle(String model, int year, String color, Promotion promotion, int price, int maxPassengers, int numberOfBeds, boolean hasKitchen){
+        super(model, year, color, promotion, price);
         throw new UnsupportedOperationException("not implemented");
     }
 

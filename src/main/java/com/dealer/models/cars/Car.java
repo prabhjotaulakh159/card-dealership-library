@@ -12,7 +12,6 @@ public class Car {
     private int year;
     private String color;
     private Promotion promotion;
-    private Location location;
     private int price;
 
 
@@ -26,7 +25,7 @@ public class Car {
      * @param price price of Car
      * @param IllegalArgumentException if any value is null
      */
-    public Car(String model, int year, String color, Promotion promotion, Location location, int price){
+    public Car(String model, int year, String color, Promotion promotion, int price){
         throw new UnsupportedOperationException("not implemented");
     }
 
@@ -59,14 +58,6 @@ public class Car {
     }
 
     public void setPromotion(Promotion promotion) {
-        throw new UnsupportedOperationException("not implemented");
-    }
-
-    public Location getLocation() {
-        throw new UnsupportedOperationException("not implemented");
-    }
-
-    public void setLocation(Location location) {
         throw new UnsupportedOperationException("not implemented");
     }
 
