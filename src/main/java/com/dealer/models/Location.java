@@ -3,6 +3,7 @@ package com.dealer.models;
 import java.util.List;
 
 import com.dealer.models.cars.Car;
+import com.dealer.models.people.Employee;
 
 /**
  * Location of a dealership
@@ -12,6 +13,7 @@ public class Location {
     private String address;
     private String branch;
     private List<Car> cars;
+    private List<Employee> employees;
     
     /**
      * Constructor
@@ -20,7 +22,7 @@ public class Location {
      * @param cars Cars within the location
      * @throws IllegalArgumentException If any of fields are null
      */
-    public Location(String address, String branch, List<Car> cars) {
+    public Location(String address, String branch, List<Car> cars, List<Employee> employees) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
@@ -72,6 +74,22 @@ public class Location {
      * @throws IllegalArgumentException If cars is null
      */
     public void setCars(List<Car> cars) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    /**
+     * Accessor for employees
+     * @return list of employees who work at location
+     */
+    public List<Employee> getEmployees() {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    /**
+     * Mutator for employees
+     * @param list of employees who work at location
+     */
+    public void setEmployees(List<Employee> employees) {
         throw new UnsupportedOperationException("Not implemented");
     }
 }

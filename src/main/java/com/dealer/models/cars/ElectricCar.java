@@ -21,8 +21,8 @@ public class ElectricCar extends Car {
      * @param voltage the amount of volts they have
      * @param chargerType the type of charger they need
      */
-    public ElectricCar(String model, int year, String color, Promotion promotion, Location location, int price, int voltage, String ChargerType){
-        super(model, year, color, promotion, location, price);
+    public ElectricCar(String model, int year, String color, Promotion promotion, int price, int voltage, String ChargerType){
+        super(model, year, color, promotion, price);
         throw new UnsupportedOperationException("not implemented");
     }
 
