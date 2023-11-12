@@ -17,56 +17,56 @@ import com.dealer.models.cars.RecreationalVehicle;
 public class RecretionalVehicleTest {
     @Test
     public void constructor_no_errors() {
-        Car car = new RecreationalVehicle("model", 2023, "orange", null, 3000, 5, 3, true);
+        Car car = new RecreationalVehicle("model", 2023, "orange", 3000, 5, 3, true);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void negative_passengers() {
-        Car car = new RecreationalVehicle("model", 2023, "orange", null, 3000, -1, 3, true);
+        Car car = new RecreationalVehicle("model", 2023, "orange", 3000, -1, 3, true);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void zero_passengers() {
-        Car car = new RecreationalVehicle("model", 2023, "orange", null, 3000, 0, 3, true);
+        Car car = new RecreationalVehicle("model", 2023, "orange", 3000, 0, 3, true);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void negative_beds() {
-        Car car = new RecreationalVehicle("model", 2023, "orange", null, 3000, 5, -1, true);
+        Car car = new RecreationalVehicle("model", 2023, "orange", 3000, 5, -1, true);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void zero_beds() {
-        Car car = new RecreationalVehicle("model", 2023, "orange", null, 3000, 5, 0, true);
+        Car car = new RecreationalVehicle("model", 2023, "orange", 3000, 5, 0, true);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void setter_negative_passengers() {
-        Car car = new RecreationalVehicle("model", 2023, "orange", null, 3000, 5, 3, true);
+        Car car = new RecreationalVehicle("model", 2023, "orange", 3000, 5, 3, true);
         ((RecreationalVehicle)car).setMaxPassengers(-1);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void setter_zero_passengers() {
-        Car car = new RecreationalVehicle("model", 2023, "orange", null, 3000, 5, 3, true);
+        Car car = new RecreationalVehicle("model", 2023, "orange", 3000, 5, 3, true);
         ((RecreationalVehicle)car).setMaxPassengers(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void setter_negative_beds() {
-        Car car = new RecreationalVehicle("model", 2023, "orange", null, 3000, 5, 3, true);
+        Car car = new RecreationalVehicle("model", 2023, "orange", 3000, 5, 3, true);
         ((RecreationalVehicle)car).setNumberOfBeds(-1);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void setter_zero_beds() {
-        Car car = new RecreationalVehicle("model", 2023, "orange", null, 3000, 5, 3, true);
+        Car car = new RecreationalVehicle("model", 2023, "orange", 3000, 5, 3, true);
         ((RecreationalVehicle)car).setNumberOfBeds(0);
     }
 
     @Test
     public void getters() {
-        Car car = new RecreationalVehicle("model", 2023, "orange", null, 3000, 5, 3, true);
+        Car car = new RecreationalVehicle("model", 2023, "orange", 3000, 5, 3, true);
         assertEquals(5, ((RecreationalVehicle)car).getMaxPassengers());
         assertEquals(3, ((RecreationalVehicle)car).getNumberOfBeds());
         assertTrue(((RecreationalVehicle)car).isHasKitchen());
@@ -74,15 +74,15 @@ public class RecretionalVehicleTest {
 
     @Test
     public void isEqual() {
-        Car car1 = new RecreationalVehicle("model", 2023, "orange", null, 3000, 5, 3, true);
-        Car car2 = new RecreationalVehicle("model", 2023, "orange", null, 3000, 5, 3, true);
+        Car car1 = new RecreationalVehicle("model", 2023, "orange", 3000, 5, 3, true);
+        Car car2 = new RecreationalVehicle("model", 2023, "orange",  3000, 5, 3, true);
         assertTrue(car1.equals(car2));
     }
 
     @Test
     public void notEqual() {
-        Car car1 = new RecreationalVehicle("model", 2023, "orange", null, 3000, 5, 3, true);
-        Car car2 = new RecreationalVehicle("model", 2023, "orange", null, 3000, 5, 3, false);
+        Car car1 = new RecreationalVehicle("model", 2023, "orange", 3000, 5, 3, true);
+        Car car2 = new RecreationalVehicle("model", 2023, "orange", 3000, 5, 3, false);
         assertFalse(car1.equals(car2));
     }
 }

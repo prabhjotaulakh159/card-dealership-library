@@ -1,7 +1,7 @@
 package com.dealer.models.cars;
 
 import com.dealer.models.Location;
-import com.dealer.models.Promotion;
+
 
 /**
  * RecreationalVehicle is a type of Car
@@ -16,16 +16,25 @@ public class RecreationalVehicle extends Car {
      * @param model car model
      * @param year year car model was made
      * @param color color of car
-     * @param promotion if car has promotion
+
      * @param location dealership location where car is
      * @param price price of Car
      * @param maxPassengers max amount of people that can be in R.V
      * @param numberOfBeds max beds inside the R.V
      * @param hasKitchen if they have one or not
      */
-    public RecreationalVehicle(String model, int year, String color, Promotion promotion, int price, int maxPassengers, int numberOfBeds, boolean hasKitchen){
-        super(model, year, color, promotion, price);
-        throw new UnsupportedOperationException("not implemented");
+    public RecreationalVehicle(String model, int year, String color, int price, int maxPassengers, int numberOfBeds, boolean hasKitchen){
+        super(model, year, color, price);
+        if(maxPassengers <=0){
+            throw new IllegalArgumentException("Max passengers is negative or 0, enter again");
+        }
+        if(numberOfBeds<=0){
+            throw new IllegalArgumentException("Number of beds is negative or 0, enter again");
+        }
+
+        this.maxPassengers= maxPassengers;
+        this.numberOfBeds= numberOfBeds;
+        this.hasKitchen= hasKitchen;
     }
 
     /**
@@ -33,7 +42,7 @@ public class RecreationalVehicle extends Car {
      * @return the max number of passengers that fir in R.V
      */
     public int getMaxPassengers() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.maxPassengers;
     }
 
     /**
@@ -41,7 +50,10 @@ public class RecreationalVehicle extends Car {
      * @param maxPassengers the max passengers hat fit in R.V
      */
     public void setMaxPassengers(int maxPassengers) {
-        throw new UnsupportedOperationException("not implemented");
+        if(maxPassengers <=0){
+            throw new IllegalArgumentException("Max passengers is negative or 0, enter again");
+        }
+        this.maxPassengers= maxPassengers;
     }
 
     /**
@@ -49,7 +61,7 @@ public class RecreationalVehicle extends Car {
      * @return number of beds in R.V
      */
     public int getNumberOfBeds() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.numberOfBeds;
     }
 
     /**
@@ -57,7 +69,10 @@ public class RecreationalVehicle extends Car {
      * @param numberOfBeds the number of beds in R.V
      */
     public void setNumberOfBeds(int numberOfBeds) {
-        throw new UnsupportedOperationException("not implemented");
+        if(numberOfBeds<=0){
+            throw new IllegalArgumentException("Number of beds is negative or 0, enter again");
+        }
+        this.numberOfBeds= numberOfBeds;
     }
 
     /**
@@ -65,7 +80,7 @@ public class RecreationalVehicle extends Car {
      * @return true or false if they have a Kitchen or not in R.V
      */
     public boolean isHasKitchen() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.hasKitchen;
     }
 
     /**
@@ -73,9 +88,21 @@ public class RecreationalVehicle extends Car {
      * @param hasKitchen true or false if they have a kitchen or not
      */
     public void setHasKitchen(boolean hasKitchen) {
-        throw new UnsupportedOperationException("not implemented");
+        this.hasKitchen=hasKitchen;
     }
 
+    @Override
+    public boolean equals(Object o){
+
+        if(!(o instanceof Car)){
+            return false;
+        }
+        RecreationalVehicle rv = (RecreationalVehicle) o;
+
+        return this.getModel() == rv.getModel() && this.getColor() == rv.getColor()
+        && this.getYear() == rv.getYear() && this.getPrice() == rv.getPrice() && this.getMaxPassengers() == rv.getMaxPassengers()
+        && this.getNumberOfBeds() == rv.getNumberOfBeds() && this.isHasKitchen() == rv.isHasKitchen();
+    }
     
 
 

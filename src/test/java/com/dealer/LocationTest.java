@@ -94,7 +94,7 @@ public class LocationTest {
         List<Car> cars = new ArrayList<Car>();
         List<Employee> employees = new ArrayList<Employee>();
         Location location = new Location("123 Brossard Street, Brossard", "Brossard Branch", cars, employees);
-        assertEquals("123 Brossard Street", location.getAddress());
+        assertEquals("123 Brossard Street, Brossard", location.getAddress());
         assertEquals("Brossard Branch", location.getBranch());
         assertEquals(cars, location.getCars());
         assertEquals(employees, location.getEmployees());
