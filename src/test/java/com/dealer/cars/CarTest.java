@@ -1,6 +1,7 @@
 package com.dealer.cars;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import com.dealer.models.cars.Car;
 public class CarTest {
     @Test
     public void constructor_no_errors() {
-        Car car = new Car("model", 2023, "orange", null, 1000);
+        Car car = new Car("model", 2023, "orange", null,   1000);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -53,16 +54,18 @@ public class CarTest {
             "model", 2023, "", null, 1000);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void constuctor_null_location() {
-        Car car = new Car(
-            "model", 2023, "orange", null, 1000);
-    }
+
+
+
+
+
+
+
 
     @Test(expected = IllegalArgumentException.class)
     public void constuctor_negative_price() {
         Car car = new Car(
-            "model", 2023, "orange", null, 1000);
+            "model", 2023, "orange", null, -1000);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -144,6 +147,6 @@ public class CarTest {
             "Mazda", 2023, "orange", null, 1000);
         Car car2 = new Car(
             "model", 2023, "orange", null, 1000);
-        assertTrue(car1.equals(car2));
+        assertFalse(car1.equals(car2));
     }
 }

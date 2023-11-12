@@ -21,51 +21,94 @@ public class Car {
      * @param year year car model was made
      * @param color color of car
      * @param promotion if car has promotion
-     * @param location dealership location where car is
+     * removed it
      * @param price price of Car
      * @param IllegalArgumentException if any value is null
      */
     public Car(String model, int year, String color, Promotion promotion, int price){
-        throw new UnsupportedOperationException("not implemented");
+
+        if(model ==  null || model.isEmpty()){
+            throw new IllegalArgumentException("Model value null or is empty, try again");
+        }
+        if(color ==  null || color.isEmpty()){
+            throw new IllegalArgumentException("Color value null or is empty, try again");
+        }
+        if(year<1999){
+            throw new IllegalArgumentException("made before 1999, enter another year");
+        }
+        if(price<0){
+            throw new IllegalArgumentException("Price is negative, try again ");
+        }
+        this.model = model;
+        this.year= year;
+        this.color= color;
+        this.promotion= promotion;
+        this.price= price;
+    }
+
+    private Exception newIllegalArgumentException() {
+        return null;
     }
 
     public String getModel() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.model;
     }
 
     public void setModel(String model) {
-        throw new UnsupportedOperationException("not implemented");
+        if(model ==  null || model.isEmpty()){
+            throw new IllegalArgumentException("Model value null or is empty, try again");
+        }
+        this.model= model;
     }
 
     public int getYear() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.year;
     }
 
     public void setYear(int year) {
-        throw new UnsupportedOperationException("not implemented");
+        if(year<1999){
+            throw new IllegalArgumentException("made before 1999, enter another year");
+        }
+        this.year= year;
     }
 
     public String getColor() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.color;
     }
 
     public void setColor(String color) {
-        throw new UnsupportedOperationException("not implemented");
+        if(color ==  null || color.isEmpty()){
+            throw new IllegalArgumentException("Color value null or is empty, try again");
+        }
     }
 
     public Promotion getPromotion() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.promotion;
     }
 
     public void setPromotion(Promotion promotion) {
-        throw new UnsupportedOperationException("not implemented");
+        this.promotion= promotion;
     }
 
     public int getPrice() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.price;
     }
 
     public void setPrice(int price) {
-        throw new UnsupportedOperationException("not implemented");
+        if(price<0){
+            throw new IllegalArgumentException("Price is negative, try again ");
+        }
+        this.price= price;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        Car c2= (Car) o;
+
+        if(this.model == c2.model && this.year == c2.year && this.color== c2.color && this.promotion == c2.promotion &&
+        this.price == c2.price){
+            return true;
+        }
+       return false;
     }
 }   
