@@ -1,13 +1,13 @@
 package com.dealer.models.cars;
 
 import com.dealer.models.Location;
-import com.dealer.models.Promotion;
+
 
 /**
  * ElectricCar is a type of Car
  */
 public class ElectricCar extends Car {
-    private int Voltage;
+    private int voltage;
     private String chargerType;
 
     /**
@@ -15,15 +15,25 @@ public class ElectricCar extends Car {
      * @param model car model
      * @param year year car model was made
      * @param color color of car
-     * @param promotion if car has promotion
+     * @throws IllegalArgumentException if any value is null or empty or negative
      * @param location dealership location where car is
      * @param price price of Car
      * @param voltage the amount of volts they have
      * @param chargerType the type of charger they need
      */
-    public ElectricCar(String model, int year, String color, Promotion promotion, int price, int voltage, String ChargerType){
-        super(model, year, color, promotion, price);
-        throw new UnsupportedOperationException("not implemented");
+    public ElectricCar(String model, int year, String color, int price, int voltage, String chargerType){
+        super(model, year, color, price);
+        if(voltage<=0){
+            throw new IllegalArgumentException("Voltage is negative or equals to 0, try again");
+        }
+        if(chargerType == null){
+            throw new IllegalArgumentException("Charger Type is null");
+        }
+        else if(chargerType.isEmpty()){
+            throw new IllegalArgumentException("Charger Type is empty");
+        }
+        this.voltage= voltage;
+        this.chargerType= chargerType;
     }
 
     /**
@@ -31,7 +41,7 @@ public class ElectricCar extends Car {
      * @return amount of voltage the car hads 
      */
     public int getVoltage() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.voltage;
     }
 
     /**
@@ -39,7 +49,10 @@ public class ElectricCar extends Car {
      * @param voltage
      */
     public void setVoltage(int voltage) {
-        throw new UnsupportedOperationException("not implemented");
+        if(voltage<=0){
+            throw new IllegalArgumentException("Voltage is negative or equals to 0, try again");
+        }
+        this.voltage= voltage;
     }
 
     /**
@@ -47,7 +60,7 @@ public class ElectricCar extends Car {
      * @return name of chargerType
      */
     public String getChargerType() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.chargerType;
     }
 
     /**
@@ -55,6 +68,27 @@ public class ElectricCar extends Car {
      * @param chargerType
      */
     public void setChargerType(String chargerType) {
-        throw new UnsupportedOperationException("not implemented");
+       if(chargerType == null){
+            throw new IllegalArgumentException("Charger Type is null");
+        }
+        else if(chargerType.isEmpty()){
+            throw new IllegalArgumentException("Charger Type is empty");
+        }
+        this.chargerType= chargerType;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        
+        if(!(o instanceof Car)){
+            return false;
+        }
+
+        ElectricCar electricCar = (ElectricCar) o;
+
+        return this.getModel() == electricCar.getModel() && this.getYear() == electricCar.getYear() && this.getColor() == electricCar.getColor()
+         && this.getPrice() == electricCar.getPrice() && this.getVoltage()== electricCar.getVoltage()
+        && this.getChargerType()== electricCar.getChargerType();
+       
     }
 }

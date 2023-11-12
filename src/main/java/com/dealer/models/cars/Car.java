@@ -1,7 +1,7 @@
 package com.dealer.models.cars;
 
 import com.dealer.models.Location;
-import com.dealer.models.Promotion;
+
 
 /**
  * Basic description of Cars
@@ -11,7 +11,6 @@ public class Car {
     private String model;
     private int year;
     private String color;
-    private Promotion promotion;
     private int price;
 
 
@@ -21,51 +20,120 @@ public class Car {
      * @param year year car model was made
      * @param color color of car
      * @param promotion if car has promotion
-     * @param location dealership location where car is
+     * removed it
      * @param price price of Car
-     * @param IllegalArgumentException if any value is null
+     * @throws IllegalArgumentException if any value is null
      */
-    public Car(String model, int year, String color, Promotion promotion, int price){
-        throw new UnsupportedOperationException("not implemented");
+    public Car(String model, int year, String color, int price){
+
+        if(model ==  null || model.isEmpty()){
+            throw new IllegalArgumentException("Model value null or is empty, try again");
+        }
+        if(color ==  null || color.isEmpty()){
+            throw new IllegalArgumentException("Color value null or is empty, try again");
+        }
+        if(year<1999){
+            throw new IllegalArgumentException("made before 1999, enter another year");
+        }
+        if(price<0){
+            throw new IllegalArgumentException("Price is negative, try again ");
+        }
+        this.model = model;
+        this.year= year;
+        this.color= color;
+        this.price= price;
     }
 
+   
+    /**
+     * Access car model
+     * @return model name
+     */
     public String getModel() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.model;
     }
 
+    /**
+     * Mutator for Model
+     * @param model A string of the car model
+     */
     public void setModel(String model) {
-        throw new UnsupportedOperationException("not implemented");
+        if(model ==  null || model.isEmpty()){
+            throw new IllegalArgumentException("Model value null or is empty, try again");
+        }
+        this.model= model;
     }
 
+    /**
+     * Accessing Years
+     * @return The car Year 
+     */
     public int getYear() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.year;
     }
 
+    /**
+     * Mutator for Year
+     * @param year the Car Year
+     */
     public void setYear(int year) {
-        throw new UnsupportedOperationException("not implemented");
+        if(year<1999){
+            throw new IllegalArgumentException("made before 1999, enter another year");
+        }
+        this.year= year;
     }
 
+    /**
+     * Accessor of Car Color
+     * @return Color of car in String
+     */
     public String getColor() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.color;
     }
 
+    /**
+     * Mutator of Color
+     * @param color a String holding the car color
+     */
     public void setColor(String color) {
-        throw new UnsupportedOperationException("not implemented");
+        if(color ==  null || color.isEmpty()){
+            throw new IllegalArgumentException("Color value null or is empty, try again");
+        }
     }
 
-    public Promotion getPromotion() {
-        throw new UnsupportedOperationException("not implemented");
-    }
 
-    public void setPromotion(Promotion promotion) {
-        throw new UnsupportedOperationException("not implemented");
-    }
-
+    
+    /**
+     * Accessor of Price
+     * @return the Car Price
+     */
     public int getPrice() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.price;
+    }
+    
+    /**
+     * Mutator of Price
+     * @param price price we want to set a car to
+     */
+    public void setPrice(int price) {
+        if(price<0){
+            throw new IllegalArgumentException("Price is negative, try again ");
+        }
+        this.price= price;
     }
 
-    public void setPrice(int price) {
-        throw new UnsupportedOperationException("not implemented");
+    /**
+     * The equals Method to check 2 car objects
+     * @returns true or false
+     */
+    @Override
+    public boolean equals(Object o){
+        Car c2= (Car) o;
+
+        if(this.model == c2.model && this.year == c2.year && this.color== c2.color &&
+        this.price == c2.price){
+            return true;
+        }
+       return false;
     }
 }   

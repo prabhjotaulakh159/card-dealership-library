@@ -21,10 +21,32 @@ public class Appointment {
      * @param customer the Customer that schedules it to meet an employee
      * @param Location car dealership they are making the appointment at
      * @param date the Day they appointment is held
-     * @param IllegalArgumentException if any value is null
+     * @throws IllegalArgumentException if any value is null
      */
     public Appointment(Employee employee, Customer customer, Location location, Date date){
-        throw new UnsupportedOperationException("not implemented");
+        if(employee ==  null){
+            throw new IllegalArgumentException("employee is null. try again");
+        }
+        if(customer == null){
+            throw new IllegalArgumentException("Customer is null, try again");
+        }
+        if(location == null){
+            throw new IllegalArgumentException("Location is null, try again");
+        }
+        if(date == null){
+            throw new IllegalArgumentException("Date is null, try again");
+        }
+        if(date.getDate() >31 || date.getDate()<1){
+            throw new IllegalArgumentException("Date day is invalid, try again");
+        }
+        if(date.getMonth()> 11 || date.getMonth() < 0){
+            throw new IllegalArgumentException("Date month is invalid, try again");
+        }
+
+        this.employee= employee;
+        this.customer= customer;
+        this.location = location;
+        this.date= date;
     }
 
     /**
@@ -32,7 +54,7 @@ public class Appointment {
      * @return Employee for meeting
      */
     public Employee getEmployee() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.employee;
     }
 
     /**
@@ -41,7 +63,10 @@ public class Appointment {
      * @param IllegalArgumentException if employee is null
      */
     public void setEmployee(Employee employee) {
-        throw new UnsupportedOperationException("not implemented");
+         if(employee ==  null){
+            throw new IllegalArgumentException("employee is null. try again");
+        }
+        this.employee= employee;
     }
 
     /**
@@ -49,7 +74,7 @@ public class Appointment {
      * @return customer that will do the appointment
      */
     public Customer getCustomer() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.customer;
     }
 
     /**
@@ -58,7 +83,10 @@ public class Appointment {
      * @param IllegalArgumentException if customer is null
      */
     public void setCustomer(Customer customer) {
-        throw new UnsupportedOperationException("not implemented");
+         if(customer ==  null){
+            throw new IllegalArgumentException("Customer is null. try again");
+        }
+        this.customer= customer;
     }
 
     /**
@@ -66,7 +94,7 @@ public class Appointment {
      * @return Location where appointment takes place
      */
     public Location getLocation() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.location;
     }
 
     /**
@@ -75,7 +103,10 @@ public class Appointment {
      * @param IllegalArgumentException if location is null
      */
     public void setLocation(Location location) {
-        throw new UnsupportedOperationException("not implemented");
+         if(location ==  null){
+            throw new IllegalArgumentException("Location is null. try again");
+        }
+        this.location= location;
     }
 
     /**
@@ -83,7 +114,7 @@ public class Appointment {
      * @return Date of when appointment is made
      */
     public Date getDate() {
-        throw new UnsupportedOperationException("not implemented");
+        return this.date;
     }
 
     /**
@@ -92,6 +123,24 @@ public class Appointment {
      * @param IllegalArgumentException if date is null
      */
     public void setDate(Date date) {
-        throw new UnsupportedOperationException("not implemented");
+        if(date == null){
+            throw new IllegalArgumentException("Date is null, try again");
+        }
+        if(date.getDate() >31 || date.getDate()<1){
+            throw new IllegalArgumentException("Date day is invalid, try again");
+        }
+        if(date.getMonth()> 11 || date.getMonth() < 0){
+            throw new IllegalArgumentException("Date month is invalid, try again");
+        }
+
+        this.date= date;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        Appointment ap=(Appointment) o;
+
+        return this.getEmployee() == ap.getEmployee() && this.getCustomer() == ap.getCustomer() &&
+        this.getLocation() == ap.getLocation() && this.getDate() == ap.getDate();
     }
 }

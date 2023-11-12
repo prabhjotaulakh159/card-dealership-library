@@ -23,7 +23,29 @@ public class Location {
      * @throws IllegalArgumentException If any of fields are null
      */
     public Location(String address, String branch, List<Car> cars, List<Employee> employees) {
-        throw new UnsupportedOperationException("Not implemented");
+        if(address== null){
+            throw new IllegalArgumentException("Adress is null, try again");
+        }else 
+        if(address.isEmpty()){
+            throw new IllegalArgumentException("Adress is empty, try again");
+        }
+        if(branch== null){
+            throw new IllegalArgumentException("Branch is null, try again");
+        }else 
+        if(branch.isEmpty()){
+            throw new IllegalArgumentException("Branch is empty, try again");
+        }
+        if(cars == null){
+            throw new IllegalArgumentException("List of cars is null");
+        }
+        if(employees == null){
+            throw new IllegalArgumentException("List of Employees is null");
+        }
+
+        this.address= address;
+        this.branch= branch;
+        this.cars= cars;
+        this.employees= employees;
     }
 
     /**
@@ -31,7 +53,7 @@ public class Location {
      * @return Address of the location
      */
     public String getAddress() {
-        throw new UnsupportedOperationException("Not implemented");
+        return this.address;
     }
 
     /**
@@ -40,15 +62,22 @@ public class Location {
      * @throws IllegalArgumentException If address is empty or null
      */
     public void setAddress(String address) {
-        throw new UnsupportedOperationException("Not implemented");
+         if(address== null){
+            throw new IllegalArgumentException("Adress is null, try again");
+        }else 
+        if(address.isEmpty()){
+            throw new IllegalArgumentException("Adress is empty, try again");
+        }
+        this.address= address;
     }
+
 
     /**
      * Accessor for branch
      * @return Name of the location
      */
     public String getBranch() {
-        throw new UnsupportedOperationException("Not implemented");
+        return this.branch;
     }
 
     /**
@@ -57,7 +86,13 @@ public class Location {
      * @throws IllegalArgumentException If branch is empty or null
      */
     public void setBranch(String branch) {
-        throw new UnsupportedOperationException("Not implemented");
+        if(branch== null){
+            throw new IllegalArgumentException("Branch is null, try again");
+        }else 
+        if(branch.isEmpty()){
+            throw new IllegalArgumentException("Branch is empty, try again");
+        }
+        this.branch= branch;
     }
 
     /**
@@ -65,7 +100,7 @@ public class Location {
      * @return All cars within the location
      */
     public List<Car> getCars() {
-        throw new UnsupportedOperationException("Not implemented");
+        return this.cars;
     }
 
     /**
@@ -74,7 +109,10 @@ public class Location {
      * @throws IllegalArgumentException If cars is null
      */
     public void setCars(List<Car> cars) {
-        throw new UnsupportedOperationException("Not implemented");
+        if(cars == null){
+            throw new IllegalArgumentException("List of cars is null");
+        }
+        this.cars= cars;
     }
 
     /**
@@ -82,7 +120,7 @@ public class Location {
      * @return list of employees who work at location
      */
     public List<Employee> getEmployees() {
-        throw new UnsupportedOperationException("Not implemented");
+        return this.employees;
     }
 
     /**
@@ -90,6 +128,17 @@ public class Location {
      * @param list of employees who work at location
      */
     public void setEmployees(List<Employee> employees) {
-        throw new UnsupportedOperationException("Not implemented");
+        if(employees == null){
+            throw new IllegalArgumentException("List of Employees is null");
+        }
+        this.employees= employees;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        Location l2= (Location) o;
+
+        return this.getAddress() == l2.getAddress() && this.getBranch() == l2.getBranch() && this.getCars() == l2.getCars()
+        && this.getEmployees() == l2.getEmployees();
     }
 }
