@@ -21,7 +21,7 @@ public class Appointment {
      * @param customer the Customer that schedules it to meet an employee
      * @param Location car dealership they are making the appointment at
      * @param date the Day they appointment is held
-     * @param IllegalArgumentException if any value is null
+     * @throws IllegalArgumentException if any value is null
      */
     public Appointment(Employee employee, Customer customer, Location location, Date date){
         if(employee ==  null){

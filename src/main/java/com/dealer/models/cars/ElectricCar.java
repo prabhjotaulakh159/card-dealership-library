@@ -15,7 +15,7 @@ public class ElectricCar extends Car {
      * @param model car model
      * @param year year car model was made
      * @param color color of car
-     * 
+     * @throws IllegalArgumentException if any value is null or empty or negative
      * @param location dealership location where car is
      * @param price price of Car
      * @param voltage the amount of volts they have

@@ -16,12 +16,12 @@ public class RecreationalVehicle extends Car {
      * @param model car model
      * @param year year car model was made
      * @param color color of car
-
      * @param location dealership location where car is
      * @param price price of Car
      * @param maxPassengers max amount of people that can be in R.V
      * @param numberOfBeds max beds inside the R.V
      * @param hasKitchen if they have one or not
+     * @throws IllegalArgumentException if any value is null or empty or negative
      */
     public RecreationalVehicle(String model, int year, String color, int price, int maxPassengers, int numberOfBeds, boolean hasKitchen){
         super(model, year, color, price);
