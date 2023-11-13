@@ -6,27 +6,31 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dealer.models.Types;
 import com.dealer.models.cars.Car;
+import com.dealer.models.cars.ElectricCar;
+import com.dealer.models.cars.RecreationalVehicle;
 import com.dealer.models.people.Customer;
 import com.dealer.models.people.Employee;
 
 public class FileReader implements DataReader {
-    
-    public FileReader() {
-    }
-
     @Override
     public List<Car> getCars() {
         List<Car> cars =  new ArrayList<Car>();
+        Car placeholder = null;
         try {
             List<String> lines = Files.readAllLines(Paths.get("src\\main\\java\\com\\dealer\\resources\\cars.csv"));
             for (String line : lines) {
                 String[] data = line.split(",");
-                String model = data[0];
-                int year = Integer.parseInt(data[1]);
-                String color = data[2];
-                int price = Integer.parseInt(data[3]);
-                cars.add(new Car(model, year, color, price));
+                String type = data[0];
+                System.out.println(type);
+                if (type.equals(Types.CAR.getType())) 
+                    placeholder = new Car(data[1], Integer.parseInt(data[2]), data[3], Integer.parseInt(data[4]));
+                else if (type.equals(Types.ELECTRIC.getType()))
+                    placeholder = new ElectricCar(data[1], Integer.parseInt(data[2]), data[3], Integer.parseInt(data[4]), Integer.parseInt(data[5]), data[6]);
+                else if (type.equals(Types.RV.getType()))
+                    placeholder = new RecreationalVehicle(data[1], Integer.parseInt(data[2]), data[3], Integer.parseInt(data[4]), Integer.parseInt(data[5]), Integer.parseInt(data[6]), Boolean.parseBoolean(data[7]));
+                cars.add(placeholder);
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());

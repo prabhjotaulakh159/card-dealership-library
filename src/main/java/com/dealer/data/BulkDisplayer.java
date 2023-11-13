@@ -10,15 +10,15 @@ public class BulkDisplayer implements DataDisplayer {
     private DataReader reader;
 
     public BulkDisplayer(DataReader reader) {
-        if (reader == null) {
+        if (reader == null) 
             throw new IllegalArgumentException("Reader cannot be null");
-        }
         this.reader = reader;
     }
 
     @Override
     public void displayCars() {
         List<Car> cars = this.reader.getCars();
+        System.out.println(cars.size());
         for (Car car : cars) {
             System.out.println(car);
         }
@@ -39,5 +39,4 @@ public class BulkDisplayer implements DataDisplayer {
             System.out.println(employee);
         }
     }
-    
 }
