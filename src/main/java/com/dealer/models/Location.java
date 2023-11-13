@@ -88,7 +88,8 @@ public class Location {
     public void setBranch(String branch) {
         if(branch== null){
             throw new IllegalArgumentException("Branch is null, try again");
-        }else 
+        }
+
         if(branch.isEmpty()){
             throw new IllegalArgumentException("Branch is empty, try again");
         }
@@ -136,9 +137,14 @@ public class Location {
 
     @Override
     public boolean equals(Object o){
+        if (!(o instanceof Location)) {
+            return false;
+        }
         Location l2= (Location) o;
 
-        return this.getAddress() == l2.getAddress() && this.getBranch() == l2.getBranch() && this.getCars() == l2.getCars()
-        && this.getEmployees() == l2.getEmployees();
+        return this.address == l2.address && 
+               this.branch == l2.branch && 
+               this.cars == l2.cars && 
+               this.employees == l2.employees;
     }
 }

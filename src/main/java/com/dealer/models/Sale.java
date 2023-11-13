@@ -23,8 +23,15 @@ public class Sale {
      * @throws IllegalArgumentException If any of the fields are null
      */
     public Sale(Employee employee, Customer customer, Location location, Car car) {
-        throw new UnsupportedOperationException("Not implemented");
+        if (employee == null) throw new IllegalArgumentException("Employee cannot be null");
+        if (customer == null) throw new IllegalArgumentException("Customer cannot be null");
+        if (location == null) throw new IllegalArgumentException("Location cannot be null");
+        if (car == null) throw new IllegalArgumentException("Car cannot be null");
 
+        this.employee = employee;
+        this.customer = customer;
+        this.location = location;
+        this.car = car;
     }
 
     /**
@@ -32,8 +39,7 @@ public class Sale {
      * @return Person who made the sale
      */
     public Employee getEmployee() {
-        throw new UnsupportedOperationException("Not implemented");
-
+        return this.employee;
     }
 
     /**
@@ -42,7 +48,8 @@ public class Sale {
      * @throws IllegalArgumentException If employee is null
      */
     public void setEmployee(Employee employee) {
-        throw new UnsupportedOperationException("Not implemented");
+        if (employee == null) throw new IllegalArgumentException("Employee cannot be null");
+        this.employee = employee;
     }
 
     /**
@@ -50,7 +57,7 @@ public class Sale {
      * @return Person who bought the car
      */
     public Customer getCustomer() {
-        throw new UnsupportedOperationException("Not implemented");
+        return this.customer;
     }
 
     /**
@@ -59,7 +66,8 @@ public class Sale {
      * @throws IllegalArgumentException If customer is null
      */
     public void setCustomer(Customer customer) {
-        throw new UnsupportedOperationException("Not implemented");
+        if (customer == null) throw new IllegalArgumentException("Customer cannot be null");
+        this.customer = customer;
     }
 
     /**
@@ -67,7 +75,7 @@ public class Sale {
      * @return Location of the sale
      */
     public Location getLocation() {
-        throw new UnsupportedOperationException("Not implemented");
+        return this.location;
     }
 
     /**
@@ -76,15 +84,15 @@ public class Sale {
      * @throws IllegalArgumentException If location is null
      */
     public void setLocation(Location location) {
-        throw new UnsupportedOperationException("Not implemented");
-    }
+        if (location == null) throw new IllegalArgumentException("Location cannot be null");
+        this.location = location;    }
 
     /**
      * Accessor for car
      * @return The car that was sold
      */
     public Car getCar() {
-        throw new UnsupportedOperationException("Not implemented");
+        return this.car;
     }
 
     /**
@@ -93,6 +101,19 @@ public class Sale {
      * @throws IllegalArgumentException If car is null 
      */
     public void setCar(Car car) {
-        throw new UnsupportedOperationException("Not implemented");
+        if (car == null) throw new IllegalArgumentException("Car cannot be null");
+        this.car = car;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Sale)) {
+            return false;
+        }
+        Sale s = (Sale) o;
+        return this.employee.equals(s.employee) &&
+               this.customer.equals(s.customer) &&
+               this.location.equals(s.location) &&
+               this.car.equals(s.car);
     }
 }

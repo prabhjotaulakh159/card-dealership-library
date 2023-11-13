@@ -1,26 +1,25 @@
 package com.dealer.models.people;
 
-import com.dealer.models.Location;
-
 /**
  * Employee that can work at a location and make appointments
  * @author Prabhjot Aulakh, Safin Haque
  */
 public class Employee extends Person {
-    private Location location;
     private int salary;
     
     /**
      * Constructor
      * @param name Name of the employee
-     * @param location Where the employee works
      * @param salary Salary of the employee
      * @throws IllegalArgumentException If name is empty/null or location is 
      * null or salary is negative 
      */
     public Employee(String name, String phone, int salary) {
         super(name, phone); 
-        throw new UnsupportedOperationException("Not implemented");
+        if (salary < 0) {
+            throw new IllegalArgumentException("Salary cannot be null");
+        }
+        this.salary = salary;
     }
     
     /**
@@ -28,7 +27,7 @@ public class Employee extends Person {
      * @return Salary of the employee
      */
     public int getSalary() {
-        throw new UnsupportedOperationException("Not implemented");
+        return this.salary;
     }
     
     /**
@@ -37,6 +36,25 @@ public class Employee extends Person {
      * @throws IllegalArgumentException If salary is negative
      */
     public void setSalary(int salary) {
-        throw new UnsupportedOperationException("Not implemented");
+        if (salary < 0) {
+            throw new IllegalArgumentException("Salary cannot be null");
+        }
+        this.salary = salary;    
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Employee)) {
+            return false;
+        }
+        Employee p = (Employee) o;
+        return super.equals(o) && this.salary == p.salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee [salary=" + salary + "]" + super.toString();
+    }
+
+    
 }

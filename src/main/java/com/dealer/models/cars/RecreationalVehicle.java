@@ -1,8 +1,5 @@
 package com.dealer.models.cars;
 
-import com.dealer.models.Location;
-
-
 /**
  * RecreationalVehicle is a type of Car
  */
@@ -93,7 +90,6 @@ public class RecreationalVehicle extends Car {
 
     @Override
     public boolean equals(Object o){
-
         if(!(o instanceof Car)){
             return false;
         }

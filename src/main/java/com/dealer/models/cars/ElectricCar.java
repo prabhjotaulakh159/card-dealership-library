@@ -1,8 +1,5 @@
 package com.dealer.models.cars;
 
-import com.dealer.models.Location;
-
-
 /**
  * ElectricCar is a type of Car
  */

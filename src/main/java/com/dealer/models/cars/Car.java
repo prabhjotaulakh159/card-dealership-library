@@ -1,8 +1,5 @@
 package com.dealer.models.cars;
 
-import com.dealer.models.Location;
-
-
 /**
  * Basic description of Cars
  * @Author Prabhjot Aulakh, Safin Haque
@@ -135,5 +132,10 @@ public class Car {
             return true;
         }
        return false;
+    }
+    
+    @Override
+    public String toString() {
+        return "Car [model=" + model + ", year=" + year + ", color=" + color + ", price=" + price + "]";
     }
 }   
