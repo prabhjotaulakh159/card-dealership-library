@@ -20,6 +20,36 @@ public class RecretionalVehicleTest {
         Car car = new RecreationalVehicle("model", 2023, "orange", 3000, 5, 3, true);
     }
 
+    @Test
+    public void constructor_empty_model() {
+        Car car = new RecreationalVehicle("", 2023, "orange", 3000, 5, 3, true);
+    }
+
+    @Test
+    public void constructor_blank_model() {
+        Car car = new RecreationalVehicle("   ", 2023, "orange", 3000, 5, 3, true);
+    }
+
+    @Test
+    public void constructor_null_model() {
+        Car car = new RecreationalVehicle(null, 2023, "orange", 3000, 5, 3, true);
+    }
+
+    @Test
+    public void constructor_empty_color() {
+        Car car = new RecreationalVehicle("model", 2023, "", 3000, 5, 3, true);
+    }
+
+    @Test
+    public void constructor_blank_color() {
+        Car car = new RecreationalVehicle("model", 2023, "   ", 3000, 5, 3, true);
+    }
+
+    @Test
+    public void constructor_null_color() {
+        Car car = new RecreationalVehicle("model", 2023, null, 3000, 5, 3, true);
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void negative_passengers() {
         Car car = new RecreationalVehicle("model", 2023, "orange", 3000, -1, 3, true);
