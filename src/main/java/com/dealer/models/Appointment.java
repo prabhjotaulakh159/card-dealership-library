@@ -138,8 +138,10 @@ public class Appointment {
 
     @Override
     public boolean equals(Object o){
+        if (!(o instanceof Appointment)) {
+            return false;
+        }
         Appointment ap=(Appointment) o;
-
         return this.getEmployee() == ap.getEmployee() && this.getCustomer() == ap.getCustomer() &&
         this.getLocation() == ap.getLocation() && this.getDate() == ap.getDate();
     }

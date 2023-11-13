@@ -4,7 +4,7 @@ package com.dealer.models.people;
  * A person who has a name and phone
  * @author Prabhjot Aulakh Safin Haque
  */
-public class Person {
+public abstract class Person {
     private String name;
     private String phone;
 
@@ -12,9 +12,27 @@ public class Person {
      * Constructor 
      * @param name Name of the person
      * @param phone Phone number of the person
+     * @throws IllegalArgumentException If either parameter is null
      */
     public Person(String name, String phone) {
-        throw new UnsupportedOperationException("Not implemented");
+        if (name == null) {
+            throw new IllegalArgumentException("Name cannot be null");
+        }
+
+        if (phone == null) {
+            throw new IllegalArgumentException("Phone cannot be null");
+        }
+
+        if (name.isEmpty() || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be empty");
+        }
+
+        if (phone.isEmpty() || phone.isBlank()) {
+            throw new IllegalArgumentException("Phone cannot be empty");
+        }
+
+        this.name = name;
+        this.phone = phone;
     }
 
     /**
@@ -22,7 +40,7 @@ public class Person {
      * @return Name of the person
      */
     public String getName() {
-        throw new UnsupportedOperationException("Not implemented");
+        return this.name;
     }
 
     /**
@@ -31,7 +49,10 @@ public class Person {
      * @throws IllegalArgumentException If name is empty/null
      */
     public void setName(String name) {
-        throw new UnsupportedOperationException("Not implemented");
+        if (name.isEmpty() || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be empty");
+        }
+        this.name = name;
     }
 
     /**
@@ -39,7 +60,7 @@ public class Person {
      * @return Phone number of the person
      */
     public String getPhone() {
-        throw new UnsupportedOperationException("Not implemented");
+        return this.phone;
     }
 
     /**
@@ -49,6 +70,22 @@ public class Person {
      * empty/null
      */
     public void setPhone(String phone) {
-        throw new UnsupportedOperationException("Not implemented");
+        if (phone.isEmpty() || phone.isBlank()) {
+            throw new IllegalArgumentException("Phone cannot be empty");
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Person)) {
+            return false;
+        }
+        Person person = (Person) o;
+        return this.name.equals(person.name) && this.phone.equals(person.phone);
+    }
+
+    @Override
+    public String toString() {
+        return "Person [name=" + name + ", phone=" + phone + "]";
     }
 }

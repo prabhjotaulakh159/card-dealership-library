@@ -14,6 +14,10 @@ public class Customer extends Person {
      */
     public Customer(String name, String phone) {
         super(name, phone);
-        throw new UnsupportedOperationException("Not implemented");
     }
+
+    @Override
+    public String toString() {
+        return "Customer []" + super.toString();
+    }    
 }

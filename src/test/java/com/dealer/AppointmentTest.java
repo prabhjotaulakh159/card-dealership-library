@@ -60,7 +60,7 @@ public class AppointmentTest {
     Customer c1= new Customer("Macy", "4445557777");
     Location l1= new Location("123 avenue", "Tesla", new ArrayList<Car>(), new ArrayList<Employee>());
     Date date= new Date(2023, 15, 14);
-    Appointment appointment= new Appointment(ep1, c1, l1, date );
+    Appointment appointment= new Appointment(ep1, c1, l1, date);
   }
 
   @Test(expected = IllegalArgumentException.class)
