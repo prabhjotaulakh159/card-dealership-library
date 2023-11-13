@@ -22,16 +22,13 @@ public class RecreationalVehicle extends Car {
      */
     public RecreationalVehicle(String model, int year, String color, int price, int maxPassengers, int numberOfBeds, boolean hasKitchen){
         super(model, year, color, price);
-        if(maxPassengers <=0){
+        if (maxPassengers <= 0)
             throw new IllegalArgumentException("Max passengers is negative or 0, enter again");
-        }
-        if(numberOfBeds<=0){
+        if (numberOfBeds <= 0)
             throw new IllegalArgumentException("Number of beds is negative or 0, enter again");
-        }
-
-        this.maxPassengers= maxPassengers;
-        this.numberOfBeds= numberOfBeds;
-        this.hasKitchen= hasKitchen;
+        this.maxPassengers = maxPassengers;
+        this.numberOfBeds = numberOfBeds;
+        this.hasKitchen = hasKitchen;
     }
 
     /**
@@ -47,9 +44,8 @@ public class RecreationalVehicle extends Car {
      * @param maxPassengers the max passengers hat fit in R.V
      */
     public void setMaxPassengers(int maxPassengers) {
-        if(maxPassengers <=0){
+        if (maxPassengers <= 0)
             throw new IllegalArgumentException("Max passengers is negative or 0, enter again");
-        }
         this.maxPassengers= maxPassengers;
     }
 
@@ -66,9 +62,8 @@ public class RecreationalVehicle extends Car {
      * @param numberOfBeds the number of beds in R.V
      */
     public void setNumberOfBeds(int numberOfBeds) {
-        if(numberOfBeds<=0){
+        if (numberOfBeds <= 0)
             throw new IllegalArgumentException("Number of beds is negative or 0, enter again");
-        }
         this.numberOfBeds= numberOfBeds;
     }
 
@@ -85,21 +80,27 @@ public class RecreationalVehicle extends Car {
      * @param hasKitchen true or false if they have a kitchen or not
      */
     public void setHasKitchen(boolean hasKitchen) {
-        this.hasKitchen=hasKitchen;
+        this.hasKitchen = hasKitchen;
     }
 
+    /**
+     * Checks whether or not two rv's are the same
+     * @return Whether or not the fields match 
+     */
     @Override
     public boolean equals(Object o){
-        if(!(o instanceof Car)){
+        if(!(o instanceof Car))
             return false;
-        }
         RecreationalVehicle rv = (RecreationalVehicle) o;
-
-        return this.getModel() == rv.getModel() && this.getColor() == rv.getColor()
-        && this.getYear() == rv.getYear() && this.getPrice() == rv.getPrice() && this.getMaxPassengers() == rv.getMaxPassengers()
-        && this.getNumberOfBeds() == rv.getNumberOfBeds() && this.isHasKitchen() == rv.isHasKitchen();
+        return super.equals(o) && this.numberOfBeds == rv.numberOfBeds && this.maxPassengers == rv.maxPassengers && this.hasKitchen == rv.hasKitchen;
     }
-    
 
-
+    /**
+     * Constructs string representation of an RV
+     * @return String rep. of an RV
+     */
+    @Override
+    public String toString() {
+        return super.toString() + " | Max Passengers: " + this.maxPassengers + " | Beds: " + this.numberOfBeds + " | Kitchen: " + this.hasKitchen;  
+    }
 }
