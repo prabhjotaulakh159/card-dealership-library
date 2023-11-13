@@ -20,17 +20,14 @@ public class ElectricCar extends Car {
      */
     public ElectricCar(String model, int year, String color, int price, int voltage, String chargerType){
         super(model, year, color, price);
-        if(voltage<=0){
-            throw new IllegalArgumentException("Voltage is negative or equals to 0, try again");
-        }
-        if(chargerType == null){
-            throw new IllegalArgumentException("Charger Type is null");
-        }
-        else if(chargerType.isEmpty()){
+        if (voltage <= 0)
+            throw new IllegalArgumentException("Voltage must be greater than 0");
+        if (chargerType == null)
+            throw new IllegalArgumentException("Charger Type cannot be null");
+        if (chargerType.isEmpty() || chargerType.isBlank())
             throw new IllegalArgumentException("Charger Type is empty");
-        }
-        this.voltage= voltage;
-        this.chargerType= chargerType;
+        this.voltage = voltage;
+        this.chargerType = chargerType;
     }
 
     /**
@@ -46,14 +43,13 @@ public class ElectricCar extends Car {
      * @param voltage
      */
     public void setVoltage(int voltage) {
-        if(voltage<=0){
-            throw new IllegalArgumentException("Voltage is negative or equals to 0, try again");
-        }
+        if (voltage <= 0)
+            throw new IllegalArgumentException("Voltage must be greater than 0");
         this.voltage= voltage;
     }
 
     /**
-     * Acess the chargerType
+     * Access the chargerType
      * @return name of chargerType
      */
     public String getChargerType() {
@@ -65,27 +61,31 @@ public class ElectricCar extends Car {
      * @param chargerType
      */
     public void setChargerType(String chargerType) {
-       if(chargerType == null){
-            throw new IllegalArgumentException("Charger Type is null");
-        }
-        else if(chargerType.isEmpty()){
+        if (chargerType == null)
+            throw new IllegalArgumentException("Charger Type cannot be null");
+        if (chargerType.isEmpty() || chargerType.isBlank())
             throw new IllegalArgumentException("Charger Type is empty");
-        }
         this.chargerType= chargerType;
     }
 
+    /**
+     * Checks if two electric cars are equal
+     * @return Whether or not they have the same fields
+     */
     @Override
     public boolean equals(Object o){
-        
-        if(!(o instanceof Car)){
+        if(!(o instanceof Car))
             return false;
-        }
-
         ElectricCar electricCar = (ElectricCar) o;
-
-        return this.getModel() == electricCar.getModel() && this.getYear() == electricCar.getYear() && this.getColor() == electricCar.getColor()
-         && this.getPrice() == electricCar.getPrice() && this.getVoltage()== electricCar.getVoltage()
-        && this.getChargerType()== electricCar.getChargerType();
-       
+        return super.equals(o) && this.voltage == electricCar.voltage && this.chargerType.equals(electricCar.chargerType);
+    }
+    
+    /**
+     * Constructs a string representation for an electric car
+     * @return String representation of an electric car
+     */
+    @Override
+    public String toString() {
+        return super.toString() + " | " + this.voltage + " volts | " + this.chargerType;
     }
 }

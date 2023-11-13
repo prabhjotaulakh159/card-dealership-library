@@ -10,41 +10,36 @@ public class Car {
     private String color;
     private int price;
 
-
     /**
-     * Car Constructor
-     * @param model car model
-     * @param year year car model was made
-     * @param color color of car
-     * @param promotion if car has promotion
-     * removed it
-     * @param price price of Car
-     * @throws IllegalArgumentException if any value is null
+     * Constructor
+     * @param model Model of the car
+     * @param year Year of the car
+     * @param color Color of the car
+     * @param price Price of the Car
+     * @throws IllegalArgumentException if any value is null/empty
      */
     public Car(String model, int year, String color, int price){
-
-        if(model ==  null || model.isEmpty()){
-            throw new IllegalArgumentException("Model value null or is empty, try again");
-        }
-        if(color ==  null || color.isEmpty()){
-            throw new IllegalArgumentException("Color value null or is empty, try again");
-        }
-        if(year<1999){
-            throw new IllegalArgumentException("made before 1999, enter another year");
-        }
-        if(price<0){
-            throw new IllegalArgumentException("Price is negative, try again ");
-        }
+        if (model == null) 
+            throw new IllegalArgumentException("Model cannot be null");
+        if (color == null) 
+            throw new IllegalArgumentException("Color cannot be null");
+        if (model.isEmpty() || model.isBlank()) 
+            throw new IllegalArgumentException("Model cannot be blank");
+        if (color.isEmpty() || color.isBlank()) 
+            throw new IllegalArgumentException("Color cannot be blank");
+        if (year < 1999)
+            throw new IllegalArgumentException("Year cannot be below 1999");
+        if (price < 0)
+            throw new IllegalArgumentException("Price cannot be negative");
         this.model = model;
-        this.year= year;
-        this.color= color;
-        this.price= price;
+        this.year = year;
+        this.color = color;
+        this.price = price;
     }
 
-   
     /**
-     * Access car model
-     * @return model name
+     * Accessor for model
+     * @return Model of the car
      */
     public String getModel() {
         return this.model;
@@ -55,9 +50,10 @@ public class Car {
      * @param model A string of the car model
      */
     public void setModel(String model) {
-        if(model ==  null || model.isEmpty()){
-            throw new IllegalArgumentException("Model value null or is empty, try again");
-        }
+        if(model == null) 
+            throw new IllegalArgumentException("Model cannot be null");
+        if (model.isEmpty() || model.isBlank()) 
+            throw new IllegalArgumentException("Model cannot be blank");
         this.model= model;
     }
 
@@ -74,9 +70,8 @@ public class Car {
      * @param year the Car Year
      */
     public void setYear(int year) {
-        if(year<1999){
+        if (year < 1999) 
             throw new IllegalArgumentException("made before 1999, enter another year");
-        }
         this.year= year;
     }
 
@@ -93,13 +88,13 @@ public class Car {
      * @param color a String holding the car color
      */
     public void setColor(String color) {
-        if(color ==  null || color.isEmpty()){
-            throw new IllegalArgumentException("Color value null or is empty, try again");
-        }
+        if (color == null) 
+            throw new IllegalArgumentException("Color cannot be null");
+        if (color.isEmpty() || color.isBlank()) 
+            throw new IllegalArgumentException("Color cannot be blank");
+        this.color = color;
     }
 
-
-    
     /**
      * Accessor of Price
      * @return the Car Price
@@ -113,10 +108,9 @@ public class Car {
      * @param price price we want to set a car to
      */
     public void setPrice(int price) {
-        if(price<0){
-            throw new IllegalArgumentException("Price is negative, try again ");
-        }
-        this.price= price;
+        if (price < 0)
+            throw new IllegalArgumentException("Price cannot be negative");
+        this.price = price;
     }
 
     /**
@@ -125,17 +119,18 @@ public class Car {
      */
     @Override
     public boolean equals(Object o){
-        Car c2= (Car) o;
-
-        if(this.model == c2.model && this.year == c2.year && this.color== c2.color &&
-        this.price == c2.price){
-            return true;
-        }
-       return false;
+        if (!(o instanceof Car)) 
+            return false;
+        Car car = (Car) o;
+        return this.model == car.model && this.year == car.year && this.color== car.color;
     }
     
+    /**
+     * Constructs a string representation for a car
+     * @return String representation of a car
+     */
     @Override
     public String toString() {
-        return "Car [model=" + model + ", year=" + year + ", color=" + color + ", price=" + price + "]";
+        return this.model + " | " + this.year + " | " + this.color + " | " + this.price + "$";
     }
 }   

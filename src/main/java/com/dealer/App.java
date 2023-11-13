@@ -10,7 +10,10 @@ public class App {
     public static void main(String[] args) throws IOException {
         DataDisplayer displayer = new BulkDisplayer(new FileReader());
         displayer.displayCars();
-        displayer.displayEmployees();
+        System.out.println();
         displayer.displayCustomers();
+        System.out.println();
+        System.out.println();
+        displayer.displayEmployees();
     }
 }
