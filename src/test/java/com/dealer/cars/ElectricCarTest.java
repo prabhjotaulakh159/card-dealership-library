@@ -22,32 +22,32 @@ public class ElectricCarTest {
         Car car = new ElectricCar("model", 2023, "orange", 3000, 500, "USA-23C");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void empty_model() {
         Car car = new ElectricCar("", 2023, "orange", 3000, 500, "USA-23C");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void blank_model() {
         Car car = new ElectricCar("   ", 2023, "orange", 3000, 500, "USA-23C");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void null_model() {
         Car car = new ElectricCar(null, 2023, "orange", 3000, 500, "USA-23C");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void empty_color() {
         Car car = new ElectricCar("model", 2023, "", 3000, 500, "USA-23C");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void blank_color() {
         Car car = new ElectricCar("model", 2023, "   ", 3000, 500, "USA-23C");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void null_color() {
         Car car = new ElectricCar("model", 2023, null, 3000, 500, "USA-23C");
     }
