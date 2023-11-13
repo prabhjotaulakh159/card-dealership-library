@@ -23,7 +23,7 @@ public class FileReader implements DataReader {
     public List<Car> getCars() {
         List<Car> cars =  new ArrayList<Car>();
         try {
-            List<String> lines = Files.readAllLines(Paths.get("../resources/cars.csv"));
+            List<String> lines = Files.readAllLines(Paths.get("src\\main\\java\\com\\dealer\\resources\\cars.csv"));
             for (String line : lines) {
                 String[] data = line.split(",");
                 String model = data[0];
@@ -61,7 +61,7 @@ public class FileReader implements DataReader {
     public List<Customer> getCustomers() {
         List<Customer> customers = new ArrayList<Customer>();
         try {
-            List<String> lines = Files.readAllLines(Paths.get("../resources/customers.csv"));
+            List<String> lines = Files.readAllLines(Paths.get("src\\main\\java\\com\\dealer\\resources\\customers.csv"));
             for (String line : lines) {
                 String[] data = line.split(",");
                 String name = data[0];
@@ -78,7 +78,7 @@ public class FileReader implements DataReader {
     public List<Employee> getEmployees() {
         List<Employee> employees = new ArrayList<Employee>();
         try {
-            List<String> lines = Files.readAllLines(Paths.get("../resources/employees.csv"));
+            List<String> lines = Files.readAllLines(Paths.get("src\\main\\java\\com\\dealer\\resources\\employees.csv"));
             for (String line: lines) {
                 String[] data = line.split(",");
                 String name = data[0];
