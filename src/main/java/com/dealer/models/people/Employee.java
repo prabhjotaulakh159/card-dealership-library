@@ -55,6 +55,4 @@ public class Employee extends Person {
     public String toString() {
         return "Employee [salary=" + salary + "]" + super.toString();
     }
-
-    
 }

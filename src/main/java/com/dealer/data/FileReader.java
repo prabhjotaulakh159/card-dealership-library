@@ -6,9 +6,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dealer.models.Appointment;
-import com.dealer.models.Location;
-import com.dealer.models.Sale;
 import com.dealer.models.cars.Car;
 import com.dealer.models.people.Customer;
 import com.dealer.models.people.Employee;
@@ -16,7 +13,6 @@ import com.dealer.models.people.Employee;
 public class FileReader implements DataReader {
     
     public FileReader() {
-
     }
 
     @Override
@@ -39,24 +35,7 @@ public class FileReader implements DataReader {
         }
         return cars;
     }
-
-    @Override
-    public List<Location> getLocations() {
-        throw new UnsupportedOperationException("not implemented");
-    }
-
-    @Override
-    public List<Appointment> getAppointements() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAppointements'");
-    }
-
-    @Override
-    public List<Sale> getSales() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSales'");
-    }
-
+    
     @Override
     public List<Customer> getCustomers() {
         List<Customer> customers = new ArrayList<Customer>();

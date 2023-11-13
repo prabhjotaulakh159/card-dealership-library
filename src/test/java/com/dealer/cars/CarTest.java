@@ -9,8 +9,6 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import com.dealer.models.Location;
-
 import com.dealer.models.cars.Car;
 
 /**
@@ -53,14 +51,6 @@ public class CarTest {
         Car car = new Car(
             "model", 2023, "", 1000);
     }
-
-
-
-
-
-
-
-
 
     @Test(expected = IllegalArgumentException.class)
     public void constuctor_negative_price() {
