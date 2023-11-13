@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import com.dealer.models.Location;
 import com.dealer.models.cars.Car;
 import com.dealer.models.cars.ElectricCar;
 

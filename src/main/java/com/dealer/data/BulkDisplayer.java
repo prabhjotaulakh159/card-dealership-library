@@ -25,30 +25,6 @@ public class BulkDisplayer implements DataDisplayer {
     }
 
     @Override
-    public void displayLocations() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'displayLocations'");
-    }
-
-    @Override
-    public void displayPromotions() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'displayPromotions'");
-    }
-
-    @Override
-    public void displayAppointments() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'displayAppointments'");
-    }
-
-    @Override
-    public void displaySales() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'displaySales'");
-    }
-
-    @Override
     public void displayCustomers() {
         List<Customer> customers = this.reader.getCustomers();
         for (Customer customer : customers) {
