@@ -35,6 +35,12 @@ public class CarTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void constructor_empty_model_blank() {
+        Car car = new Car(
+            "  ", 2023, "orange", 1000);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void constructor_year_before_1999() {
         Car car = new Car(
             "model", 1998, "orange", 1000);
@@ -50,6 +56,12 @@ public class CarTest {
     public void constuctor_empty_color() {
         Car car = new Car(
             "model", 2023, "", 1000);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constuctor_empty_color_blank() {
+        Car car = new Car(
+            "model", 2023, "  ", 1000);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -73,6 +85,13 @@ public class CarTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void setter_model_blank() {
+        Car car = new Car(
+            "model", 2023, "orange", 1000);
+        car.setModel("   ");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void setter_color_null() {
         Car car = new Car(
             "model", 2023, "orange", 1000);
@@ -84,6 +103,13 @@ public class CarTest {
         Car car = new Car(
             "model", 2023, "orange", 1000);
         car.setColor("");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setter_color_blank() {
+        Car car = new Car(
+            "model", 2023, "orange", 1000);
+        car.setColor("  ");
     }
 
     @Test(expected = IllegalArgumentException.class)

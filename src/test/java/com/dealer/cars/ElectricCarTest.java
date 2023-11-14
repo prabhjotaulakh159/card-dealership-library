@@ -23,6 +23,36 @@ public class ElectricCarTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void empty_model() {
+        Car car = new ElectricCar("", 2023, "orange", 3000, 500, "USA-23C");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void blank_model() {
+        Car car = new ElectricCar("   ", 2023, "orange", 3000, 500, "USA-23C");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void null_model() {
+        Car car = new ElectricCar(null, 2023, "orange", 3000, 500, "USA-23C");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void empty_color() {
+        Car car = new ElectricCar("model", 2023, "", 3000, 500, "USA-23C");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void blank_color() {
+        Car car = new ElectricCar("model", 2023, "   ", 3000, 500, "USA-23C");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void null_color() {
+        Car car = new ElectricCar("model", 2023, null, 3000, 500, "USA-23C");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void negative_voltage() {
         Car car = new ElectricCar("model", 2023, "orange",3000, -1, "USA-23C");  
     }
@@ -40,6 +70,11 @@ public class ElectricCarTest {
     @Test(expected = IllegalArgumentException.class)
     public void empty_charger_type() {
         Car car = new ElectricCar("model", 2023, "orange", 3000, 0, "");  
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void blank_charger_type() {
+        Car car = new ElectricCar("model", 2023, "orange", 3000, 0, "  ");  
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -64,6 +99,12 @@ public class ElectricCarTest {
     public void setter_empty_charger() {
         Car car = new ElectricCar("model", 2023, "orange", 3000, 500, "USA-23C");
         ((ElectricCar)car).setChargerType(""); 
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setter_blank_charger() {
+        Car car = new ElectricCar("model", 2023, "orange", 3000, 500, "USA-23C");
+        ((ElectricCar)car).setChargerType("   "); 
     }
 
     @Test
