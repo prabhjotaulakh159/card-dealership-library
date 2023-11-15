@@ -1,4 +1,4 @@
-package com.dealer.data;
+package com.dealer.data.loaders;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,9 +18,8 @@ public interface IDataLoader {
      * @return All the cars in source
      * @throws IOException If loading data from files fails
      * @throws SQLException If loading data from database fails
-     * @throws NumberFormatException If parsing strings into integers fails
      */
-    List<Car> getCars() throws IOException, SQLException, NumberFormatException;
+    List<Car> getCars() throws IOException, SQLException;
 
     /**
      * Retrives the list of customer in source
@@ -35,7 +34,6 @@ public interface IDataLoader {
      * @return All the employees in source
      * @throws IOException If loading data from files fails
      * @throws SQLException If loading data from database fails
-     * @throws NumberFormatException If parsing strings into integers fails
      */
     List<Employee> getEmployees() throws IOException, SQLException;
 }

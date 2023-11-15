@@ -4,7 +4,7 @@ package com.dealer.data;
  * Defines default constants for data loading
  * @author Prabhjot Aulakh, Safin Haque
  */
-public class DataConstants {
+public class Constants {
     public static final String CARS_CSV = "src\\main\\java\\com\\dealer\\resources\\cars.csv";
     public static final String CUSTOMERS_CSV = "src\\main\\java\\com\\dealer\\resources\\customers.csv";
     public static final String EMPLOYEES_CSV = "src\\main\\java\\com\\dealer\\resources\\employees.csv";
