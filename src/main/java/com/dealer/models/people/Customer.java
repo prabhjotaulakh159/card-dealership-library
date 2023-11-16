@@ -14,4 +14,14 @@ public class Customer extends Person {
     public Customer(String name, String phone) {
         super(name, phone);
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(!(o instanceof Person)){
+            return false;
+        }
+        Customer customer= (Customer) o;
+        
+        return super.equals(customer);
+    }
 }

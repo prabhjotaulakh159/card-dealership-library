@@ -49,7 +49,7 @@ public class Employee extends Person {
         if (!(o instanceof Employee)) 
             return false;
         Employee employee = (Employee) o;
-        return super.equals(o) && this.salary == employee.salary;
+        return super.equals(employee) && this.salary == employee.salary;
     }
 
     /**
