@@ -23,6 +23,8 @@ public abstract class Person {
             throw new IllegalArgumentException("Name cannot be empty");
         if (phone.isEmpty() || phone.isBlank()) 
             throw new IllegalArgumentException("Phone cannot be empty");
+        if (!phone.matches("^[\\d]{10,}$"))
+            throw new IllegalArgumentException("Phone must be 10 digits");
         this.name = name;
         this.phone = phone;
     }
@@ -66,6 +68,8 @@ public abstract class Person {
             throw new IllegalArgumentException("Phone cannot be null !");
         if (phone.isEmpty() || phone.isBlank()) 
             throw new IllegalArgumentException("Phone cannot be empty");
+        if (!phone.matches("^[\\d]{10,}$"))
+            throw new IllegalArgumentException("Phone must be 10 digits");
         this.phone = phone;
     }
 
