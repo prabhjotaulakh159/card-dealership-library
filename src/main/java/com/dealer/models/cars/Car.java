@@ -122,7 +122,7 @@ public class Car {
         if (!(o instanceof Car)) 
             return false;
         Car car = (Car) o;
-        return this.model == car.model && this.year == car.year && this.color== car.color;
+        return this.model.equals(car.model) && this.year == car.year && this.color.equals(car.color) && this.price == car.price;
     }
     
     /**

@@ -3,12 +3,12 @@ package com.dealer.People;
 import com.dealer.models.people.Employee;
 import com.dealer.models.people.Person;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+@SuppressWarnings("unused")
 public class EmployeeTest {
     @Test
     public void employee_constructor_works(){
@@ -53,19 +53,14 @@ public class EmployeeTest {
     @Test
     public void equals_method_works(){
         Person person1= new Employee("Jake", "877-627-5757" , 70000);
-
         Person person2= new Employee("Jake", "877-627-5757" , 70000);
-
         assertTrue(person1.equals(person2));
     }
 
     @Test
     public void equals_method_not_Work(){
         Person person1= new Employee("Mason", "877-627-5757" , 70000);
-
         Person person2= new Employee("Jake", "877-627-5757" , 75000);
-
         assertFalse(person1.equals(person2));
     }
-
 }

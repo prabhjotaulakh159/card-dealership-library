@@ -4,6 +4,7 @@ import com.dealer.models.people.Customer;
 
 import org.junit.Test;
 
+@SuppressWarnings("unused")
 public class CustomerTest {
     @Test
     public void customer_constructor_works(){

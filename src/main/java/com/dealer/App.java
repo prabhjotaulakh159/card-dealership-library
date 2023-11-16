@@ -1,19 +1,16 @@
 package com.dealer;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
-import com.dealer.data.BulkDisplayer;
-import com.dealer.data.DataDisplayer;
-import com.dealer.data.FileReader;
+import com.dealer.data.loaders.FileLoader;
+import com.dealer.models.cars.Car;
 
 public class App {
-    public static void main(String[] args) throws IOException {
-        DataDisplayer displayer = new BulkDisplayer(new FileReader());
-        displayer.displayCars();
-        System.out.println();
-        displayer.displayCustomers();
-        System.out.println();
-        System.out.println();
-        displayer.displayEmployees();
+    public static void main(String[] args) throws IOException, SQLException {
+        FileLoader loader = new FileLoader();
+        List<Car> cars = loader.getCars();
+        System.out.println(cars.size());
     }
 }
