@@ -1,4 +1,4 @@
-package com.dealer.People;
+package com.dealer.people;
 
 import com.dealer.models.people.Customer;
 import com.dealer.models.people.Person;
