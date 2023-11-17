@@ -28,36 +28,40 @@ public class FileLoader implements IDataLoader {
      * @throws NumberFormatException If parsing strings into integers fails
      */
     @Override
-    public List<Car> getCars() throws IOException, SQLException {
-        Path path = Paths.get(Constants.CARS_CSV);
-        List<String> lines = Files.readAllLines(path);
-        List<Car> cars = new ArrayList<Car>();
-        for (String line : lines) {
-            Car placeholder = null;
-            String[] data = line.split(Constants.CSV_DELIMETER);
-            System.out.println(data.length);
-            String typeOfCar = data[0];
-            String model = data[1];
-            int year = Integer.parseInt(data[2]);
-            String color = data[3];
-            int price = Integer.parseInt(data[4]);
-            if (typeOfCar.equals(Constants.CAR_TYPE)) {
-                placeholder = new Car(model, year, color, price);
-            } 
-            else if (typeOfCar.equals(Constants.ELECTRIC_TYPE)) {
-                int voltage = Integer.parseInt(data[5]);
-                String chargerType = data[6];
-                placeholder = new ElectricCar(model, year, color, price, voltage, chargerType);
-            } 
-            else if (typeOfCar.equals(Constants.RV_TYPE)) {
-                int maxPassengers = Integer.parseInt(data[5]);
-                int numberOfBeds = Integer.parseInt(data[6]);
-                boolean hasKitchen = Boolean.parseBoolean(data[7]);
-                placeholder = new RecreationalVehicle(model, year, color, price, maxPassengers, numberOfBeds, hasKitchen);
+    public List<Car> getCars() {
+        try {
+            Path path = Paths.get(Constants.CARS_CSV);
+            List<String> lines = Files.readAllLines(path);
+            List<Car> cars = new ArrayList<Car>();
+            for (String line : lines) {
+                Car placeholder = null;
+                String[] data = line.split(Constants.CSV_DELIMETER);
+                String typeOfCar = data[0];
+                String model = data[1];
+                int year = Integer.parseInt(data[2]);
+                String color = data[3];
+                int price = Integer.parseInt(data[4]);
+                if (typeOfCar.equals(Constants.CAR_TYPE)) {
+                    placeholder = new Car(model, year, color, price);
+                } 
+                else if (typeOfCar.equals(Constants.ELECTRIC_TYPE)) {
+                    int voltage = Integer.parseInt(data[5]);
+                    String chargerType = data[6];
+                    placeholder = new ElectricCar(model, year, color, price, voltage, chargerType);
+                } 
+                else if (typeOfCar.equals(Constants.RV_TYPE)) {
+                    int maxPassengers = Integer.parseInt(data[5]);
+                    int numberOfBeds = Integer.parseInt(data[6]);
+                    boolean hasKitchen = Boolean.parseBoolean(data[7]);
+                    placeholder = new RecreationalVehicle(model, year, color, price, maxPassengers, numberOfBeds, hasKitchen);
+                }
+                cars.add(placeholder);
             }
-            cars.add(placeholder);
+            return cars;
+        } 
+        catch (IOException e) {
+            throw new IllegalArgumentException();
         }
-        return cars;
     }
 
     /**
@@ -67,17 +71,22 @@ public class FileLoader implements IDataLoader {
      * @throws SQLException If loading data from database fails
      */
     @Override
-    public List<Customer> getCustomers() throws IOException, SQLException {
-        Path path = Paths.get(Constants.CUSTOMERS_CSV);
-        List<String> lines = Files.readAllLines(path);
-        List<Customer> customers = new ArrayList<Customer>();
-        for (String line : lines) {
-            String[] data = line.split(Constants.CSV_DELIMETER);
-            String name = data[0];
-            String phoneNumber = data[1];
-            customers.add(new Customer(name, phoneNumber));
+    public List<Customer> getCustomers() {
+        try {
+            Path path = Paths.get(Constants.CUSTOMERS_CSV);
+            List<String> lines = Files.readAllLines(path);
+            List<Customer> customers = new ArrayList<Customer>();
+            for (String line : lines) {
+                String[] data = line.split(Constants.CSV_DELIMETER);
+                String name = data[0];
+                String phoneNumber = data[1];
+                customers.add(new Customer(name, phoneNumber));
+            }
+            return customers;
         }
-        return customers;
+        catch (IOException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
@@ -87,17 +96,22 @@ public class FileLoader implements IDataLoader {
      * @throws SQLException If loading data from database fails
      */
     @Override
-    public List<Employee> getEmployees() throws IOException, SQLException {
-        Path path = Paths.get(Constants.EMPLOYEES_CSV);
-        List<String> lines = Files.readAllLines(path);
-        List<Employee> employees = new ArrayList<Employee>();
-        for (String line : lines) {
-            String[] data = line.split(Constants.CSV_DELIMETER);
-            String name = data[0];
-            String phoneNumber = data[1];
-            int salary = Integer.parseInt(data[3]);
-            employees.add(new Employee(name, phoneNumber, salary));
+    public List<Employee> getEmployees() {
+        try {
+            Path path = Paths.get(Constants.EMPLOYEES_CSV);
+            List<String> lines = Files.readAllLines(path);
+            List<Employee> employees = new ArrayList<Employee>();
+            for (String line : lines) {
+                String[] data = line.split(Constants.CSV_DELIMETER);
+                String name = data[0];
+                String phoneNumber = data[1];
+                int salary = Integer.parseInt(data[3]);
+                employees.add(new Employee(name, phoneNumber, salary));
+            }
+            return employees;
         }
-        return employees;
+        catch (IOException e) {
+            throw new IllegalArgumentException();
+        }
     }
 }

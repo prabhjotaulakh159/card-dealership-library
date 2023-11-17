@@ -1,4 +1,4 @@
-package com.dealer.data;
+package com.dealer.data.loaders;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.dealer.data.loaders.FileLoader;
 import com.dealer.models.cars.Car;
 import com.dealer.models.cars.ElectricCar;
 import com.dealer.models.cars.RecreationalVehicle;

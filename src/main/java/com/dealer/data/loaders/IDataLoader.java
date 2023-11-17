@@ -19,7 +19,7 @@ public interface IDataLoader {
      * @throws IOException If loading data from files fails
      * @throws SQLException If loading data from database fails
      */
-    List<Car> getCars() throws IOException, SQLException;
+    List<Car> getCars();
 
     /**
      * Retrives the list of customer in source
@@ -27,7 +27,7 @@ public interface IDataLoader {
      * @throws IOException If loading data from files fails
      * @throws SQLException If loading data from database fails
      */
-    List<Customer> getCustomers() throws IOException, SQLException;
+    List<Customer> getCustomers();
 
     /**
      * Retrives the list of employees in source
@@ -35,5 +35,5 @@ public interface IDataLoader {
      * @throws IOException If loading data from files fails
      * @throws SQLException If loading data from database fails
      */
-    List<Employee> getEmployees() throws IOException, SQLException;
+    List<Employee> getEmployees();
 }
