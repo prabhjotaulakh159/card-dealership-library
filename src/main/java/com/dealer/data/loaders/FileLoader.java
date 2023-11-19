@@ -105,7 +105,7 @@ public class FileLoader implements IDataLoader {
                 String[] data = line.split(Constants.CSV_DELIMETER);
                 String name = data[0];
                 String phoneNumber = data[1];
-                int salary = Integer.parseInt(data[3]);
+                int salary = Integer.parseInt(data[2]);
                 employees.add(new Employee(name, phoneNumber, salary));
             }
             return employees;
