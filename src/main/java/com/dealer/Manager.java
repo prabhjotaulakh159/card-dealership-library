@@ -6,11 +6,13 @@ import java.util.Scanner;
 
 import com.dealer.data.loaders.IDataLoader;
 import com.dealer.data.sorters.AbstractCarSorter;
+import com.dealer.data.sorters.AbstractCustomerSorter;
 import com.dealer.data.sorters.AbstractEmployeeSorter;
 import com.dealer.data.sorters.Order;
 import com.dealer.data.sorters.impl.CarModelSorter;
 import com.dealer.data.sorters.impl.CarPriceSorter;
 import com.dealer.data.sorters.impl.CarYearSorter;
+import com.dealer.data.sorters.impl.CustomerNameSorter;
 import com.dealer.data.sorters.impl.EmployeeNameSorter;
 import com.dealer.data.sorters.impl.EmployeeSalarySorter;
 import com.dealer.models.cars.Car;
@@ -50,8 +52,6 @@ public class Manager {
                 this.displayEmployees();
             } else if (option ==  VIEW_CUSTOMERS_OPTION) {
                 this.displayCustomers();
-            } else {
-                System.out.println("Fucked up");
             }
         }
     }
@@ -89,7 +89,10 @@ public class Manager {
                 System.out.println(SORT_CAR_BY_MODEL + ": Sort by model");
                 System.out.println(SORT_CAR_BY_YEAR + ": Sort by year");
                 int option = this.sc.nextInt();
-                if (option != DO_NOT_SORT && option != SORT_CAR_BY_PRICE && option != SORT_CAR_BY_MODEL && option != SORT_CAR_BY_YEAR) {
+                if (    option != DO_NOT_SORT && 
+                        option != SORT_CAR_BY_PRICE && 
+                        option != SORT_CAR_BY_MODEL && 
+                        option != SORT_CAR_BY_YEAR) {
                     System.out.println("Not a valid option");
                 } else if (option == DO_NOT_SORT) {
                     printCars(carList);
@@ -124,6 +127,12 @@ public class Manager {
     private void printEmployees(List<Employee> employees) {
         for (Employee employee: employees) {
             System.out.println(employee);
+        }
+    }
+
+    private void printCustomers(List<Customer> customers) {
+        for (Customer customer: customers) {
+            System.out.println(customer);
         }
     }
 
@@ -181,8 +190,28 @@ public class Manager {
 
     private void displayCustomers() {
         List<Customer> customers = this.loader.getCustomers();
-        for (Customer customer : customers) {
-            System.out.println(customer);
+        while (true) {
+            try {
+                System.out.println("Enter sorting option");
+                System.out.println(this.DO_NOT_SORT + ": Skip sorting");
+                System.out.println(this.SORT_BY_NAME + ": Sort by name");
+                int option = this.sc.nextInt();
+                if (option != DO_NOT_SORT && option!= SORT_BY_NAME) {
+                    System.out.println("Please enter a valid option");
+                } else if (option == DO_NOT_SORT) {
+                    this.printCustomers(customers);   
+                    break;
+                } else {
+                    Order order = this.askOrder();
+                    AbstractCustomerSorter sorter = new CustomerNameSorter(order);
+                    sorter.sortCustomers(customers);
+                    this.printCustomers(customers);
+                    break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter valid input");
+                this.sc.next();
+            }
         }
     }
 }
