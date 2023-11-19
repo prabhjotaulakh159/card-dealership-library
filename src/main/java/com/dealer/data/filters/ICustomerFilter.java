@@ -14,5 +14,5 @@ public interface ICustomerFilter {
      * @param customers Customers to be filtered
      * @return List of filtered customers
      */
-    List<Customer> filterCustomers(List<Customer> customers);
+    List<Customer> filterCustomers(List<Customer> customers, String query);
 }

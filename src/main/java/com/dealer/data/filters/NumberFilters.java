@@ -2,10 +2,10 @@ package com.dealer.data.filters;
 
 import com.dealer.data.filters.ListFilter;
 
-public class VariousFilters {
+public abstract class NumberFilters {
     private ListFilter filter;
 
-    public VariousFilters(ListFilter filter){
+    public NumberFilters(ListFilter filter){
       this.filter= filter;
     }
 
