@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.dealer.data.exceptions.LoaderException;
 import com.dealer.data.loaders.IDataLoader;
 import com.dealer.data.sorters.AbstractCarSorter;
 import com.dealer.data.sorters.AbstractCustomerSorter;
@@ -80,9 +81,9 @@ public class Manager {
     }
 
     private void displayCars() {
-        List<Car> carList = this.loader.getCars();
         while (true) {
             try {
+                List<Car> carList = this.loader.getCars();
                 System.out.println("Choose a sorting option: ");
                 System.out.println(DO_NOT_SORT + ": Skip sorting");
                 System.out.println(SORT_CAR_BY_PRICE + ": Sort by price");
@@ -114,6 +115,8 @@ public class Manager {
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("Please enter a number");
+            } catch (LoaderException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -158,9 +161,9 @@ public class Manager {
     }
 
     private void displayEmployees() {
-        List<Employee> employees = this.loader.getEmployees();
         while (true) {
             try {
+                List<Employee> employees = this.loader.getEmployees();
                 System.out.println("Enter sorting option");
                 System.out.println(this.DO_NOT_SORT + ": Skip sorting");
                 System.out.println(this.SORT_BY_NAME + ": Sort by name");
@@ -184,14 +187,16 @@ public class Manager {
             } catch (InputMismatchException e) {
                 System.out.println("Please enter a valid option");
                 this.sc.next();
+            } catch (LoaderException e) {
+                e.printStackTrace();
             }
         }
     }
 
     private void displayCustomers() {
-        List<Customer> customers = this.loader.getCustomers();
         while (true) {
             try {
+                List<Customer> customers = this.loader.getCustomers();
                 System.out.println("Enter sorting option");
                 System.out.println(this.DO_NOT_SORT + ": Skip sorting");
                 System.out.println(this.SORT_BY_NAME + ": Sort by name");
@@ -211,6 +216,8 @@ public class Manager {
             } catch (InputMismatchException e) {
                 System.out.println("Please enter valid input");
                 this.sc.next();
+            } catch (LoaderException e) {
+                e.printStackTrace();
             }
         }
     }
