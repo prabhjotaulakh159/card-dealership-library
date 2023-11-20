@@ -1,22 +1,20 @@
 package com.dealer;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.dealer.data.loaders.FileLoader;
-import com.dealer.data.loaders.IDataLoader;
-import com.dealer.data.sorters.AbstractCarSorter;
-import com.dealer.data.sorters.Order;
-import com.dealer.data.sorters.impl.CarPriceSorter;
+import com.dealer.data.filters.CarModelFilter;
+import com.dealer.data.filters.ICarFilter;
 import com.dealer.models.cars.Car;
 
 public class App {
     public static void main(String[] args) {
-        IDataLoader dataLoader = new FileLoader();
-        List<Car> cars = dataLoader.getCars();
-        for (Car car : cars) System.out.println(car);
-        System.out.println("------------------------------------------------");
-        AbstractCarSorter carSorter = new CarPriceSorter(Order.ASCENDING);
-        carSorter.sortCars(cars);
-        for (Car car : cars) System.out.println(car);
+        List<Car> cars = new ArrayList<>();
+        cars.add(new Car("uhvhqi", 2002, "iqfvb q", 50000));
+        cars.add(new Car("uhvhqi", 2002, "iqfvb q", 2000));
+        cars.add(new Car("Tesla", 2002, "iqfvb q", 2000));
+        ICarFilter filter = new CarModelFilter("Tesla");
+        List<Car> filtered = filter.filterCars(cars);
+        System.out.println(filtered.size());
     }
 }

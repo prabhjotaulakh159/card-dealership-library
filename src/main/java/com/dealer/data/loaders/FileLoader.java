@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dealer.data.Constants;
+import com.dealer.data.exceptions.LoaderException;
 import com.dealer.models.cars.Car;
 import com.dealer.models.cars.ElectricCar;
 import com.dealer.models.cars.RecreationalVehicle;
@@ -23,12 +24,13 @@ public class FileLoader implements IDataLoader {
     /**
      * Retrives the list of cars in source
      * @return All the cars in source
+     * @throws LoaderException
      * @throws IOException If loading data from files fails
      * @throws SQLException If loading data from database fails
      * @throws NumberFormatException If parsing strings into integers fails
      */
     @Override
-    public List<Car> getCars() {
+    public List<Car> getCars() throws LoaderException {
         try {
             Path path = Paths.get(Constants.CARS_CSV);
             List<String> lines = Files.readAllLines(path);
@@ -43,13 +45,11 @@ public class FileLoader implements IDataLoader {
                 int price = Integer.parseInt(data[4]);
                 if (typeOfCar.equals(Constants.CAR_TYPE)) {
                     placeholder = new Car(model, year, color, price);
-                } 
-                else if (typeOfCar.equals(Constants.ELECTRIC_TYPE)) {
+                } else if (typeOfCar.equals(Constants.ELECTRIC_TYPE)) {
                     int voltage = Integer.parseInt(data[5]);
                     String chargerType = data[6];
                     placeholder = new ElectricCar(model, year, color, price, voltage, chargerType);
-                } 
-                else if (typeOfCar.equals(Constants.RV_TYPE)) {
+                } else if (typeOfCar.equals(Constants.RV_TYPE)) {
                     int maxPassengers = Integer.parseInt(data[5]);
                     int numberOfBeds = Integer.parseInt(data[6]);
                     boolean hasKitchen = Boolean.parseBoolean(data[7]);
@@ -60,7 +60,7 @@ public class FileLoader implements IDataLoader {
             return cars;
         } 
         catch (IOException e) {
-            throw new IllegalArgumentException();
+            throw new LoaderException(e);
         }
     }
 
@@ -71,7 +71,7 @@ public class FileLoader implements IDataLoader {
      * @throws SQLException If loading data from database fails
      */
     @Override
-    public List<Customer> getCustomers() {
+    public List<Customer> getCustomers() throws LoaderException {
         try {
             Path path = Paths.get(Constants.CUSTOMERS_CSV);
             List<String> lines = Files.readAllLines(path);
@@ -85,18 +85,19 @@ public class FileLoader implements IDataLoader {
             return customers;
         }
         catch (IOException e) {
-            throw new IllegalArgumentException();
+            throw new LoaderException(e);
         }
     }
 
     /**
      * Retrives the list of employees in source
      * @return All the employees in source
+     * @throws LoaderException
      * @throws IOException If loading data from files fails
      * @throws SQLException If loading data from database fails
      */
     @Override
-    public List<Employee> getEmployees() {
+    public List<Employee> getEmployees() throws LoaderException {
         try {
             Path path = Paths.get(Constants.EMPLOYEES_CSV);
             List<String> lines = Files.readAllLines(path);
@@ -111,7 +112,7 @@ public class FileLoader implements IDataLoader {
             return employees;
         }
         catch (IOException e) {
-            throw new IllegalArgumentException();
+            throw new LoaderException(e);
         }
     }
 }
