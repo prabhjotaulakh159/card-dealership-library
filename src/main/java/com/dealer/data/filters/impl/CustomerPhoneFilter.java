@@ -13,7 +13,7 @@ public class CustomerPhoneFilter implements ICustomerFilter {
       List<Customer> customersFiltered= new ArrayList<Customer>();
 
          for(Customer cus: customers){
-          if(cus.getPhone().contains(input)){
+          if(cus.getPhone().startsWith(input)){
             customersFiltered.add(cus);
           }
          }

@@ -19,7 +19,7 @@ public class ChargerTypeFilter implements ICarFilter {
      List<Car> carsFiltered= new ArrayList<Car>();
 
      for(Car car: cars){
-      if( (car instanceof ElectricCar) && ((ElectricCar) car).getChargerType().contains(this.chargerType)){
+      if( (car instanceof ElectricCar) && ((ElectricCar) car).getChargerType().startsWith(this.chargerType)){
         carsFiltered.add(car);
       }
      }

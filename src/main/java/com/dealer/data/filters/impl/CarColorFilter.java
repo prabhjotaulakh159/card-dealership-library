@@ -18,7 +18,7 @@ public class CarColorFilter implements ICarFilter {
       List<Car> carsFiltered= new ArrayList<Car>();
 
       for(Car car : cars){
-        if(car.getColor().contains(this.color)){
+        if(car.getColor().startsWith(this.color)){
           carsFiltered.add(car);
         }
       }

@@ -18,7 +18,7 @@ public class EmployeePhoneFilter implements IEmployeeFilter  {
        List<Employee> employeesFiltered= new ArrayList<Employee>();
 
       for(Employee emp : employees){
-        if(emp.getPhone().contains(this.input)){
+        if(emp.getPhone().startsWith(this.input)){
           employeesFiltered.add(emp);
         }
       }

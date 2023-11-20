@@ -20,7 +20,7 @@ public class EmployeeNamesFilter extends NumberFilters implements IEmployeeFilte
       List<Employee> employeesFiltered= new ArrayList<Employee>();
 
       for(Employee emp : employees){
-        if(emp.getName().contains(this.input)){
+        if(emp.getName().startsWith(this.input)){
           employeesFiltered.add(emp);
         }
       }

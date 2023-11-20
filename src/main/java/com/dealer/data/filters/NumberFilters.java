@@ -1,7 +1,5 @@
 package com.dealer.data.filters;
 
-import com.dealer.data.filters.ListFilter;
-
 public abstract class NumberFilters {
     private ListFilter filter;
 

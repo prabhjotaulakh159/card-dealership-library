@@ -18,7 +18,7 @@ public class CarModelFilter implements ICarFilter{
       List<Car> carsFiltered= new ArrayList<Car>();
 
       for(Car car : cars){
-        if(car.getModel().contains(this.model)){
+        if(car.getModel().startsWith(this.model)){
           carsFiltered.add(car);
         }
       }

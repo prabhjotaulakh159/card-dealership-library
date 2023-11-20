@@ -13,7 +13,7 @@ public class CustomerNameFilter implements ICustomerFilter {
          List<Customer> customersFiltered= new ArrayList<Customer>();
 
          for(Customer cus: customers){
-          if(cus.getName().contains(input)){
+          if(cus.getName().startsWith(input)){
             customersFiltered.add(cus);
           }
          }
