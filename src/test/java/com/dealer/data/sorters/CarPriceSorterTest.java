@@ -27,7 +27,7 @@ public class CarPriceSorterTest {
     }
 
     @Test
-    public void sorts_sescending() {
+    public void sorts_descending() {
         List<Car> cars = new ArrayList<Car>();
         cars.add(new Car("Toyota Corolla", 2005, "Red", 8000));
         cars.add(new Car("Airstream Basecamp", 2021, "Silver", 30000));
