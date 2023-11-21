@@ -4,26 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dealer.data.filters.IEmployeeFilter;
-import com.dealer.data.filters.ListFilter;
-import com.dealer.data.filters.NumberFilters;
 import com.dealer.models.people.Employee;
 
-public class EmployeeNamesFilter extends NumberFilters implements IEmployeeFilter {
-  private String input;
-  public EmployeeNamesFilter(ListFilter filter, String input){
-    super(filter);
-    this.input= input;
-  }
+/**
+ * Implements IEmployeeFilter to filter employees by name
+ */
+public class EmployeeNamesFilter implements IEmployeeFilter {
+    private String name;
+    
+    /**
+     * Constructor 
+     * @param name Name to filter by
+     */
+    public EmployeeNamesFilter(String name){
+        this.name = name;
+    }
 
-  @Override
-  public List<Employee> filterEmployees(List<Employee> employees){
-      List<Employee> employeesFiltered= new ArrayList<Employee>();
-
-      for(Employee emp : employees){
-        if(emp.getName().startsWith(this.input)){
-          employeesFiltered.add(emp);
+    @Override
+    public List<Employee> filterEmployees(List<Employee> employees){
+        List<Employee> employeesFiltered= new ArrayList<Employee>();
+        for(Employee emp : employees){
+            if(emp.getName().startsWith(this.name)){
+                employeesFiltered.add(emp);
+            }
         }
-      }
-      return employeesFiltered;
-  }
+        return employeesFiltered;
+    }
 }

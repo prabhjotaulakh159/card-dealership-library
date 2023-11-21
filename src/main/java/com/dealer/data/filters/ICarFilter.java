@@ -14,8 +14,5 @@ public interface ICarFilter {
      * @param cars Carsss to be filtered
      * @return List of filtered cars
      */
-    List<Car> filterCars(List<Car> cars);
-
-    // FilterCars(List<cars>)
-    
+    List<Car> filterCars(List<Car> cars);    
 }

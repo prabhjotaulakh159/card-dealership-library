@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.dealer.data.filters.impl.ElectricCarFilter;
-import com.dealer.data.filters.impl.RVFilter;
+import com.dealer.data.filters.impl.TypeElectricCarFilter;
+import com.dealer.data.filters.impl.TypeRVFilter;
 import com.dealer.models.cars.Car;
 import com.dealer.models.cars.ElectricCar;
 import com.dealer.models.cars.RecreationalVehicle;
@@ -24,7 +24,7 @@ public class ElectricCarFilterTest {
         cars.add(new ElectricCar("Toyota Corolla", 2005, "Red", 6000, 600, "Electric"));
         cars.add(new RecreationalVehicle("Airstream Basecamp", 2021, "Silver", 30000, 7, 5, true));
         
-        ICarFilter filter = new ElectricCarFilter();
+        ICarFilter filter = new TypeElectricCarFilter();
 
         List<Car> electricCars= filter.filterCars(cars);
 

@@ -8,57 +8,60 @@ import com.dealer.data.filters.ListFilter;
 import com.dealer.data.filters.NumberFilters;
 import com.dealer.models.cars.Car;
 
+/**
+ * Implements ICarFilter to filter cars by their price
+ * @author Prabhjot Aulakh, Safin Haque
+ */
 public class CarPricesFilter extends NumberFilters implements ICarFilter {
-   private int price;
+    private int price;
 
+    /**
+     * Constructor
+     * @param filter Filter operation
+     * @param price Price to filter by
+     */
     public CarPricesFilter(ListFilter filter, int price){
-      super(filter);
-      if(price<=0){
-        throw new IllegalArgumentException("price is megative or zero");
-      }
-      this.price = price;
+        super(filter);
+        if(price <= 0){
+            throw new IllegalArgumentException("price is megative or zero");
+        }
+        this.price = price;
     }
 
     @Override
     public List<Car> filterCars (List<Car> cars){
-      List<Car> carsFiltered= new ArrayList<Car>();
-
-      if(super.equalsTo()){
-        for(Car car: cars){
-        if(car.getPrice() == this.price){
-          carsFiltered.add(car);
+        List<Car> carsFiltered = new ArrayList<Car>();
+        if(super.equalsTo()){
+            for(Car car: cars){
+                if(car.getPrice() == this.price){
+                    carsFiltered.add(car);
+                }
+            }
+        } else if(super.greaterThan()){
+            for(Car car: cars){
+                if(car.getPrice() > this.price){
+                    carsFiltered.add(car);
+                }
+            }
+        } else if(super.lessThan()){
+            for(Car car: cars){
+                if(car.getPrice() < this.price){
+                    carsFiltered.add(car);
+                }
+            }
+        } else if(super.greaterThanEqualsTo()){
+            for(Car car: cars){
+                if(car.getPrice() >= this.price){
+                    carsFiltered.add(car);
+                }
+            }
+        } else if(super.lessThanEqualsTo()){
+            for(Car car: cars){
+                if(car.getPrice() <= this.price){
+                    carsFiltered.add(car);
+                }
+            }
         }
-      }
+        return carsFiltered;
     }
-    else if(super.greaterThan()){
-      for(Car car: cars){
-        if(car.getPrice() > this.price){
-          carsFiltered.add(car);
-        }
-      }
-    }
-    else if(super.lessThan()){
-      for(Car car: cars){
-        if(car.getPrice() < this.price){
-          carsFiltered.add(car);
-        }
-      }
-    }
-    else if(super.greaterThanEqualsTo()){
-      for(Car car: cars){
-        if(car.getPrice() >= this.price){
-          carsFiltered.add(car);
-        }
-      }
-    }
-    else if(super.lessThanEqualsTo()){
-      for(Car car: cars){
-        if(car.getPrice() <= this.price){
-          carsFiltered.add(car);
-        }
-      }
-    }
-      return carsFiltered;
-  }
-
 }
