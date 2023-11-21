@@ -9,14 +9,14 @@ import com.dealer.models.people.Employee;
 /**
  * Implements IEmployeeFilter to filter employees by name
  */
-public class EmployeeNamesFilter implements IEmployeeFilter {
+public class EmployeeNameFilter implements IEmployeeFilter {
     private String name;
     
     /**
      * Constructor 
      * @param name Name to filter by
      */
-    public EmployeeNamesFilter(String name){
+    public EmployeeNameFilter(String name){
         this.name = name;
     }
 
