@@ -23,7 +23,10 @@ public class CarVoltageFilter extends NumberFilters implements ICarFilter {
      */
     public CarVoltageFilter(ListFilter filter, int voltage){
         super(filter);
-        this.voltage= voltage;
+        if (voltage <= 0) {
+            throw new IllegalArgumentException("Voltage must be greater than 0");
+        }
+        this.voltage = voltage;
     }
 
     @Override
