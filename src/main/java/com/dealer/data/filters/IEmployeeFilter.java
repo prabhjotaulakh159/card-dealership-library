@@ -4,11 +4,16 @@ import java.util.List;
 
 import com.dealer.models.people.Employee;
 
+/**
+ * Provides functionalities to filter employees
+ * @author Prabhjot Aulakh, Safin Haque
+ */
 public interface IEmployeeFilter {
-    
-
-
-    List<Employee> filterEmployees(List<Employee> customers);
-
-
+    /**
+     * Filters employees in various different strategies
+     * @param employees List of employees to filter
+     * @param query String to filter employees
+     * @return List of filtered employees
+     */
+    List<Employee> filterEmployees(List<Employee> employees);
 }

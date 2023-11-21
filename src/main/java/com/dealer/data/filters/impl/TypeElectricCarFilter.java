@@ -7,14 +7,16 @@ import com.dealer.data.filters.ICarFilter;
 import com.dealer.models.cars.Car;
 import com.dealer.models.cars.ElectricCar;
 
-public class ElectricCarFilter implements ICarFilter {
-    
+/**
+ * Implements ICarFilter to filter cars that are only electric vehicles
+ * @author Prabhjot Aulakh, Safin Haque
+ */
+public class TypeElectricCarFilter implements ICarFilter {
     @Override
     public List<Car> filterCars(List<Car> cars){
         List<Car> carsFiltered= new ArrayList<Car>();
-
-        for(Car car: cars){
-            if(car instanceof ElectricCar){
+        for (Car car: cars){
+            if (car instanceof ElectricCar){
                 carsFiltered.add(car);
             }
         }

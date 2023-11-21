@@ -7,28 +7,27 @@ import com.dealer.data.filters.IEmployeeFilter;
 import com.dealer.models.people.Employee;
 
 /**
- * Implemennts IEmployeeFilter to filter employees by phone number
- * @author Prabhjot Aulakh, Safin Haque
+ * Implements IEmployeeFilter to filter employees by name
  */
-public class EmployeePhoneFilter implements IEmployeeFilter  {
-    private String phone;
-
+public class EmployeeNameFilter implements IEmployeeFilter {
+    private String name;
+    
     /**
      * Constructor 
-     * @param phone Phone to filter by
+     * @param name Name to filter by
      */
-    public EmployeePhoneFilter(String phone){
-        this.phone = phone;
+    public EmployeeNameFilter(String name){
+        this.name = name;
     }
 
     @Override
     public List<Employee> filterEmployees(List<Employee> employees){
         List<Employee> employeesFiltered= new ArrayList<Employee>();
         for(Employee emp : employees){
-            if(emp.getPhone().startsWith(this.phone)){
+            if(emp.getName().startsWith(this.name)){
                 employeesFiltered.add(emp);
             }
         }
         return employeesFiltered;
-    }  
+    }
 }
