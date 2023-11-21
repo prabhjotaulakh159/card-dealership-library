@@ -12,9 +12,7 @@ import com.dealer.models.cars.Car;
 import com.dealer.models.cars.ElectricCar;
 import com.dealer.models.cars.RecreationalVehicle;
 
-public class ElectricCarFilterTest {
-    
-
+public class TypeElectricCarFilterTest {
     @Test
     public void filter_works(){
         List<Car> cars= new ArrayList<Car>();
@@ -22,11 +20,8 @@ public class ElectricCarFilterTest {
         cars.add(new ElectricCar("Tesla Model 3", 2020, "Blue", 45000, 600, "Electric"));
         cars.add(new ElectricCar("Toyota Corolla", 2005, "Red", 6000, 600, "Electric"));
         cars.add(new RecreationalVehicle("Airstream Basecamp", 2021, "Silver", 30000, 7, 5, true));
-        
         ICarFilter filter = new TypeElectricCarFilter();
-
         List<Car> electricCars= filter.filterCars(cars);
-
         assertEquals(3, electricCars.size());
     }
 }
