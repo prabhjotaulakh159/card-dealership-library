@@ -9,55 +9,55 @@ import com.dealer.data.filters.NumberFilters;
 import com.dealer.models.cars.Car;
 
 /**
- * Implements ICarFilter to filter cars by their price
+ * Implements ICarFilter to filter cars by year
  * @author Prabhjot Aulakh, Safin Haque
  */
-public class CarPricesFilter extends NumberFilters implements ICarFilter {
-    private int price;
+public class CarYearFilter extends NumberFilters implements ICarFilter{
+    private int year;
 
     /**
-     * Constructor
-     * @param filter Filter operation
-     * @param price Price to filter by
+     * Constructor 
+     * @param filter Filtering operation
+     * @param year year to filter by
      */
-    public CarPricesFilter(ListFilter filter, int price){
+    public CarYearFilter(ListFilter filter, int year){
         super(filter);
-        if(price <= 0){
-            throw new IllegalArgumentException("price is megative or zero");
+        if (year < 1998) {
+            throw new IllegalArgumentException("Year is before 1998");
         }
-        this.price = price;
+        this.year = year;
     }
 
     @Override
-    public List<Car> filterCars (List<Car> cars){
-        List<Car> carsFiltered = new ArrayList<Car>();
+    public List<Car> filterCars(List<Car> cars){
+        List<Car> carsFiltered= new ArrayList<Car>();
         if(super.equalsTo()){
             for(Car car: cars){
-                if(car.getPrice() == this.price){
+                if(car.getYear() == this.year){
                     carsFiltered.add(car);
                 }
             }
         } else if(super.greaterThan()){
             for(Car car: cars){
-                if(car.getPrice() > this.price){
+                if(car.getYear() > this.year){
                     carsFiltered.add(car);
                 }
             }
         } else if(super.lessThan()){
             for(Car car: cars){
-                if(car.getPrice() < this.price){
+                if(car.getYear() < this.year){
                     carsFiltered.add(car);
                 }
             }
         } else if(super.greaterThanEqualsTo()){
             for(Car car: cars){
-                if(car.getPrice() >= this.price){
+                if(car.getYear() >= this.year){
                     carsFiltered.add(car);
                 }
             }
         } else if(super.lessThanEqualsTo()){
             for(Car car: cars){
-                if(car.getPrice() <= this.price){
+                if(car.getYear() <= this.year){
                     carsFiltered.add(car);
                 }
             }

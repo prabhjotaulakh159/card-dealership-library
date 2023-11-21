@@ -22,8 +22,8 @@ public class CarVoltageFilter extends NumberFilters implements ICarFilter {
      * @param voltage The voltage amount to filter cars by
      */
     public CarVoltageFilter(ListFilter filter, int voltage){
-      super(filter);
-      this.voltage= voltage;
+        super(filter);
+        this.voltage= voltage;
     }
 
     @Override

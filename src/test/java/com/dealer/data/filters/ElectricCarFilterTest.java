@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.Test;
 
 import com.dealer.data.filters.impl.TypeElectricCarFilter;
-import com.dealer.data.filters.impl.TypeRVFilter;
 import com.dealer.models.cars.Car;
 import com.dealer.models.cars.ElectricCar;
 import com.dealer.models.cars.RecreationalVehicle;

@@ -6,25 +6,26 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.dealer.data.filters.impl.CarPricesFilter;
-import com.dealer.data.filters.impl.CarYearsFilter;
+import com.dealer.data.filters.impl.CarYearFilter;
 import com.dealer.models.cars.Car;
+
+@SuppressWarnings("unused")
 public class CarYearFilterTest {
 
   @Test
   public void constructor_works(){
-    CarYearsFilter filter= new CarYearsFilter(ListFilter.EQUALS, 2000);
+    CarYearFilter filter= new CarYearFilter(ListFilter.EQUALS, 2000);
   }
 
    @Test(expected = IllegalArgumentException.class)
   public void constructor_price_invalid(){
-    CarYearsFilter filter = new CarYearsFilter(ListFilter.EQUALS, 1995);
+    CarYearFilter filter = new CarYearFilter(ListFilter.EQUALS, 1995);
   }
 
   @Test
   public void filter_is_equal_to_price(){
     List<Car> cars = new ArrayList<Car>();
-    CarYearsFilter filter = new CarYearsFilter(ListFilter.EQUALS, 2005);
+    CarYearFilter filter = new CarYearFilter(ListFilter.EQUALS, 2005);
     cars.add(new Car("Toyota", 2005, "orange", 20000));
     cars.add(new Car("Mazda", 2007, "orange", 35000));
     cars.add(new Car("Mitsubishi", 2005, "orange", 20000));
@@ -39,7 +40,7 @@ public class CarYearFilterTest {
   @Test
   public void filter_is_greaterthan(){
     List<Car> cars = new ArrayList<Car>();
-    CarYearsFilter filter = new CarYearsFilter(ListFilter.GREATERTHAN, 2000);
+    CarYearFilter filter = new CarYearFilter(ListFilter.GREATERTHAN, 2000);
     cars.add(new Car("Toyota", 2005, "orange", 20000));
     cars.add(new Car("Mazda", 2007, "orange", 35000));
     cars.add(new Car("Mitsubishi", 2000, "orange", 40000));
@@ -55,7 +56,7 @@ public class CarYearFilterTest {
   @Test
   public void filter_is_greatherthanEqualsTo(){
     List<Car> cars = new ArrayList<Car>();
-    CarYearsFilter filter = new CarYearsFilter(ListFilter.GREATEREQUALS, 2000);
+    CarYearFilter filter = new CarYearFilter(ListFilter.GREATEREQUALS, 2000);
     cars.add(new Car("Toyota", 2005, "orange", 20000));
     cars.add(new Car("Mazda", 2007, "orange", 35000));
     cars.add(new Car("Mitsubishi", 2000, "orange", 40000));
@@ -72,7 +73,7 @@ public class CarYearFilterTest {
   @Test
   public void filter_is_lessThan(){
      List<Car> cars = new ArrayList<Car>();
-    CarYearsFilter filter = new CarYearsFilter(ListFilter.LESSTHAN, 2005);
+    CarYearFilter filter = new CarYearFilter(ListFilter.LESSTHAN, 2005);
     cars.add(new Car("Toyota", 2005, "orange", 20000));
     cars.add(new Car("Mazda", 2007, "orange", 35000));
     cars.add(new Car("Mitsubishi", 2000, "orange", 40000));
@@ -88,7 +89,7 @@ public class CarYearFilterTest {
   @Test
   public void filter_is_lessThanEqualsTo(){
      List<Car> cars = new ArrayList<Car>();
-    CarYearsFilter filter = new CarYearsFilter(ListFilter.LESSEQUALS, 2000);
+    CarYearFilter filter = new CarYearFilter(ListFilter.LESSEQUALS, 2000);
     cars.add(new Car("Toyota", 2005, "orange", 20000));
     cars.add(new Car("Mazda", 2007, "orange", 35000));
     cars.add(new Car("Mitsubishi", 2000, "orange", 40000));
