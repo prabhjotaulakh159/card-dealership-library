@@ -1,10 +1,12 @@
 package com.dealer;
 
 import com.dealer.data.loaders.FileLoader;
+import com.dealer.managers.AdminManager;
+import com.dealer.managers.Manager;
 
 public class AdminApp {
     public static void main(String[] args) {
-        Manager manager = new Manager(new FileLoader());
-        manager.run();
+        Manager admin = new AdminManager(new FileLoader());
+        admin.run();
     }
 }

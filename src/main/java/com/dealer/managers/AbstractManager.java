@@ -1,4 +1,4 @@
-package com.dealer;
+package com.dealer.managers;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -8,8 +8,19 @@ import com.dealer.data.exceptions.LoaderException;
 import com.dealer.data.filters.ICarFilter;
 import com.dealer.data.filters.ICustomerFilter;
 import com.dealer.data.filters.IEmployeeFilter;
+import com.dealer.data.filters.ListFilter;
+import com.dealer.data.filters.impl.CarColorFilter;
+import com.dealer.data.filters.impl.CarModelFilter;
+import com.dealer.data.filters.impl.CarPriceFilter;
+import com.dealer.data.filters.impl.CarVoltageFilter;
+import com.dealer.data.filters.impl.CarYearFilter;
+import com.dealer.data.filters.impl.ChargerTypeFilter;
+import com.dealer.data.filters.impl.RVKitchenFilter;
+import com.dealer.data.filters.impl.RVMaxPassengersFilter;
+import com.dealer.data.filters.impl.RVNumberOfBedsFilter;
 import com.dealer.data.filters.impl.TypeElectricCarFilter;
 import com.dealer.data.filters.impl.TypeRVFilter;
+import com.dealer.data.filters.impl.TypeRegularCarFilter;
 import com.dealer.data.loaders.IDataLoader;
 import com.dealer.data.sorters.AbstractCarSorter;
 import com.dealer.data.sorters.AbstractCustomerSorter;
@@ -25,24 +36,21 @@ import com.dealer.data.sorters.impl.CarYearSorter;
 import com.dealer.models.cars.Car;
 
 /**
- * Manager class for admins
+ * Provides the main functionality of the manager class for both admins and employees
  * @author Prabhjot Aulakh, Safin Haque
  */
-public class Manager {
-    private IDataLoader dataLoader;
-    private AbstractCarSorter abstractCarSorter;
-    private AbstractCustomerSorter abstractCustomerSorter;
-    private AbstractEmployeeSorter abstractEmployeeSorter; 
-    private ICarFilter carFilter;
-    private ICustomerFilter customerFilter;
-    private IEmployeeFilter employeeFilter;
-    private Scanner scanner;
+public abstract class Manager {
+    protected IDataLoader dataLoader;
+    protected AbstractCarSorter abstractCarSorter;
+    protected AbstractCustomerSorter abstractCustomerSorter;
+    protected AbstractEmployeeSorter abstractEmployeeSorter; 
+    protected ICarFilter carFilter;
+    protected ICustomerFilter customerFilter;
+    protected IEmployeeFilter employeeFilter;
+    protected Scanner scanner;
 
-    private final int CAR_OPTION = 1;
-    private final int CAR_FILTER_OPTION = 1;
-    private final int CUSTOMER_OPTION = 2;
-    private final int EMPLOYEE_OPTION = 3;
-    private final int QUIT = 4;
+    protected final int CAR_OPTION = 1;
+    protected final int CAR_FILTER_OPTION = 2;
 
     /**
      * Constructor
@@ -68,22 +76,6 @@ public class Manager {
     }
 
     /**
-     * Sets the sorting strategy for customers
-     * @param sorter Strategy for sorting customers
-     */
-    public void setCustomerSortingStrategy(AbstractCustomerSorter sorter) { 
-        this.abstractCustomerSorter = sorter;
-    }
-
-    /**
-     * Sets the sorting strategy for employees
-     * @param sorter Strategy for sorting employees
-     */
-    public void setEmployeeSortingStrategy(AbstractEmployeeSorter sorter) { 
-        this.abstractEmployeeSorter = sorter;
-    }
-
-    /**
      * Sets the filtering strategy for cars
      * @param filter Strategy for filtering cars
      */
@@ -92,67 +84,22 @@ public class Manager {
     }
 
     /**
-     * Sets the filtering strategy for customers
-     * @param filter Strategy for filtering customers
-     */
-    public void setCustomerFilteringStrategy(ICustomerFilter filter) { 
-        this.customerFilter = filter;
-    }
-
-    /**
-     * Sets the filtering strategy for employees
-     * @param filter Strategy for filtering employees
-     */
-    public void setEmployeeFilteringStrategy(IEmployeeFilter filter) { 
-        this.employeeFilter = filter;
-    }
-
-    /**
      * Entry point of the manager class
      */
-    public void run() {
-        System.out.println("Welcome to car inventory manager!");
-        while (true) {
-            System.out.println(this.CAR_OPTION + ": view cars");
-            System.out.println(this.CAR_FILTER_OPTION + ": filter cars");
-            System.out.println(this.CUSTOMER_OPTION + ": view customers");
-            System.out.println(this.EMPLOYEE_OPTION + ": view employees");
-            System.out.println(this.QUIT + ": quit");
-            System.out.print("Please choose an option from above >>> ");
-            try {
-                int input = Integer.parseInt(this.scanner.nextLine());
-                if (input == this.CAR_OPTION) {
-                    this.queryCars();
-                } else if (input == this.CAR_FILTER_OPTION) {
-                    this.filterCars();
-                } else if (input == this.CUSTOMER_OPTION) {
-                    System.out.println(2);
-                } else if (input == this.EMPLOYEE_OPTION) {
-                    System.out.println(3);
-                } else if (input == QUIT) {
-                    break;
-                } else {
-                    throw new InputMismatchException();
-                }
-            } catch (InputMismatchException | NumberFormatException e) {
-                System.out.println("Please enter a valid option !");
-            } 
-        }
-        System.out.println("Good bye !");
-    }
-
+    public abstract void run();
+    
     /**
      * Provides UI for querying cars by sorting
      */
-    private void queryCars() {
+    public void queryCars() {
         final int NO_SORTING = 1;
         final int SORT_BY_MODEL = 2;
         final int SORT_BY_PRICE = 3;
-        final int SORT_BY_YEAR = 5;
-        final int SORT_BY_VOLTAGE = 6;
-        final int SORT_BY_CHARGER_TYPE = 7;
-        final int SORT_BY_MAX_PASSENGERS = 8;
-        final int SORT_BY_NUMBER_OF_BEDS = 9;
+        final int SORT_BY_YEAR = 4;
+        final int SORT_BY_VOLTAGE = 5;
+        final int SORT_BY_CHARGER_TYPE = 6;
+        final int SORT_BY_MAX_PASSENGERS = 7;
+        final int SORT_BY_NUMBER_OF_BEDS = 8;
         while (true) {
             System.out.println(NO_SORTING + ": Skip sorting");
             System.out.println(SORT_BY_MODEL + ": Sort by model");
@@ -168,6 +115,7 @@ public class Manager {
                 int input = Integer.parseInt(this.scanner.nextLine());
                 if (input == NO_SORTING) {
                     printCars(cars);
+                    break;
                 } else if (input == SORT_BY_MODEL) {
                     this.setCarSortingStrategy(new CarModelSorter(this.askOrder()));
                 } else if (input == SORT_BY_PRICE) {
@@ -206,32 +154,66 @@ public class Manager {
     /**
      * Provides UI for filtering cars
      */
-    private void filterCars() {
+    public void filterCars() {
         final int FILTER_COLOR = 1;
         final int FILTER_MODEL = 2;
         final int FILTER_PRICE = 3;
         final int FILTER_VOLTAGE = 4;
         final int FILTER_YEAR = 5;
-        final int FILTER_KITCHEN = 6;
-        final int FILTER_MAX_PASSENGERS = 7;
-        final int FILTER_NUM_BEDS = 8;
-        final int FILTER_REGULAR_CARS = 9;
-        final int FILTER_ELECTRIC = 10;
-        final int FILTER_RV = 11;
+        final int FILTER_CHARGER = 6;
+        final int FILTER_KITCHEN = 7;
+        final int FILTER_MAX_PASSENGERS = 8;
+        final int FILTER_NUM_BEDS = 9;
+        final int FILTER_REGULAR_CARS = 10;
+        final int FILTER_ELECTRIC = 11;
+        final int FILTER_RV = 12;
         while (true) {
             System.out.println(FILTER_COLOR + ": filter by color");
             System.out.println(FILTER_MODEL + ": filter by model");
             System.out.println(FILTER_PRICE + ": filter by price");
             System.out.println(FILTER_VOLTAGE + ": filter by voltage");
             System.out.println(FILTER_YEAR + ": filter by year");
+            System.out.println(FILTER_CHARGER + ": filter by charger type");
             System.out.println(FILTER_KITCHEN + ": filter RV that have kitchens");
             System.out.println(FILTER_MAX_PASSENGERS + ": filter by RV max passengers");
             System.out.println(FILTER_NUM_BEDS + ": filter by RV number of beds");
             System.out.println(FILTER_REGULAR_CARS + ": filter regular cars");
             System.out.println(FILTER_ELECTRIC + ": filter electric cars");
             System.out.println(FILTER_RV + ": filter RV's");
+            System.out.print(">>>> ");
             try {
                 List<Car> cars = this.dataLoader.getCars();
+                int input = Integer.parseInt(this.scanner.nextLine());
+                if (input == FILTER_COLOR) {
+                    this.setCarFilteringStrategy(new CarColorFilter(this.askStringQuery()));
+                } else if (input == FILTER_MODEL) {
+                    this.setCarFilteringStrategy(new CarModelFilter(this.askStringQuery()));
+                } else if (input == FILTER_PRICE) {
+                    this.setCarFilteringStrategy(new CarPriceFilter(this.askFilterOperation(), this.askIntQuery()));
+                } else if (input == FILTER_VOLTAGE) {
+                    this.setCarFilteringStrategy(new CarVoltageFilter(this.askFilterOperation(), this.askIntQuery()));
+                } else if (input == FILTER_YEAR) {
+                    this.setCarFilteringStrategy(new CarYearFilter(this.askFilterOperation(), this.askIntQuery()));
+                } else if (input == FILTER_CHARGER) {
+                    this.setCarFilteringStrategy(new ChargerTypeFilter(this.askStringQuery()));
+                } else if (input == FILTER_KITCHEN) {
+                    this.setCarFilteringStrategy(new RVKitchenFilter(true));
+                } else if (input == FILTER_MAX_PASSENGERS) {
+                    this.setCarFilteringStrategy(new RVMaxPassengersFilter(this.askFilterOperation(), this.askIntQuery()));
+                } else if (input == FILTER_NUM_BEDS) {
+                    this.setCarFilteringStrategy(new RVNumberOfBedsFilter(this.askFilterOperation(), this.askIntQuery()));
+                } else if (input == FILTER_NUM_BEDS) {
+                    this.setCarFilteringStrategy(new TypeRegularCarFilter());
+                } else if (input == FILTER_ELECTRIC) {
+                    this.setCarFilteringStrategy(new TypeElectricCarFilter());
+                } else if (input == FILTER_RV) {
+                    this.setCarFilteringStrategy(new TypeRVFilter());
+                } else {
+                    throw new InputMismatchException();
+                }
+                cars = this.carFilter.filterCars(cars);
+                printCars(cars);
+                break;
             } catch (InputMismatchException | NumberFormatException e) {
                 System.out.println("Please enter a valid option !");
             } catch (LoaderException e) {
@@ -244,17 +226,17 @@ public class Manager {
      * Prints a list of cars on the terminal
      * @param cars List of cars to be printed
      */
-    private void printCars(List<Car> cars) {
+    public void printCars(List<Car> cars) {
         for (Car car : cars) {
             System.out.println(car);
         }
     }
 
-    /**
+     /**
      * Prompts the user to ask if the sorting should be ascending or descending
      * @return Order of sorting
      */
-    private Order askOrder() {
+    public Order askOrder() {
         final int ASCENDING = 1;
         final int DESCENDING = 2;
         while (true) {
@@ -273,6 +255,62 @@ public class Manager {
             } catch (InputMismatchException | NumberFormatException e) {
                 System.out.println("Please enter a valid option !");
             }  
+        }
+    }
+
+    /**
+     * Prompts users to query for string data
+     * @return The query string
+     */
+    public String askStringQuery() {
+        System.out.print("Enter String query: ");
+        return this.scanner.nextLine();
+    }
+
+    /**
+     * Prompts users to query for integer related data
+     * @return Integer query
+     */
+    public int askIntQuery() {
+        System.out.print("Enter number to query by: ");
+        return Integer.parseInt(this.scanner.nextLine());
+    }
+
+    /**
+     * Prompts users to query by a certain boolean operation
+     * @return The boolean operation for filtering
+     */
+    public ListFilter askFilterOperation() {
+        final int EQUALS = 1;
+        final int GREATER = 2;
+        final int LESS = 3;
+        final int GREATER_EQUALS = 4;
+        final int LESS_EQUALS = 5;
+        while (true) {
+            System.out.println(EQUALS + " for equals");
+            System.out.println(GREATER + " for greater");
+            System.out.println(LESS + " for less");
+            System.out.println(GREATER_EQUALS + " for greater equals");
+            System.out.println(LESS_EQUALS + " for less equals");
+            System.out.print(">>>> ");
+            try {
+                int input = Integer.parseInt(this.scanner.nextLine());
+                if (input == EQUALS) {
+                    return ListFilter.EQUALS;
+                } else if (input == GREATER) {
+                    return ListFilter.GREATERTHAN;
+                } else if (input == LESS) {
+                    return ListFilter.LESSTHAN;
+                } else if (input == GREATER_EQUALS) {
+                    return ListFilter.GREATEREQUALS;
+                } else if (input == LESS_EQUALS) {
+                    return ListFilter.LESSEQUALS;
+                } else {
+                    throw new InputMismatchException();
+                }
+            } catch (InputMismatchException | NumberFormatException e) {
+                System.out.println("Please enter a valid option !");
+            }
         }
     }
 }
