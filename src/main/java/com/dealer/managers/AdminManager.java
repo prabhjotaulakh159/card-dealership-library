@@ -23,7 +23,7 @@ import com.dealer.models.people.Employee;
  * Manager class for admins
  * @author Prabhjot Aulakh, Safin Haque
  */
-public class AdminManager extends Manager {
+public class AdminManager extends AbstractManager {
     private final int CUSTOMER_OPTION = 3;
     private final int CUSTOMER_FILTER_OPTION = 4;
     private final int EMPLOYEE_OPTION = 5;

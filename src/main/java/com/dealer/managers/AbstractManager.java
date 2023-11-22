@@ -36,10 +36,11 @@ import com.dealer.data.sorters.impl.CarYearSorter;
 import com.dealer.models.cars.Car;
 
 /**
- * Provides the main functionality of the manager class for both admins and employees
+ * Provides the main functionality of the manager class for both admins and employees (mainly querying for cars)
+ * and other helper methods useful for both admins and employees
  * @author Prabhjot Aulakh, Safin Haque
  */
-public abstract class Manager {
+public abstract class AbstractManager {
     protected IDataLoader dataLoader;
     protected AbstractCarSorter abstractCarSorter;
     protected AbstractCustomerSorter abstractCustomerSorter;
@@ -56,7 +57,7 @@ public abstract class Manager {
      * Constructor
      * @param dataLoader Strategy for loading data from a source (file/oracle)
      */
-    public Manager(IDataLoader dataLoader) {
+    public AbstractManager(IDataLoader dataLoader) {
         this.dataLoader = dataLoader;
         this.abstractCarSorter = null;
         this.abstractCustomerSorter = null;
