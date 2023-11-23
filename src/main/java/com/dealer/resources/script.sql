@@ -1,8 +1,9 @@
 DROP TABLE programming_cars;
-DROP TABLE programming_programming_employees;
-DROP TABLE programming_programming_customers;
+DROP TABLE programming_employees;
+DROP TABLE programming_customers;
 
 CREATE TABLE programming_cars (
+    id          NUMBER              GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     type        VARCHAR2(100)       NOT NULL,
     model       VARCHAR2(100)       NOT NULL,
     year        NUMBER(4)           NOT NULL,
