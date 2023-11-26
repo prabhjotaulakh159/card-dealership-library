@@ -109,7 +109,7 @@ public class AdminManager extends AbstractManager {
     }
 
     /**
-     * Provides UI for querying cars by sorting
+     * Provides UI for querying Customers by sorting
      */
     private void queryCustomers() {
         final int NO_SORTING = 1;
