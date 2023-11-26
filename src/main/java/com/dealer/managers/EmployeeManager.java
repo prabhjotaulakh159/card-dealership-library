@@ -39,11 +39,18 @@ public class EmployeeManager extends AbstractManager {
     }
 
     private void becomeGreatSaleSperson(){
-        System.out.println("Link to blogpost we took ideas from: https://blog.hubspot.com/sales/how-to-be-a-good-car-salesperson");
+        System.out.println("Link to blogpost we took inspiration from: https://blog.hubspot.com/sales/how-to-be-a-good-car-salesperson");
         System.out.println("Welcome to the BB Dealership, we have officially sold your soul for 62 cents and now there is no going back");
         System.out.println("Unless you pass this quiz and understand how we run this place and prioritize customers, you may have your soul back, but you're still working with us.");
-        System.out.println("");
-        
+        System.out.println("Failure in passing our quiz will lead you to immediate termination of your job. Be aware of that, HAVE FUN READING! make us proud :3");
+
+        System.out.println();
+        System.out.println("10 tips to know when becoming a greate Car Salesman!");
+        System.out.println("1. Always remember your clients names, to build general respect and courtesy when discussing about a potential vehicle");
+        System.out.println("2. Ask the Right Questions! Asking the right questions will provide yourself context on the car that the customer is wanting to buy. \n A good question to a customer may be: \"What are your must-haves in a car?\" ");
+        System.out.println("3. Build Rapport. If someones feeling overwhelmed, be sure to talk about other things that they enjoy that steers back to the sale, making them feel more comftorable");
+        System.out.println("4. Listen as Much as you can talk. Don't start rambling about the sales and asking a lot of questions to the customer. It feel disingenuin and gives them a bad remark. Take the time to listen and pause 1-2 seconds after the customer stops talking and reflect.");
+        System.out.println("5. Treat customers equally. ");
         
     }
     
