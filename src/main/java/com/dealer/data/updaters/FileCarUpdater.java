@@ -15,13 +15,26 @@ import com.dealer.models.cars.Car;
 import com.dealer.models.cars.ElectricCar;
 import com.dealer.models.cars.RecreationalVehicle;
 
+/**
+ * Implements ICarUpdater to update cars in a CSV file
+ * @author Prabhjot Aulakh, Safin Haque
+ */
 public class FileCarUpdater implements ICarUpdater {
     private FileLoader fileLoader;
     
+    /**
+     * Constructor
+     * @param fileLoader Loads data from a file to overwrite it 
+     */
     public FileCarUpdater(FileLoader fileLoader) {
         this.fileLoader = fileLoader;
     }
 
+    /**
+     * Creates a car in a CSV file
+     * @param car Car to create/append to the CSV
+     * @throws LoaderException If file IO error occurs
+     */
     @Override
     public void create(Car car) throws LoaderException {
         String placeholder = null;
@@ -33,6 +46,12 @@ public class FileCarUpdater implements ICarUpdater {
         }
     }
 
+    /**
+     * Updates/overwrites CSV files to update a car
+     * @param car Newly updated car data
+     * @param index Index/row of the CSV file to update
+     * @throws LoaderException If file IO error occurs
+     */
     @Override
     public void update(Car car, int index) throws LoaderException {
         try {
@@ -48,6 +67,11 @@ public class FileCarUpdater implements ICarUpdater {
         }        
     }
 
+    /**
+     * Deletes a car in a CSV file
+     * @param index Row index/id to delete
+     * @throws LoaderException If file IO error occurs
+     */
     @Override
     public void delete(int index) throws LoaderException {
         try {
@@ -63,6 +87,10 @@ public class FileCarUpdater implements ICarUpdater {
         }
     }
 
+    /**
+     * Returns a car with all it's properties as comma seperated values
+     * @param car Car to get CSV values from
+     */
     private String getCarAsCsv(Car car) {
         if (!(car instanceof ElectricCar) && !(car instanceof RecreationalVehicle)) {
             return Constants.CAR_TYPE + "," + car.getModel() + "," + car.getYear() + "," + car.getColor() + "," + car.getPrice();

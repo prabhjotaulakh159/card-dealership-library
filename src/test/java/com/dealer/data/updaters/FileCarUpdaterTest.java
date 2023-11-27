@@ -1,4 +1,4 @@
-package com.dealer.updaters;
+package com.dealer.data.updaters;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -16,13 +16,13 @@ import org.junit.Test;
 import com.dealer.data.Constants;
 import com.dealer.data.exceptions.LoaderException;
 import com.dealer.data.loaders.FileLoader;
-import com.dealer.data.updaters.FileCarUpdater;
-import com.dealer.data.updaters.ICarUpdater;
 import com.dealer.models.cars.Car;
+import com.dealer.models.cars.ElectricCar;
+import com.dealer.models.cars.RecreationalVehicle;
 
 public class FileCarUpdaterTest {
     @Test
-    public void create() throws LoaderException {
+    public void create_car() throws LoaderException {
         FileLoader loader = new FileLoader();
         ICarUpdater updater = new FileCarUpdater(loader);
         Car c = new Car("New Model", 2023, "New Color", 10000);
@@ -37,10 +37,68 @@ public class FileCarUpdaterTest {
     }
 
     @Test
-    public void update() throws LoaderException {
+    public void create_electric() throws LoaderException {
+        FileLoader loader = new FileLoader();
+        ICarUpdater updater = new FileCarUpdater(loader);
+        ElectricCar c = new ElectricCar("New Model", 2023, "New Color", 10000, 400, "Charger");
+        updater.create(c);
+        assertEquals(13, loader.getCars().size());
+        assertTrue(loader.getCars().get(12).equals(c));
+        try {
+            this.resetFileToOriginalState();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void create_rv() throws LoaderException {
+        FileLoader loader = new FileLoader();
+        ICarUpdater updater = new FileCarUpdater(loader);
+        RecreationalVehicle c = new RecreationalVehicle("New Model", 2023, "New Color", 10000, 1, 1, true);
+        updater.create(c);
+        assertEquals(13, loader.getCars().size());
+        assertTrue(loader.getCars().get(12).equals(c));
+        try {
+            this.resetFileToOriginalState();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void update_car() throws LoaderException {
         FileLoader loader = new FileLoader();
         ICarUpdater updater = new FileCarUpdater(loader);
         Car c = new Car("New Model", 2023, "New Color", 10000);
+        updater.update(c, 0);
+        assertTrue(loader.getCars().get(0).equals(c));
+        try {
+            this.resetFileToOriginalState();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void update_electric() throws LoaderException {
+        FileLoader loader = new FileLoader();
+        ICarUpdater updater = new FileCarUpdater(loader);
+        ElectricCar c = new ElectricCar("New Model", 2023, "New Color", 10000, 400, "Charger");
+        updater.update(c, 0);
+        assertTrue(loader.getCars().get(0).equals(c));
+        try {
+            this.resetFileToOriginalState();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void update_rv() throws LoaderException {
+        FileLoader loader = new FileLoader();
+        ICarUpdater updater = new FileCarUpdater(loader);
+        RecreationalVehicle c = new RecreationalVehicle("New Model", 2023, "New Color", 10000, 1, 1, true);
         updater.update(c, 0);
         assertTrue(loader.getCars().get(0).equals(c));
         try {

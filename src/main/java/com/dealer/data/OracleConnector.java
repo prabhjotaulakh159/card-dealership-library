@@ -20,6 +20,7 @@ public abstract class OracleConnector {
     public OracleConnector() throws LoaderException {
         try {
             this.connection = DriverManager.getConnection("jdbc:oracle:thin:@198.168.52.211:1521/pdbora19c.dawsoncollege.qc.ca", "A2034747", "Jagdish123");
+            this.connection.setAutoCommit(false);
         } catch (SQLException e) {
             throw new LoaderException(e);
         }
@@ -31,5 +32,16 @@ public abstract class OracleConnector {
      */
     public Connection getConnection() {
         return this.connection;
+    }
+
+    /**
+     * Allows to rollback changes to the db
+     */
+    public void rollback() {
+        try {
+            this.connection.rollback();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
