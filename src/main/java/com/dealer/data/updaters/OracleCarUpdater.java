@@ -1,6 +1,8 @@
 package com.dealer.data.updaters;
 
+import java.sql.Statement;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.dealer.data.Constants;
@@ -57,7 +59,6 @@ public class OracleCarUpdater extends OracleConnector implements ICarUpdater {
             preparedStatement.execute();
             preparedStatement.close();
             this.getConnection().commit();
-            this.getConnection().close();
         } catch (SQLException e) {
             throw new LoaderException(e);
         }
@@ -70,6 +71,18 @@ public class OracleCarUpdater extends OracleConnector implements ICarUpdater {
 
     @Override
     public void delete(int index) throws LoaderException {
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        String SQL= "SELECT * FROM programming_cars";
+        try{
+            Statement statement = this.getConnection().createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+            ResultSet results = statement.executeQuery(SQL);
+            results.beforeFirst();
+            results.absolute(index);
+            results.deleteRow();
+            results.close();
+            statement.close();
+            this.getConnection().commit();
+        }catch (SQLException e){
+            throw new LoaderException(e);
+        }
     }
 }

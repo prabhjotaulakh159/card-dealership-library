@@ -53,7 +53,12 @@ public class OracleCarUpdaterTest {
     }
 
     @Test
-    public void delete() {
+    public void delete() throws LoaderException{
+        OracleLoader loader = new OracleLoader();
+        OracleCarUpdater deleter = new OracleCarUpdater(loader);
+        List<Car> cars = loader.getCars();
+        deleter.delete(1);
 
+        assertEquals(11, cars.size());
     }
 }
