@@ -27,9 +27,9 @@ public class OracleCarUpdater extends OracleConnector implements ICarUpdater {
      */
     @Override
     public void create(Car car) throws LoaderException {
-        String carSQL = "INSERT INTO programming_cars (type, model, year, color, price) VALUES (?, ?, ?, ?, ?)";
-        String electricSQL = "INSERT INTO programming_cars (type, model, year, color, price, voltage, charger) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        String rvSQL = "INSERT INTO programming_cars (type, model, year, color, price, max_pass, num_beds, kitchen) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String carSQL = "INSERT INTO car (type, model, year, color, price) VALUES (?, ?, ?, ?, ?)";
+        String electricSQL = "INSERT INTO car (type, model, year, color, price, voltage, charger) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String rvSQL = "INSERT INTO car (type, model, year, color, price, max_pass, num_beds, kitchen) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = null;
         try {
             if (!(car instanceof ElectricCar) && !(car instanceof RecreationalVehicle)) {
@@ -69,7 +69,7 @@ public class OracleCarUpdater extends OracleConnector implements ICarUpdater {
     public void update(Car car, int index) throws LoaderException {
         try {
             int idToUpdate = 0;
-            String SQL = "SELECT * FROM programming_cars ORDER BY id ASC";
+            String SQL = "SELECT * FROM car ORDER BY id ASC";
             PreparedStatement preparedStatement = this.getConnection().prepareStatement(SQL, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -80,7 +80,7 @@ public class OracleCarUpdater extends OracleConnector implements ICarUpdater {
             if (idToUpdate == 0) {
                 throw new IllegalArgumentException("Index not found !");
             }
-            String updateSQL  =  "UPDATE programming_cars SET type=?, model=?, year=?, color=?, price=?, voltage=?, charger=?, max_pass=?, num_beds=?, kitchen=? WHERE id=?";
+            String updateSQL  =  "UPDATE car SET type=?, model=?, year=?, color=?, price=?, voltage=?, charger=?, max_pass=?, num_beds=?, kitchen=? WHERE id=?";
             PreparedStatement updateStatement = this.getConnection().prepareStatement(updateSQL);
             updateStatement.setString(2, car.getModel());
             updateStatement.setInt(3, car.getYear());
@@ -126,7 +126,7 @@ public class OracleCarUpdater extends OracleConnector implements ICarUpdater {
      */
     @Override
     public void delete(int index) throws LoaderException {
-        String SQL = "SELECT * FROM programming_cars ORDER BY id ASC";
+        String SQL = "SELECT * FROM car ORDER BY id ASC";
         try {
             int idToDelete = 0;
             PreparedStatement preparedStatement = this.getConnection().prepareStatement(SQL, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
@@ -136,7 +136,7 @@ public class OracleCarUpdater extends OracleConnector implements ICarUpdater {
                     idToDelete = resultSet.getInt(1);
                 }
             }
-            SQL = "DELETE FROM programming_cars WHERE id = ?";
+            SQL = "DELETE FROM car WHERE id = ?";
             preparedStatement = this.getConnection().prepareStatement(SQL);
             preparedStatement.setInt(1, idToDelete);
             preparedStatement.execute();

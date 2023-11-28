@@ -23,8 +23,7 @@ public class OracleLoaderTest {
             throw new LoaderException(e);
         }
         List<Car> list = oracleLoader.getCars();
-        // other tests might create more cars before
-        assertTrue(list.size() >= 12);
+        assertTrue(list.size() == 12);
     }
 
     @Test
