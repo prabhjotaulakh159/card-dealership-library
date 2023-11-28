@@ -12,4 +12,12 @@ public class LoaderException extends Exception {
     public LoaderException(Throwable t) {
         super(t);
     }
+
+    /**
+     * Constructor with error message
+     * @param message Error message
+     */
+    public LoaderException(String message) {
+        super(message);
+    }
 }
