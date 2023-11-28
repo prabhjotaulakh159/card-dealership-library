@@ -1,6 +1,5 @@
 package com.dealer.data.updaters;
 
-import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +7,6 @@ import java.sql.SQLException;
 import com.dealer.data.Constants;
 import com.dealer.data.OracleConnector;
 import com.dealer.data.exceptions.LoaderException;
-import com.dealer.data.loaders.OracleLoader;
 import com.dealer.models.cars.Car;
 import com.dealer.models.cars.ElectricCar;
 import com.dealer.models.cars.RecreationalVehicle;
@@ -18,11 +16,8 @@ import com.dealer.models.cars.RecreationalVehicle;
  * @author Prabhjot Aulakh, Safin Haque
  */
 public class OracleCarUpdater extends OracleConnector implements ICarUpdater {
-    private OracleLoader oracleLoader;
-
-    public OracleCarUpdater(OracleLoader oracleLoader) throws LoaderException {
+    public OracleCarUpdater() throws LoaderException {
         super();
-        this.oracleLoader = oracleLoader;
     }
 
     /**
@@ -50,7 +45,7 @@ public class OracleCarUpdater extends OracleConnector implements ICarUpdater {
                 preparedStatement.setString(1, Constants.RV_TYPE);
                 preparedStatement.setInt(6, ((RecreationalVehicle) car).getMaxPassengers());
                 preparedStatement.setInt(7, ((RecreationalVehicle) car).getNumberOfBeds());
-                preparedStatement.setInt(8, ((RecreationalVehicle) car).isHasKitchen() ? 0 : 1);
+                preparedStatement.setInt(8, ((RecreationalVehicle) car).isHasKitchen() ? 1 : 0);
             }
             preparedStatement.setString(2, car.getModel());
             preparedStatement.setInt(3, car.getYear());
@@ -64,24 +59,91 @@ public class OracleCarUpdater extends OracleConnector implements ICarUpdater {
         }
     }
 
+    /**
+     * Updates a car in the oracle database
+     * @param car New car information
+     * @param index Index/row to update
+     * @throws LoaderException If SQLException occurs
+     */
     @Override
     public void update(Car car, int index) throws LoaderException {
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        try {
+            int idToUpdate = 0;
+            String SQL = "SELECT * FROM programming_cars ORDER BY id ASC";
+            PreparedStatement preparedStatement = this.getConnection().prepareStatement(SQL, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                if (resultSet.getRow() == index) {
+                    idToUpdate = resultSet.getInt(1);
+                }
+            }
+            if (idToUpdate == 0) {
+                throw new IllegalArgumentException("Index not found !");
+            }
+            String updateSQL  =  "UPDATE programming_cars SET type=?, model=?, year=?, color=?, price=?, voltage=?, charger=?, max_pass=?, num_beds=?, kitchen=? WHERE id=?";
+            PreparedStatement updateStatement = this.getConnection().prepareStatement(updateSQL);
+            updateStatement.setString(2, car.getModel());
+            updateStatement.setInt(3, car.getYear());
+            updateStatement.setString(4, car.getColor());
+            updateStatement.setInt(5, car.getPrice());
+            updateStatement.setInt(11, idToUpdate);
+            if (!(car instanceof ElectricCar) && (!(car instanceof RecreationalVehicle))) {
+                updateStatement.setString(1, Constants.CAR_TYPE);
+                updateStatement.setInt(6, 0);
+                updateStatement.setString(7, null);
+                updateStatement.setInt(8, 0);
+                updateStatement.setInt(9, 0);
+                updateStatement.setInt(10, 0);
+            } else if (car instanceof ElectricCar) {
+                updateStatement.setString(1, Constants.ELECTRIC_TYPE);
+                updateStatement.setInt(6, ((ElectricCar) car).getVoltage());
+                updateStatement.setString(7, ((ElectricCar) car).getChargerType());
+                updateStatement.setInt(8, 0);
+                updateStatement.setInt(9, 0);
+                updateStatement.setInt(10, 0);
+            } else if (car instanceof RecreationalVehicle) {
+                updateStatement.setString(1, Constants.RV_TYPE);
+                updateStatement.setInt(6, 0);
+                updateStatement.setString(7, null);
+                updateStatement.setInt(8, ((RecreationalVehicle) car).getMaxPassengers());
+                updateStatement.setInt(9, ((RecreationalVehicle) car).getNumberOfBeds());
+                updateStatement.setInt(10, ((RecreationalVehicle) car).isHasKitchen() ? 1 : 0);
+            }
+            updateStatement.execute();
+            updateStatement.close();
+            resultSet.close();
+            this.getConnection().commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new LoaderException(e);
+        }
     }
 
+    /**
+     * Deletes a car in the oracle database
+     * @param index Index/row to delete
+     * @throws LoaderException If SQLException occurs
+     */
     @Override
     public void delete(int index) throws LoaderException {
-        String SQL= "SELECT * FROM programming_cars";
-        try{
-            Statement statement = this.getConnection().createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
-            ResultSet results = statement.executeQuery(SQL);
-            results.beforeFirst();
-            results.absolute(index);
-            results.deleteRow();
-            results.close();
-            statement.close();
+        String SQL = "SELECT * FROM programming_cars ORDER BY id ASC";
+        try {
+            int idToDelete = 0;
+            PreparedStatement preparedStatement = this.getConnection().prepareStatement(SQL, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                if (resultSet.getRow() == index) {
+                    idToDelete = resultSet.getInt(1);
+                }
+            }
+            SQL = "DELETE FROM programming_cars WHERE id = ?";
+            preparedStatement = this.getConnection().prepareStatement(SQL);
+            preparedStatement.setInt(1, idToDelete);
+            preparedStatement.execute();
+            preparedStatement.close();
+            resultSet.close(); 
             this.getConnection().commit();
-        }catch (SQLException e){
+        } catch (SQLException e){
             throw new LoaderException(e);
         }
     }

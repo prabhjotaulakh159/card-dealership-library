@@ -33,7 +33,7 @@ public class OracleLoader extends OracleConnector implements IDataLoader {
     public List<Car> getCars() throws LoaderException {
         try {
             List<Car> cars = new ArrayList<Car>();
-            String SQL = "SELECT * FROM programming_cars";
+            String SQL = "SELECT * FROM programming_cars ORDER BY id ASC";
             PreparedStatement statement = this.getConnection().prepareStatement(SQL);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
@@ -60,13 +60,7 @@ public class OracleLoader extends OracleConnector implements IDataLoader {
             return cars;
         } catch (SQLException e) {
             throw new LoaderException(e);
-        } finally {
-            try {
-                this.getConnection().close();
-            } catch (SQLException e) {
-                throw new LoaderException(e);
-            }
-        }
+        } 
     }
 
     /**
@@ -89,13 +83,7 @@ public class OracleLoader extends OracleConnector implements IDataLoader {
             return customers;
         } catch (SQLException e) {
             throw new LoaderException(e);
-        } finally {
-            try {
-                this.getConnection().close();
-            } catch (SQLException e) {
-                throw new LoaderException(e);
-            }
-        }
+        } 
     }
 
     /**
@@ -119,12 +107,6 @@ public class OracleLoader extends OracleConnector implements IDataLoader {
             return employees;
         } catch (SQLException e) {
             throw new LoaderException(e);
-        } finally {
-            try {
-                this.getConnection().close();
-            } catch (SQLException e) {
-                throw new LoaderException(e);
-            }
-        }
+        } 
     }   
 }

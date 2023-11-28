@@ -9,11 +9,11 @@ CREATE TABLE programming_cars (
     year        NUMBER(4)           NOT NULL,
     color       VARCHAR2(100)       NOT NULL,
     price       NUMBER(10)          NOT NULL,
-    voltage     NUMBER(4)                   ,
+    voltage     NUMBER(4)           DEFAULT 0,
     charger     VARCHAR2(100)               ,
-    max_pass    NUMBER(2)                   ,
-    num_beds    NUMBER(2)                   ,
-    kitchen     NUMBER(2)                   
+    max_pass    NUMBER(2)           DEFAULT 0,
+    num_beds    NUMBER(2)           DEFAULT 0,
+    kitchen     NUMBER(2)           DEFAULT 0
 );
 
 CREATE TABLE programming_employees (
@@ -53,3 +53,5 @@ INSERT INTO programming_cars (type, model, year, color, price, max_pass, num_bed
 
 COMMIT;
 /
+
+SELECT * FROM programming_cars;

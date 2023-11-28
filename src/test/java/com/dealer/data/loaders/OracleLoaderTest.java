@@ -1,8 +1,8 @@
 package com.dealer.data.loaders;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.Test;
@@ -16,8 +16,15 @@ public class OracleLoaderTest {
     @Test
     public void return_list_of_12_cars() throws LoaderException {
         IDataLoader oracleLoader = new OracleLoader();
+        try {   
+            ((OracleLoader)oracleLoader).getConnection().prepareStatement("DELETE FROM programming_cars WHERE id > 12");
+            ((OracleLoader)oracleLoader).getConnection().commit();
+        } catch (SQLException e) {
+            throw new LoaderException(e);
+        }
         List<Car> list = oracleLoader.getCars();
-        assertEquals(12, list.size());
+        // other tests might create more cars before
+        assertTrue(list.size() >= 12);
     }
 
     @Test

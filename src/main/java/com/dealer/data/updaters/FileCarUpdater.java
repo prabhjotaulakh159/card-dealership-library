@@ -37,6 +37,9 @@ public class FileCarUpdater implements ICarUpdater {
      */
     @Override
     public void create(Car car) throws LoaderException {
+        if (car == null) {
+            throw new IllegalArgumentException("Car cannot be null");
+        }
         String placeholder = null;
         placeholder = "\n" + this.getCarAsCsv(car);
         try {
@@ -74,6 +77,9 @@ public class FileCarUpdater implements ICarUpdater {
      */
     @Override
     public void delete(int index) throws LoaderException {
+        if (index <= 0) {
+            throw new IllegalArgumentException("Invalid index");
+        }
         try {
             List<String> data = new ArrayList<String>();
             List<Car> cars = this.fileLoader.getCars();
