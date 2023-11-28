@@ -17,12 +17,12 @@ public abstract class OracleConnector {
      * Initializes a connection to the database
      * @throws LoaderException If the connection fails
      */
-    public OracleConnector() throws LoaderException {
+    public OracleConnector() {
         try {
             this.connection = DriverManager.getConnection("jdbc:oracle:thin:@198.168.52.211:1521/pdbora19c.dawsoncollege.qc.ca", "A2034747", "Jagdish123");
             this.connection.setAutoCommit(false);
         } catch (SQLException e) {
-            throw new LoaderException(e);
+            e.printStackTrace();
         }
     }
 

@@ -1,6 +1,7 @@
 package com.dealer.data.updaters;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -37,9 +38,6 @@ public class FileCarUpdater implements ICarUpdater {
      */
     @Override
     public void create(Car car) throws LoaderException {
-        if (car == null) {
-            throw new IllegalArgumentException("Car cannot be null");
-        }
         String placeholder = null;
         placeholder = "\n" + this.getCarAsCsv(car);
         try {
@@ -64,7 +62,8 @@ public class FileCarUpdater implements ICarUpdater {
             for (Car c : cars) {
                 data.add(this.getCarAsCsv(c));
             }
-            Files.write(Paths.get(Constants.CARS_CSV), data);
+            String line = String.join("\n", data);
+            Files.write(Paths.get(Constants.CARS_CSV), line.getBytes(Charset.forName("UTF-8")));
         } catch (IOException e) {
             throw new LoaderException(e);
         }        
@@ -77,9 +76,6 @@ public class FileCarUpdater implements ICarUpdater {
      */
     @Override
     public void delete(int index) throws LoaderException {
-        if (index <= 0) {
-            throw new IllegalArgumentException("Invalid index");
-        }
         try {
             List<String> data = new ArrayList<String>();
             List<Car> cars = this.fileLoader.getCars();
@@ -87,7 +83,8 @@ public class FileCarUpdater implements ICarUpdater {
             for (Car c : cars) {
                 data.add(this.getCarAsCsv(c));
             }
-            Files.write(Paths.get(Constants.CARS_CSV), data);
+            String line = String.join("\n", data);
+            Files.write(Paths.get(Constants.CARS_CSV), line.getBytes(Charset.forName("UTF-8")));
         } catch (IOException e) {
             throw new LoaderException(e);
         }

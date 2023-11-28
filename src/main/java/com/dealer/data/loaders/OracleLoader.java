@@ -20,10 +20,6 @@ import com.dealer.models.people.Employee;
  * @author Prabhjot Aulakh, Safin Haque
  */
 public class OracleLoader extends OracleConnector implements IDataLoader {
-    public OracleLoader() throws LoaderException {
-        super();
-    }
-
     /**
      * Retrives cars from the database and turns it into a list
      * @return List of cars from the database
@@ -33,7 +29,7 @@ public class OracleLoader extends OracleConnector implements IDataLoader {
     public List<Car> getCars() throws LoaderException {
         try {
             List<Car> cars = new ArrayList<Car>();
-            String SQL = "SELECT * FROM programming_cars ORDER BY id ASC";
+            String SQL = "SELECT * FROM car ORDER BY id ASC";
             PreparedStatement statement = this.getConnection().prepareStatement(SQL);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
@@ -72,7 +68,7 @@ public class OracleLoader extends OracleConnector implements IDataLoader {
     public List<Customer> getCustomers() throws LoaderException {
         try {
             List<Customer> customers = new ArrayList<Customer>();
-            String SQL = "SELECT * FROM programming_customers";
+            String SQL = "SELECT * FROM customer";
             PreparedStatement statement = this.getConnection().prepareStatement(SQL);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
@@ -95,7 +91,7 @@ public class OracleLoader extends OracleConnector implements IDataLoader {
     public List<Employee> getEmployees() throws LoaderException {
         try {
             List<Employee> employees = new ArrayList<Employee>();
-            String SQL = "SELECT * FROM programming_employees";
+            String SQL = "SELECT * FROM employee";
             PreparedStatement statement = this.getConnection().prepareStatement(SQL);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
