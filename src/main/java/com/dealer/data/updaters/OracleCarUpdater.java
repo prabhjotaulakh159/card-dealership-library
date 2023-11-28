@@ -16,10 +16,6 @@ import com.dealer.models.cars.RecreationalVehicle;
  * @author Prabhjot Aulakh, Safin Haque
  */
 public class OracleCarUpdater extends OracleConnector implements ICarUpdater {
-    public OracleCarUpdater() throws LoaderException {
-        super();
-    }
-
     /**
      * Creates a car in the oracle database
      * @param car Car to create/insert

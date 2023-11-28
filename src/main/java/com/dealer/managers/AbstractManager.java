@@ -21,6 +21,7 @@ import com.dealer.data.filters.impl.RVNumberOfBedsFilter;
 import com.dealer.data.filters.impl.TypeElectricCarFilter;
 import com.dealer.data.filters.impl.TypeRVFilter;
 import com.dealer.data.filters.impl.TypeRegularCarFilter;
+import com.dealer.data.loaders.FileLoader;
 import com.dealer.data.loaders.IDataLoader;
 import com.dealer.data.sorters.AbstractCarSorter;
 import com.dealer.data.sorters.AbstractCustomerSorter;
@@ -33,6 +34,9 @@ import com.dealer.data.sorters.impl.CarNumberOfBedsSorter;
 import com.dealer.data.sorters.impl.CarPriceSorter;
 import com.dealer.data.sorters.impl.CarVoltageSorter;
 import com.dealer.data.sorters.impl.CarYearSorter;
+import com.dealer.data.updaters.FileCarUpdater;
+import com.dealer.data.updaters.ICarUpdater;
+import com.dealer.data.updaters.OracleCarUpdater;
 import com.dealer.models.cars.Car;
 
 /**
@@ -42,6 +46,7 @@ import com.dealer.models.cars.Car;
  */
 public abstract class AbstractManager {
     protected IDataLoader dataLoader;
+    protected ICarUpdater carUpdater;
     protected AbstractCarSorter abstractCarSorter;
     protected AbstractCustomerSorter abstractCustomerSorter;
     protected AbstractEmployeeSorter abstractEmployeeSorter; 
@@ -59,6 +64,7 @@ public abstract class AbstractManager {
      */
     public AbstractManager(IDataLoader dataLoader) {
         this.dataLoader = dataLoader;
+        this.carUpdater = dataLoader instanceof FileLoader ? new FileCarUpdater((FileLoader)this.dataLoader) : new OracleCarUpdater();
         this.abstractCarSorter = null;
         this.abstractCustomerSorter = null;
         this.abstractEmployeeSorter = null;

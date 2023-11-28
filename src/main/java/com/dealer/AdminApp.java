@@ -6,7 +6,7 @@ import com.dealer.managers.AbstractManager;
 
 public class AdminApp {
     public static void main(String[] args) {
-        AbstractManager admin = new AdminManager(new FileLoader());
-        admin.run();
+        AbstractManager app = new AdminManager(new FileLoader());
+        app.run();
     }
 }

@@ -20,10 +20,6 @@ import com.dealer.models.people.Employee;
  * @author Prabhjot Aulakh, Safin Haque
  */
 public class OracleLoader extends OracleConnector implements IDataLoader {
-    public OracleLoader() throws LoaderException {
-        super();
-    }
-
     /**
      * Retrives cars from the database and turns it into a list
      * @return List of cars from the database

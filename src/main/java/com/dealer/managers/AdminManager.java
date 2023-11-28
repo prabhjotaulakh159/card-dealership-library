@@ -1,6 +1,5 @@
 package com.dealer.managers;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import com.dealer.data.exceptions.LoaderException;
 import com.dealer.data.filters.ICustomerFilter;
@@ -16,6 +15,9 @@ import com.dealer.data.sorters.AbstractEmployeeSorter;
 import com.dealer.data.sorters.impl.CustomerNameSorter;
 import com.dealer.data.sorters.impl.EmployeeNameSorter;
 import com.dealer.data.sorters.impl.EmployeeSalarySorter;
+import com.dealer.models.cars.Car;
+import com.dealer.models.cars.ElectricCar;
+import com.dealer.models.cars.RecreationalVehicle;
 import com.dealer.models.people.Customer;
 import com.dealer.models.people.Employee;
 
@@ -28,7 +30,10 @@ public class AdminManager extends AbstractManager {
     private final int CUSTOMER_FILTER_OPTION = 4;
     private final int EMPLOYEE_OPTION = 5;
     private final int EMPLOYEE_FILTER_OPTION = 6;
-    private final int QUIT = 7;
+    private final int CREATE_CAR = 7;
+    private final int UPDATE_CAR = 8;
+    private final int DELETE_CAR = 9;
+    private final int QUIT = 10;
 
     /**
      * Constructor
@@ -80,6 +85,9 @@ public class AdminManager extends AbstractManager {
             System.out.println(this.CUSTOMER_FILTER_OPTION + ": filter customers");
             System.out.println(this.EMPLOYEE_OPTION + ": view employees");
             System.out.println(this.EMPLOYEE_FILTER_OPTION + ": filter employees");
+            System.out.println(this.CREATE_CAR + ": create car");
+            System.out.println(this.UPDATE_CAR + ": update car");
+            System.out.println(this.DELETE_CAR + ": delete car");
             System.out.println(this.QUIT + ": quit");
             System.out.print("Please choose an option from above >>> ");
             try {
@@ -96,12 +104,14 @@ public class AdminManager extends AbstractManager {
                     this.queryEmployees();
                 } else if (input == this.EMPLOYEE_FILTER_OPTION) {
                     this.filterEmployees();  
+                } else if (input == this.CREATE_CAR) {
+                    this.createCar();
                 } else if (input == QUIT) {
                     break;
                 } else {
-                    throw new InputMismatchException();
+                    throw new NumberFormatException();
                 }
-            } catch (InputMismatchException | NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid option !");
             } 
         }
@@ -127,12 +137,12 @@ public class AdminManager extends AbstractManager {
                 } else if (input == SORT_BY_NAME) {
                     this.setCustomerSortingStrategy(new CustomerNameSorter(this.askOrder()));
                 } else {
-                    throw new InputMismatchException();
+                    throw new NumberFormatException();
                 }
                 this.abstractCustomerSorter.sortCustomers(customers);
                 printCustomers(customers);
                 break;
-            } catch (InputMismatchException | NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid option !");
             } catch (LoaderException e) {
                 e.printStackTrace();
@@ -158,12 +168,12 @@ public class AdminManager extends AbstractManager {
                 } else if (input == FILTER_PHONE) {
                     this.setCustomerFilteringStrategy(new CustomerPhoneFilter(this.askStringQuery()));
                 } else {
-                    throw new InputMismatchException();
+                    throw new NumberFormatException();
                 }
                 customers = this.customerFilter.filterCustomers(customers);
                 printCustomers(customers);
                 break;
-            } catch (InputMismatchException | NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid option!");
             } catch (LoaderException e) {
                 e.printStackTrace();
@@ -194,12 +204,12 @@ public class AdminManager extends AbstractManager {
                 } else if (input == SORT_BY_SALARY) {
                     this.setEmployeeSortingStrategy(new EmployeeSalarySorter(this.askOrder()));
                 } else {
-                    throw new InputMismatchException();
+                    throw new NumberFormatException();
                 }
                 this.abstractEmployeeSorter.sortEmployees(employees);
                 printEmployees(employees);
                 break;
-            } catch (InputMismatchException | NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid option!");
             } catch (LoaderException e) {
                 e.printStackTrace();
@@ -229,13 +239,72 @@ public class AdminManager extends AbstractManager {
                 } else if (input == FILTER_SALARY) {
                     this.setEmployeeFilteringStrategy(new EmployeeSalaryFilter(this.askFilterOperation(), this.askIntQuery()));
                 } else {
-                    throw new InputMismatchException();
+                    throw new NumberFormatException();
                 }
                 employees = this.employeeFilter.filterEmployees(employees);
                 printEmployees(employees);
                 break;
-            } catch (InputMismatchException | NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid option!");
+            } catch (LoaderException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Provides UI to create a car
+     */
+    private void createCar() {
+        final int CREATE_CAR = 1;
+        final int CREATE_ELECTRIC = 2;
+        final int CREATE_RV = 3;
+        while (true) {
+            System.out.println(CREATE_CAR + ": Create regular car");
+            System.out.println(CREATE_ELECTRIC + ": Create electric car");
+            System.out.println(CREATE_RV + ": Create recreational vehicle");
+            System.out.println(this.QUIT + ": Cancel creation");
+            System.out.print(">>>> ");
+            Car car = null;
+            try {
+                int input = Integer.parseInt(this.scanner.nextLine());
+                if (input == CREATE_CAR) {
+                    car = new Car (
+                        this.askString("model"), 
+                        this.askInt("year"), 
+                        this.askString("color"), 
+                        this.askInt("price")
+                    );
+                } else if (input == CREATE_ELECTRIC) {
+                    car = new ElectricCar (
+                        this.askString("model"), 
+                        this.askInt("year"), 
+                        this.askString("color"), 
+                        this.askInt("price"),
+                        this.askInt("voltage"),
+                        this.askString("charger type")
+                    );
+                } else if (input == CREATE_RV) {
+                    car = new RecreationalVehicle(
+                        this.askString("model"), 
+                        this.askInt("year"), 
+                        this.askString("color"),                 
+                        this.askInt("price"),
+                        this.askInt("max passengers"),
+                        this.askInt("number of beds"),
+                        this.askForKitchen());
+                } else if (input == QUIT) {
+                    break;  
+                } else {
+                    throw new NumberFormatException();
+                }
+                this.carUpdater.create(car);
+                System.out.println("New entry added !");
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid option!");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid Data: " + e.getMessage());
             } catch (LoaderException e) {
                 e.printStackTrace();
             }
@@ -259,6 +328,57 @@ public class AdminManager extends AbstractManager {
     private void printEmployees(List<Employee> employees) {
         for (Employee employee : employees) {
             System.out.println(employee);
+        }
+    }
+
+    /**
+     * Provides UI to ask about string-related car properties
+     * @param whatToAskFor String about the property we want to ask for
+     * @return Car model entered by user
+     */
+    private String askString(String whatToAskFor) {
+        System.out.println("Please enter " + whatToAskFor + ": ");
+        return this.scanner.nextLine();
+    }
+
+    /**
+     * Provides UI to ask a car model
+     * @param whatToAskFor String about the property we want to ask for
+     * @return Car model entered by user
+     */
+    private int askInt(String whatToAskFor) {
+        while (true) {
+            try {
+                System.out.println("Please enter " + whatToAskFor + ": ");
+                return Integer.parseInt(this.scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid option");
+            }
+        }
+    }
+
+    /**
+     * Provides UI to ask if a recreational vehicle has a kitchen
+     * @return true or false
+     */
+    private boolean askForKitchen() {
+        final int YES = 1;
+        final int NO = 2;
+        while (true) {
+            System.out.println("Enter " + YES + " if it has a kitchen");
+            System.out.println("Enter " + NO + " if it does not have a kitchen");
+            try {
+                int input = Integer.parseInt(this.scanner.nextLine());
+                if (input == YES) {
+                    return true;
+                } else if (input == NO) {
+                    return false;
+                } else {
+                    throw new NumberFormatException();
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid option");
+            }
         }
     }
 }
