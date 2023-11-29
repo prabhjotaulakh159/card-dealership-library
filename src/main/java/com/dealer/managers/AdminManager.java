@@ -9,7 +9,9 @@ import com.dealer.data.filters.impl.CustomerPhoneFilter;
 import com.dealer.data.filters.impl.EmployeeNameFilter;
 import com.dealer.data.filters.impl.EmployeePhoneFilter;
 import com.dealer.data.filters.impl.EmployeeSalaryFilter;
+import com.dealer.data.loaders.FileLoader;
 import com.dealer.data.loaders.IDataLoader;
+import com.dealer.data.loaders.OracleLoader;
 import com.dealer.data.sorters.AbstractCustomerSorter;
 import com.dealer.data.sorters.AbstractEmployeeSorter;
 import com.dealer.data.sorters.impl.CustomerNameSorter;
@@ -106,7 +108,9 @@ public class AdminManager extends AbstractManager {
                     this.filterEmployees();  
                 } else if (input == this.CREATE_CAR) {
                     this.createCar();
-                } else if (input == QUIT) {
+                } else if (input == this.DELETE_CAR){
+                    this.deleteCar();
+                }else if (input == QUIT) {
                     break;
                 } else {
                     throw new NumberFormatException();
@@ -300,6 +304,41 @@ public class AdminManager extends AbstractManager {
                 }
                 this.carUpdater.create(car);
                 System.out.println("New entry added !");
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid option!");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid Data: " + e.getMessage());
+            } catch (LoaderException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void deleteCar(){
+        final int QUIT_PAGE =0;
+        while (true){
+            System.out.println("Choose the Index of the car you want to delete");
+            System.out.println(QUIT_PAGE + ": If you want to Cancel Deletion");
+            try{
+                int counter = 1;
+                List<Car> cars = this.dataLoader.getCars();
+                for(Car car : cars){
+                    System.out.println("(ID: " + (counter++) + ")  " + car);
+                }
+                int input = Integer.parseInt(this.scanner.nextLine());
+                if(input == QUIT_PAGE){
+                    break;
+                }
+                if(input < 0 || input> cars.size()){
+                    throw new NumberFormatException();
+                }
+                if(this.dataLoader instanceof FileLoader){
+                    this.carUpdater.delete(input-1);
+                }else if(this.dataLoader instanceof OracleLoader){
+                    this.carUpdater.delete(input);
+                }
+                System.out.println("Car deleted!");
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid option!");

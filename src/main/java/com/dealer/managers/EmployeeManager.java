@@ -7,6 +7,7 @@ import com.dealer.data.loaders.IDataLoader;
 /**
  * Manager class for employees
  */
+@SuppressWarnings("unused")
 public class EmployeeManager extends AbstractManager {
     private final int EXTRA_FEATURE = 3;
     private final int QUIT = 4;
