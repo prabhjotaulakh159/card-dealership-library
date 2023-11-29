@@ -323,9 +323,6 @@ public class AdminManager extends AbstractManager {
      */
     private void updateCar() {
         final int QUIT = 0;
-        final int UPDATE_REGULAR_CAR = 1;
-        final int UPDATE_ELECTRIC = 2;
-        final int UPDATE_RV = 3;
         while (true) {
             System.out.println(QUIT + ": Exit update");
             System.out.println("Enter index to update: ");
@@ -343,14 +340,7 @@ public class AdminManager extends AbstractManager {
                 if (input < 0 || input > cars.size()) {
                     throw new NumberFormatException();
                 }
-                if (input == UPDATE_REGULAR_CAR) {
-                    placeholder = new Car (
-                        this.askString("model"), 
-                        this.askInt("year"), 
-                        this.askString("color"), 
-                        this.askInt("price")
-                    );
-                } else if (input == UPDATE_ELECTRIC) {
+                if (cars.get(input - 1) instanceof ElectricCar) {
                     placeholder = new ElectricCar (
                         this.askString("model"), 
                         this.askInt("year"), 
@@ -359,7 +349,8 @@ public class AdminManager extends AbstractManager {
                         this.askInt("voltage"),
                         this.askString("charger type")
                     );
-                } else if (input == UPDATE_RV) {
+                }
+                else if (cars.get(input - 1) instanceof RecreationalVehicle) {
                     placeholder = new RecreationalVehicle(
                         this.askString("model"), 
                         this.askInt("year"), 
@@ -368,6 +359,13 @@ public class AdminManager extends AbstractManager {
                         this.askInt("max passengers"),
                         this.askInt("number of beds"),
                         this.askForKitchen());
+                } else {
+                    placeholder = new Car (
+                        this.askString("model"), 
+                        this.askInt("year"), 
+                        this.askString("color"), 
+                        this.askInt("price")
+                    );
                 }
                 if (this.dataLoader instanceof FileLoader) {
                     this.carUpdater.update(placeholder, input - 1);
