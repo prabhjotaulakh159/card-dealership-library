@@ -28,17 +28,15 @@ public class EmployeeManager extends AbstractManager {
             System.out.print("Please choose an option from above >>> ");
             try{
                 int input = Integer.parseInt(this.scanner.nextLine());
-                if(input == this.CAR_OPTION){
+                if (input == this.CAR_OPTION) {
                     this.queryCars();
-                }else if(input == this.CAR_FILTER_OPTION){
+                } else if(input == this.CAR_FILTER_OPTION) {
                     this.filterCars();
-                }else if (input == EXTRA_FEATURE){
+                } else if (input == EXTRA_FEATURE) {
                     this.becomeGreatSaleSperson();
-                }else if (input == QUIT){
+                } else if (input == QUIT) {
                     break;
                 }
-                
-
             } catch (InputMismatchException | NumberFormatException e) {
                 System.out.println("Please enter a valid option !");
             }

@@ -80,7 +80,7 @@ public abstract class AbstractManager {
      * Sets the sorting strategy for cars
      * @param sorter Strategy for sorting cars
      */
-    public void setCarSortingStrategy(AbstractCarSorter sorter) { 
+    protected void setCarSortingStrategy(AbstractCarSorter sorter) { 
         this.abstractCarSorter = sorter;
     }
 
@@ -88,7 +88,7 @@ public abstract class AbstractManager {
      * Sets the filtering strategy for cars
      * @param filter Strategy for filtering cars
      */
-    public void setCarFilteringStrategy(ICarFilter filter) { 
+    protected void setCarFilteringStrategy(ICarFilter filter) { 
         this.carFilter = filter;
     }
 
@@ -100,7 +100,7 @@ public abstract class AbstractManager {
     /**
      * Provides UI for querying cars by sorting
      */
-    public void queryCars() {
+    protected void queryCars() {
         final int NO_SORTING = 1;
         final int SORT_BY_MODEL = 2;
         final int SORT_BY_PRICE = 3;
@@ -163,7 +163,7 @@ public abstract class AbstractManager {
     /**
      * Provides UI for filtering cars
      */
-    public void filterCars() {
+    protected void filterCars() {
         final int FILTER_COLOR = 1;
         final int FILTER_MODEL = 2;
         final int FILTER_PRICE = 3;
@@ -235,7 +235,7 @@ public abstract class AbstractManager {
      * Prints a list of cars on the terminal
      * @param cars List of cars to be printed
      */
-    public void printCars(List<Car> cars) {
+    protected void printCars(List<Car> cars) {
         for (Car car : cars) {
             System.out.println(car);
         }
@@ -245,7 +245,7 @@ public abstract class AbstractManager {
      * Prompts the user to ask if the sorting should be ascending or descending
      * @return Order of sorting
      */
-    public Order askOrder() {
+    protected Order askOrder() {
         final int ASCENDING = 1;
         final int DESCENDING = 2;
         while (true) {
@@ -271,7 +271,7 @@ public abstract class AbstractManager {
      * Prompts users to query for string data
      * @return The query string
      */
-    public String askStringQuery() {
+    protected String askStringQuery() {
         System.out.print("Enter String query: ");
         return this.scanner.nextLine();
     }
@@ -280,7 +280,7 @@ public abstract class AbstractManager {
      * Prompts users to query for integer related data
      * @return Integer query
      */
-    public int askIntQuery() {
+    protected int askIntQuery() {
         System.out.print("Enter number to query by: ");
         return Integer.parseInt(this.scanner.nextLine());
     }
@@ -289,7 +289,7 @@ public abstract class AbstractManager {
      * Prompts users to query by a certain boolean operation
      * @return The boolean operation for filtering
      */
-    public ListFilter askFilterOperation() {
+    protected ListFilter askFilterOperation() {
         final int EQUALS = 1;
         final int GREATER = 2;
         final int LESS = 3;
