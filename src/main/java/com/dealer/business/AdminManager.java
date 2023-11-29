@@ -1,6 +1,8 @@
-package com.dealer.managers;
+package com.dealer.business;
 
 import java.util.List;
+
+import com.dealer.data.Source;
 import com.dealer.data.exceptions.LoaderException;
 import com.dealer.data.filters.ICustomerFilter;
 import com.dealer.data.filters.IEmployeeFilter;
@@ -10,7 +12,6 @@ import com.dealer.data.filters.impl.EmployeeNameFilter;
 import com.dealer.data.filters.impl.EmployeePhoneFilter;
 import com.dealer.data.filters.impl.EmployeeSalaryFilter;
 import com.dealer.data.loaders.FileLoader;
-import com.dealer.data.loaders.IDataLoader;
 import com.dealer.data.loaders.OracleLoader;
 import com.dealer.data.models.cars.Car;
 import com.dealer.data.models.cars.ElectricCar;
@@ -27,7 +28,7 @@ import com.dealer.data.sorters.impl.EmployeeSalarySorter;
  * Manager class for admins
  * @author Prabhjot Aulakh, Safin Haque
  */
-public class AdminManager extends AbstractManager {
+public class AdminManager extends Manager {
     private final int CUSTOMER_OPTION = 3;
     private final int CUSTOMER_FILTER_OPTION = 4;
     private final int EMPLOYEE_OPTION = 5;
@@ -41,8 +42,8 @@ public class AdminManager extends AbstractManager {
      * Constructor
      * @param dataLoader Strategy for loading data from a source (file/oracle)
      */
-    public AdminManager(IDataLoader dataLoader) {
-        super(dataLoader);
+    public AdminManager(Source source) {
+        super(source);
     }
     
     /**
@@ -95,7 +96,7 @@ public class AdminManager extends AbstractManager {
             try {
                 int input = Integer.parseInt(this.scanner.nextLine());
                 if (input == this.CAR_OPTION) {
-                    this.queryCars();
+                    //this.queryCars();
                 } else if (input == this.CAR_FILTER_OPTION) {
                     this.filterCars();
                 } else if (input == this.CUSTOMER_OPTION) {

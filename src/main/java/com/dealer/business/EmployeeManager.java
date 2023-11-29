@@ -1,7 +1,8 @@
-package com.dealer.managers;
+package com.dealer.business;
 
 import java.util.InputMismatchException;
 
+import com.dealer.data.Source;
 import com.dealer.data.loaders.IDataLoader;
 
 import java.util.Scanner;
@@ -10,11 +11,12 @@ import java.util.Scanner;
  * Manager class for employees
  */
 @SuppressWarnings("unused")
-public class EmployeeManager extends AbstractManager {
+public class EmployeeManager extends Manager {
     private final int EXTRA_FEATURE = 3;
     private final int QUIT = 4;
-    public EmployeeManager(IDataLoader dataLoader) {
-        super(dataLoader);
+
+    public EmployeeManager(Source source) {
+        super(source);
     }
 
     @Override
@@ -29,7 +31,7 @@ public class EmployeeManager extends AbstractManager {
             try{
                 int input = Integer.parseInt(this.scanner.nextLine());
                 if (input == this.CAR_OPTION) {
-                    this.queryCars();
+                    //this.queryCars();
                 } else if(input == this.CAR_FILTER_OPTION) {
                     this.filterCars();
                 } else if (input == EXTRA_FEATURE) {
