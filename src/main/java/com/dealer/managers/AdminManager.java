@@ -108,6 +108,8 @@ public class AdminManager extends AbstractManager {
                     this.filterEmployees();  
                 } else if (input == this.CREATE_CAR) {
                     this.createCar();
+                } else if (input == this.UPDATE_CAR) {
+                    this.updateCar();
                 } else if (input == this.DELETE_CAR){
                     this.deleteCar();
                 }else if (input == QUIT) {
@@ -260,7 +262,7 @@ public class AdminManager extends AbstractManager {
      * Provides UI to create a car
      */
     private void createCar() {
-        final int CREATE_CAR = 1;
+        final int CREATE_REGULAR_CAR = 1;
         final int CREATE_ELECTRIC = 2;
         final int CREATE_RV = 3;
         while (true) {
@@ -272,7 +274,7 @@ public class AdminManager extends AbstractManager {
             Car car = null;
             try {
                 int input = Integer.parseInt(this.scanner.nextLine());
-                if (input == CREATE_CAR) {
+                if (input == CREATE_REGULAR_CAR) {
                     car = new Car (
                         this.askString("model"), 
                         this.askInt("year"), 
@@ -315,8 +317,78 @@ public class AdminManager extends AbstractManager {
         }
     }
 
+    /**
+     * Provides UI to update cars
+     */
+    private void updateCar() {
+        final int QUIT = 0;
+        final int UPDATE_REGULAR_CAR = 1;
+        final int UPDATE_ELECTRIC = 2;
+        final int UPDATE_RV = 3;
+        while (true) {
+            System.out.println(QUIT + ": Exit update");
+            System.out.println("Enter index to update: ");
+            Car placeholder = null;
+            try {
+                int counter = 1;
+                List<Car> cars = this.dataLoader.getCars();
+                for (Car car : cars) {
+                    System.out.println("(ID: " + (counter++) + ")  " + car);
+                }
+                int input = Integer.parseInt(this.scanner.nextLine());
+                if (input == QUIT) {
+                    break;
+                }
+                if (input < 0 || input > cars.size()) {
+                    throw new NumberFormatException();
+                }
+                if (input == UPDATE_REGULAR_CAR) {
+                    placeholder = new Car (
+                        this.askString("model"), 
+                        this.askInt("year"), 
+                        this.askString("color"), 
+                        this.askInt("price")
+                    );
+                } else if (input == UPDATE_ELECTRIC) {
+                    placeholder = new ElectricCar (
+                        this.askString("model"), 
+                        this.askInt("year"), 
+                        this.askString("color"), 
+                        this.askInt("price"),
+                        this.askInt("voltage"),
+                        this.askString("charger type")
+                    );
+                } else if (input == UPDATE_RV) {
+                    placeholder = new RecreationalVehicle(
+                        this.askString("model"), 
+                        this.askInt("year"), 
+                        this.askString("color"),                 
+                        this.askInt("price"),
+                        this.askInt("max passengers"),
+                        this.askInt("number of beds"),
+                        this.askForKitchen());
+                }
+                if (this.dataLoader instanceof FileLoader) {
+                    this.carUpdater.update(placeholder, input - 1);
+                } else if(this.dataLoader instanceof OracleLoader) {
+                    this.carUpdater.update(placeholder, input);
+                }
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid option!");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid Data: " + e.getMessage());
+            } catch (LoaderException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Provides UI to delete a car
+     */
     private void deleteCar(){
-        final int QUIT_PAGE =0;
+        final int QUIT_PAGE = 0;
         while (true){
             System.out.println("Choose the Index of the car you want to delete");
             System.out.println(QUIT_PAGE + ": If you want to Cancel Deletion");

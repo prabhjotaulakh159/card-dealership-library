@@ -28,21 +28,20 @@ public class EmployeeManager extends AbstractManager {
         System.out.print("Please choose an option from above >>> ");
         try{
             int input = Integer.parseInt(this.scanner.nextLine());
-            if(input == this.CAR_OPTION){
+            if (input == this.CAR_OPTION){
                 this.queryCars();
-            }else if(input == this.CAR_FILTER_OPTION){
+            } else if(input == this.CAR_FILTER_OPTION){
                 this.filterCars();
             }
             
 
         }catch (InputMismatchException | NumberFormatException e) {
-                System.out.println("Please enter a valid option !");
+            System.out.println("Please enter a valid option !");
         } 
-      }   
+      }
     }
 
     private void becomeGreatSaleSperson(){
-        Scanner sc = new Scanner(System.in);
         System.out.println("Link to blogpost we took inspiration from: https://blog.hubspot.com/sales/how-to-be-a-good-car-salesperson");
         System.out.println("Welcome to the BB Dealership, we have officially sold your soul for 62 cents and now there is no going back");
         System.out.println("Unless you pass this quiz and understand how we run this place and prioritize customers, you may have your soul back, but you're still working with us.");
@@ -65,7 +64,7 @@ public class EmployeeManager extends AbstractManager {
         System.out.println();
 
         System.out.println("Are you ready to take the Quiz? y/n");
-        String ans= sc.nextLine().toLowerCase();
+        String ans= this.scanner.nextLine().toLowerCase();
 
         if(ans.equals("y")){
             employeeQuiz();
