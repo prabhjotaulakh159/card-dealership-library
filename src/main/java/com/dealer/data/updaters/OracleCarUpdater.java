@@ -122,7 +122,7 @@ public class OracleCarUpdater extends OracleConnector implements ICarUpdater {
      */
     @Override
     public void delete(int index) throws LoaderException {
-        String SQL = "SELECT * FROM car ORDER BY id ASC";
+        String SQL = "SELECT id FROM car ORDER BY id ASC";
         try {
             int idToDelete = 0;
             PreparedStatement preparedStatement = this.getConnection().prepareStatement(SQL, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
