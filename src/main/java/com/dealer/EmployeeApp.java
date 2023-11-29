@@ -6,7 +6,7 @@ import com.dealer.managers.EmployeeManager;
 
 public class EmployeeApp {
     public static void main(String[] args) {
-        AbstractManager employee = new EmployeeManager(new FileLoader());
-        employee.run();
+        AbstractManager app = new EmployeeManager(new FileLoader());
+        app.run();
     }
 }

@@ -7,7 +7,7 @@ package com.dealer.data.exceptions;
 public class LoaderException extends Exception {
     /**
      * Constructor
-     * @param t The exception that this class to fire
+     * @param t The exception that caused this class to instantiate
      */
     public LoaderException(Throwable t) {
         super(t);

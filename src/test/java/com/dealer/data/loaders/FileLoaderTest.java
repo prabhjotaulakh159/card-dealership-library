@@ -37,7 +37,6 @@ public class FileLoaderTest {
         ElectricCar other = new ElectricCar("Tesla Model 3", 2020, "Blue", 45000, 480, "Supercharger");
         FileLoader fileLoader = new FileLoader();
         List<Car> list = fileLoader.getCars();
-        System.out.println(list.get(0).getModel());
         assertTrue(list.get(6).equals(other));
     }
 
