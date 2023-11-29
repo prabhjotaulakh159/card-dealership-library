@@ -122,6 +122,7 @@ public class AdminManager extends AbstractManager {
             } 
         }
         System.out.println("Good bye !");
+        this.killResources();
     }
 
     /**

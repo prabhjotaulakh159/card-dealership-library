@@ -1,5 +1,6 @@
 package com.dealer.managers;
 
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -23,6 +24,7 @@ import com.dealer.data.filters.impl.TypeRVFilter;
 import com.dealer.data.filters.impl.TypeRegularCarFilter;
 import com.dealer.data.loaders.FileLoader;
 import com.dealer.data.loaders.IDataLoader;
+import com.dealer.data.loaders.OracleLoader;
 import com.dealer.data.sorters.AbstractCarSorter;
 import com.dealer.data.sorters.AbstractCustomerSorter;
 import com.dealer.data.sorters.AbstractEmployeeSorter;
@@ -319,5 +321,20 @@ public abstract class AbstractManager {
                 System.out.println("Please enter a valid option !");
             }
         }
+    }
+
+    /**
+     * Used to close resources
+     */
+    public void killResources(){
+   
+        if(this.dataLoader instanceof OracleLoader){
+            try{
+                ((OracleLoader) this.dataLoader).getConnection().close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+
     }
 }
