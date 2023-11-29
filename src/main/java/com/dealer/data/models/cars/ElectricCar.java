@@ -1,4 +1,4 @@
-package com.dealer.models.cars;
+package com.dealer.data.models.cars;
 
 /**
  * ElectricCar is a type of Car

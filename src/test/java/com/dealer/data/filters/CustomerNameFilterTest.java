@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.dealer.data.filters.impl.CustomerNameFilter;
-import com.dealer.models.people.Customer;
+import com.dealer.data.models.people.Customer;
 
 public class CustomerNameFilterTest {
     @Test

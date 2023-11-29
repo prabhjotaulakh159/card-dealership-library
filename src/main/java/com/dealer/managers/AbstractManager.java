@@ -25,6 +25,7 @@ import com.dealer.data.filters.impl.TypeRegularCarFilter;
 import com.dealer.data.loaders.FileLoader;
 import com.dealer.data.loaders.IDataLoader;
 import com.dealer.data.loaders.OracleLoader;
+import com.dealer.data.models.cars.Car;
 import com.dealer.data.sorters.AbstractCarSorter;
 import com.dealer.data.sorters.AbstractCustomerSorter;
 import com.dealer.data.sorters.AbstractEmployeeSorter;
@@ -39,7 +40,6 @@ import com.dealer.data.sorters.impl.CarYearSorter;
 import com.dealer.data.updaters.FileCarUpdater;
 import com.dealer.data.updaters.ICarUpdater;
 import com.dealer.data.updaters.OracleCarUpdater;
-import com.dealer.models.cars.Car;
 
 /**
  * Provides the main functionality of the manager class for both admins and employees (mainly querying for cars)

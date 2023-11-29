@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dealer.data.filters.ICustomerFilter;
-import com.dealer.models.people.Customer;
+import com.dealer.data.models.people.Customer;
 
 /**
  * Implements ICustomerFilter to filter customers by phone number

@@ -2,7 +2,7 @@ package com.dealer.data.filters;
 
 import java.util.List;
 
-import com.dealer.models.people.Employee;
+import com.dealer.data.models.people.Employee;
 
 /**
  * Provides functionalities to filter employees

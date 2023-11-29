@@ -9,11 +9,11 @@ import java.util.List;
 import com.dealer.data.Constants;
 import com.dealer.data.OracleConnector;
 import com.dealer.data.exceptions.LoaderException;
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.ElectricCar;
-import com.dealer.models.cars.RecreationalVehicle;
-import com.dealer.models.people.Customer;
-import com.dealer.models.people.Employee;
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.ElectricCar;
+import com.dealer.data.models.cars.RecreationalVehicle;
+import com.dealer.data.models.people.Customer;
+import com.dealer.data.models.people.Employee;
 
 /**
  * Fetches data from an oracle database

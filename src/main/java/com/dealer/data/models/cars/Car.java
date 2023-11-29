@@ -1,4 +1,4 @@
-package com.dealer.models.cars;
+package com.dealer.data.models.cars;
 
 /**
  * Basic description of Cars

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dealer.data.filters.ICarFilter;
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.ElectricCar;
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.ElectricCar;
 
 /**
  * Implements ICarFilter to filter cars that are only electric vehicles

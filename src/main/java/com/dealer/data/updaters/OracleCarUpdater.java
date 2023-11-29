@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import com.dealer.data.Constants;
 import com.dealer.data.OracleConnector;
 import com.dealer.data.exceptions.LoaderException;
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.ElectricCar;
-import com.dealer.models.cars.RecreationalVehicle;
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.ElectricCar;
+import com.dealer.data.models.cars.RecreationalVehicle;
 
 /**
  * Implements ICarUpdater to update/query cars in an oracle database

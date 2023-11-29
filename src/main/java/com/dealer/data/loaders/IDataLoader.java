@@ -5,9 +5,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.dealer.data.exceptions.LoaderException;
-import com.dealer.models.cars.Car;
-import com.dealer.models.people.Customer;
-import com.dealer.models.people.Employee;
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.people.Customer;
+import com.dealer.data.models.people.Employee;
 
 /**
  * Fetches data from a source (db or file) and stores them in lists

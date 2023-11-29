@@ -2,7 +2,7 @@ package com.dealer.data.filters;
 
 import java.util.List;
 
-import com.dealer.models.cars.Car;
+import com.dealer.data.models.cars.Car;
 
 /**
  * Provides functionalities to filter cars

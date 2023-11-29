@@ -8,8 +8,8 @@ import org.junit.Test;
 
 import com.dealer.data.exceptions.LoaderException;
 import com.dealer.data.loaders.OracleLoader;
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.RecreationalVehicle;
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.RecreationalVehicle;
 
 public class OracleCarUpdaterTest {
     @Test

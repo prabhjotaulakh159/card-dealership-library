@@ -12,9 +12,9 @@ import java.util.List;
 import com.dealer.data.Constants;
 import com.dealer.data.exceptions.LoaderException;
 import com.dealer.data.loaders.FileLoader;
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.ElectricCar;
-import com.dealer.models.cars.RecreationalVehicle;
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.ElectricCar;
+import com.dealer.data.models.cars.RecreationalVehicle;
 
 /**
  * Implements ICarUpdater to update cars in a CSV file

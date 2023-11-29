@@ -1,4 +1,4 @@
-package com.dealer.models.people;
+package com.dealer.data.models.people;
 
 /**
  * A person who has a name and phone

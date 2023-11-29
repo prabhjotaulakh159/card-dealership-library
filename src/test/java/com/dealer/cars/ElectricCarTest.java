@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.ElectricCar;
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.ElectricCar;
 
 /**
  * Test class for ElectricCar

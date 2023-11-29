@@ -12,16 +12,16 @@ import com.dealer.data.filters.impl.EmployeeSalaryFilter;
 import com.dealer.data.loaders.FileLoader;
 import com.dealer.data.loaders.IDataLoader;
 import com.dealer.data.loaders.OracleLoader;
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.ElectricCar;
+import com.dealer.data.models.cars.RecreationalVehicle;
+import com.dealer.data.models.people.Customer;
+import com.dealer.data.models.people.Employee;
 import com.dealer.data.sorters.AbstractCustomerSorter;
 import com.dealer.data.sorters.AbstractEmployeeSorter;
 import com.dealer.data.sorters.impl.CustomerNameSorter;
 import com.dealer.data.sorters.impl.EmployeeNameSorter;
 import com.dealer.data.sorters.impl.EmployeeSalarySorter;
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.ElectricCar;
-import com.dealer.models.cars.RecreationalVehicle;
-import com.dealer.models.people.Customer;
-import com.dealer.models.people.Employee;
 
 /**
  * Manager class for admins

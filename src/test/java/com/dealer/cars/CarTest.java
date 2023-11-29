@@ -9,7 +9,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import com.dealer.models.cars.Car;
+import com.dealer.data.models.cars.Car;
 
 /**
  * Test class for Car

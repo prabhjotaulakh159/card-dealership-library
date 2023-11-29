@@ -8,8 +8,8 @@ import java.util.List;
 import org.junit.Test;
 
 import com.dealer.data.filters.impl.ChargerTypeFilter;
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.ElectricCar;
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.ElectricCar;
 
 public class ChargerTypeFilterTest {
     @Test

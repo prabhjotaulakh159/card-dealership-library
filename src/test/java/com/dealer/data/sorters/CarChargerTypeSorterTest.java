@@ -1,3 +1,4 @@
+
 package com.dealer.data.sorters;
 
 import static org.junit.Assert.assertTrue;
@@ -7,9 +8,9 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.ElectricCar;
 import com.dealer.data.sorters.impl.CarChargerTypeSorter;
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.ElectricCar;
 
 /**
  * Test class for CarChargerTypeSorter
