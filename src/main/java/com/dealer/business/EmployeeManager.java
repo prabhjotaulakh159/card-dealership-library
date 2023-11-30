@@ -42,21 +42,16 @@ public class EmployeeManager extends Manager {
         System.out.println("------------------------------------------------------------");
         System.out.println();
         System.out.println("Are you ready to take the Quiz? y/n");
-        String ans= sc.nextLine().toLowerCase();
-
-        if (ans.equals("y")) {
-            employeeQuiz(sc);
-        } else {
-            System.out.println("Alright then, see you soon when you're ready! Sike, you're doing it teehee");
-            employeeQuiz(sc);
-        }
+        sc.nextLine().toLowerCase();
+        System.out.println("Alright then, see you soon when you're ready! Sike, you're doing it teehee");
+        employeeQuiz(sc);
     }
     
     /**
      * Provides UI for the quiz
      * @param sc Scanner for user input
      */
-    public void employeeQuiz(Scanner sc){
+    private void employeeQuiz(Scanner sc){
         final String TRUE= "T";
         final int SCORE_TO_PASS = 7;
         int counter=0;
@@ -126,6 +121,7 @@ public class EmployeeManager extends Manager {
         if (counter >= SCORE_TO_PASS) {
             System.out.println("Congrats on Passing! Your soul will be given back, have fun working!");
         } else {
+            System.out.println("You have failed the quiz");
             System.out.println("You'll be contacted by the manager. You're Fired");
             this.killResources();
             System.exit(0);
