@@ -1,8 +1,8 @@
 package com.dealer.data.sorters.impl;
 
+import com.dealer.data.models.people.Employee;
 import com.dealer.data.sorters.AbstractEmployeeSorter;
 import com.dealer.data.sorters.Order;
-import com.dealer.models.people.Employee;
 
 /**
  * Sorts employees by name

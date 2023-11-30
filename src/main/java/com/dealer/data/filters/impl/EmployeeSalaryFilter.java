@@ -6,7 +6,7 @@ import java.util.List;
 import com.dealer.data.filters.IEmployeeFilter;
 import com.dealer.data.filters.ListFilter;
 import com.dealer.data.filters.NumberFilters;
-import com.dealer.models.people.Employee;
+import com.dealer.data.models.people.Employee;
 
 /**
  * Implements IEmployeeFilter to filter employees by their salaries

@@ -6,8 +6,8 @@ import java.util.List;
 import com.dealer.data.filters.ICarFilter;
 import com.dealer.data.filters.ListFilter;
 import com.dealer.data.filters.NumberFilters;
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.ElectricCar;
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.ElectricCar;
 
 /**
  * This class implements the ICarFilter interface to filter cars by voltage

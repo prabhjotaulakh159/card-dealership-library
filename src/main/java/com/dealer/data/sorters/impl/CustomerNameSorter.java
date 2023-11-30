@@ -1,8 +1,8 @@
 package com.dealer.data.sorters.impl;
 
+import com.dealer.data.models.people.Customer;
 import com.dealer.data.sorters.AbstractCustomerSorter;
 import com.dealer.data.sorters.Order;
-import com.dealer.models.people.Customer;
 
 /**
  * Sorts customers by name

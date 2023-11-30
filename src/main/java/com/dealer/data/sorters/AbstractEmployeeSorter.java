@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.dealer.models.people.Employee;
+import com.dealer.data.models.people.Employee;
 
 /**
  * Provides functionalities to sort employees

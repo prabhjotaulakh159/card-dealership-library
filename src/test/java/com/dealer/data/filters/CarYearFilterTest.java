@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.dealer.data.filters.impl.CarYearFilter;
-import com.dealer.models.cars.Car;
+import com.dealer.data.models.cars.Car;
 
 @SuppressWarnings("unused")
 public class CarYearFilterTest {

@@ -1,8 +1,8 @@
 package com.dealer.data.sorters.impl;
 
+import com.dealer.data.models.cars.Car;
 import com.dealer.data.sorters.AbstractCarSorter;
 import com.dealer.data.sorters.Order;
-import com.dealer.models.cars.Car;
 
 /**
  * Sorts cars by price

@@ -7,9 +7,9 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.RecreationalVehicle;
 import com.dealer.data.sorters.impl.CarNumberOfBedsSorter;
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.RecreationalVehicle;
 
 /**
  * Test class for CarNumberOfBedsSorter

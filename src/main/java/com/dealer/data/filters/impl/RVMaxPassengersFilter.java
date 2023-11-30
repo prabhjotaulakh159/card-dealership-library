@@ -6,8 +6,8 @@ import java.util.List;
 import com.dealer.data.filters.ICarFilter;
 import com.dealer.data.filters.ListFilter;
 import com.dealer.data.filters.NumberFilters;
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.RecreationalVehicle;
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.RecreationalVehicle;
 
 /**
  * Implements ICarFilter to filter RV's by the number of max passengers

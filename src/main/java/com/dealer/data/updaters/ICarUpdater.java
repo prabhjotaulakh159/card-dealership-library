@@ -1,7 +1,7 @@
 package com.dealer.data.updaters;
 
 import com.dealer.data.exceptions.LoaderException;
-import com.dealer.models.cars.Car;
+import com.dealer.data.models.cars.Car;
 
 /**
  * Defines methods to update cars in various different sources (db/file)

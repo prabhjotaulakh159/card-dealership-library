@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dealer.data.filters.ICarFilter;
-import com.dealer.models.cars.Car;
+import com.dealer.data.models.cars.Car;
 
 /**
  * Implements ICarFilter to filter cars by model

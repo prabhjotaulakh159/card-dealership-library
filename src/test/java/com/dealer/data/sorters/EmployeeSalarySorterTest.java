@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.dealer.data.models.people.Employee;
 import com.dealer.data.sorters.impl.EmployeeSalarySorter;
-import com.dealer.models.people.Employee;
 
 public class EmployeeSalarySorterTest {
     @Test

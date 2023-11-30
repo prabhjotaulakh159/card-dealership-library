@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.dealer.models.cars.Car;
+import com.dealer.data.models.cars.Car;
 
 /**
  * Provides functionalities to sort cars

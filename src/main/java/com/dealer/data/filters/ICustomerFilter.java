@@ -2,7 +2,7 @@ package com.dealer.data.filters;
 
 import java.util.List;
 
-import com.dealer.models.people.Customer;
+import com.dealer.data.models.people.Customer;
 
 /**
  * Provides functionalities to filter customers

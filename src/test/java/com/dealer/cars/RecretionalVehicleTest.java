@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.RecreationalVehicle;
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.RecreationalVehicle;
 
 /**
  * Test class for RecretionalVehicle

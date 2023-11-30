@@ -1,12 +1,12 @@
 package com.dealer.People;
 
-import com.dealer.models.people.Customer;
-import com.dealer.models.people.Person;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import com.dealer.data.models.people.Customer;
+import com.dealer.data.models.people.Person;
 
 @SuppressWarnings("unused")
 public class CustomerTest {

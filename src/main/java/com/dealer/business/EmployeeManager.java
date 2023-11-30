@@ -1,59 +1,31 @@
-package com.dealer.managers;
-
-import java.util.InputMismatchException;
-
-import com.dealer.data.loaders.IDataLoader;
+package com.dealer.business;
 
 import java.util.Scanner;
 
-/**
- * Manager class for employees
- */
-@SuppressWarnings("unused")
-public class EmployeeManager extends AbstractManager {
-    private final int EXTRA_FEATURE = 3;
-    private final int QUIT = 4;
-    public EmployeeManager(IDataLoader dataLoader) {
-        super(dataLoader);
-    }
+import com.dealer.data.Source;
 
-    @Override
-    public void run() {
-        System.out.println("Welcome To The Car Inventory Manager Fellow Employee! Here are you options below:");
-        while(true){
-            System.out.println(this.CAR_OPTION + ": view cars");
-            System.out.println(this.CAR_FILTER_OPTION + ": filter cars");
-            System.out.println(this.EXTRA_FEATURE + ": How to Become a Great Salesperson");
-            System.out.println(this.QUIT + ": quit");
-            System.out.print("Please choose an option from above >>> ");
-            try{
-                int input = Integer.parseInt(this.scanner.nextLine());
-                if (input == this.CAR_OPTION) {
-                    this.queryCars();
-                } else if(input == this.CAR_FILTER_OPTION) {
-                    this.filterCars();
-                } else if (input == EXTRA_FEATURE) {
-                    this.becomeGreatSaleSperson();
-                } else if (input == QUIT) {
-                    break;
-                }
-            } catch (InputMismatchException | NumberFormatException e) {
-                System.out.println("Please enter a valid option !");
-            }
-        }
-        System.out.println("Goodbye");
-        this.killResources();    
+/**
+ * Manager class for employees, which provides the ability to query cars, 
+ * and allows for the running of the quiz.
+ */
+public class EmployeeManager extends Manager {
+    /**
+     * Constructor which provides the source of the data
+     * @param source
+     */
+    public EmployeeManager(Source source) {
+        super(source);
     }
 
     /**
      * UI for he quiz Manual, before takin it
+     * @param sc Scanner for user input
      */
-    private void becomeGreatSaleSperson(){
+    public void becomeGreatSaleSperson(Scanner sc) {
         System.out.println("Link to blogpost we took inspiration from: https://blog.hubspot.com/sales/how-to-be-a-good-car-salesperson");
         System.out.println("Welcome to the BB Dealership, we have officially sold your soul for 62 cents and now there is no going back");
         System.out.println("Unless you pass this quiz and understand how we run this place and prioritize customers, you may have your soul back, but you're still working with us.");
         System.out.println("Failure in passing our quiz will lead you to immediate termination of your job. Be aware of that, HAVE FUN READING! make us proud :3");
-
         System.out.println();
         System.out.println("------------------------------------------------------------");
         System.out.println("10 tips to know when becoming a greate Car Salesman!");
@@ -69,93 +41,87 @@ public class EmployeeManager extends AbstractManager {
         System.out.println("10. Don't look bored. Have fun and be interesting! Use the times when no clients come to strenghten your skills and become great!");
         System.out.println("------------------------------------------------------------");
         System.out.println();
-
         System.out.println("Are you ready to take the Quiz? y/n");
-        String ans= this.scanner.nextLine().toLowerCase();
-
-        if(ans.equals("y")){
-            employeeQuiz();
-        }else{
-            System.out.println("Alright then, see you soon when you're ready! Sike, you're doing it teehee");
-            employeeQuiz();
-        }
+        sc.nextLine().toLowerCase();
+        System.out.println("Alright then, see you soon when you're ready! Sike, you're doing it teehee");
+        employeeQuiz(sc);
     }
     
     /**
      * Provides UI for the quiz
+     * @param sc Scanner for user input
      */
-    private void employeeQuiz(){
+    private void employeeQuiz(Scanner sc){
         final String TRUE= "T";
+        final int SCORE_TO_PASS = 7;
         int counter=0;
         System.out.print("\033[H\033[2J");  
         System.out.flush(); 
-
         System.out.println("Good Luck on our quiz! if you get 7/10 you pass! The Questions are True[1] or False[2].");
-
-    
         System.out.println("1. You can yell at an angry customer. T/F? Enter T for true. anything else is False");
-        String ans1= this.scanner.nextLine().toUpperCase();
-        if(ans1.equals(TRUE)){
+        String answer = sc.nextLine().toUpperCase();
+        if(answer.equals(TRUE)){
             counter++;
         }
 
         System.out.println("2. When the buisness is being slow, it is advised to still keep your head up when a potential client comes over, even if none comes today T/F?");
-        String ans2= this.scanner.nextLine().toUpperCase();
-        if(ans2.equals(TRUE)){
+        answer = sc.nextLine().toUpperCase();
+        if(answer.equals(TRUE)){
             counter++;
         }
 
         System.out.println("3. Be desperate when selling a car to a client T/F");
-        String ans3= this.scanner.nextLine().toUpperCase();
-        if(!ans3.equals(TRUE)){
+        answer = sc.nextLine().toUpperCase();
+        if(!answer.equals(TRUE)){
             counter++;
         }
 
         System.out.println("4. Talk more and listen less T/F?");
-        String ans4= this.scanner.nextLine().toUpperCase();
-        if(!ans4.equals(TRUE)){
+        answer = sc.nextLine().toUpperCase();
+        if(!answer.equals(TRUE)){
             counter++;
         }
 
         System.out.println("5. When a married couple are trying to buy a car. Talk to both intead of 1 of them. T/F?");
-        String ans5= this.scanner.nextLine().toUpperCase();
-        if(ans5.equals(TRUE)){
+        answer = sc.nextLine().toUpperCase();
+        if(answer.equals(TRUE)){
             counter++;
         }
 
         System.out.println("6. Always remember the clients name T/F?");
-        String ans6= this.scanner.nextLine().toUpperCase();
-        if(ans6 == TRUE){
+        answer = sc.nextLine().toUpperCase();
+        if(answer == TRUE){
             counter++;
         }
 
         System.out.println("7 When you're talking about comparing prices with other dealers, always downplay other dealerships deals");
-        String ans7= this.scanner.nextLine().toUpperCase();
-        if(!ans7.equals(TRUE)){
+        answer = sc.nextLine().toUpperCase();
+        if(!answer.equals(TRUE)){
             counter++;
         }
 
         System.out.println("8. A good question may be \"What is something you are looking for in your car?\" T/F?");
-        String ans8= this.scanner.nextLine().toUpperCase();
-        if(ans8.equals(TRUE)){
+        answer = sc.nextLine().toUpperCase();
+        if(answer.equals(TRUE)){
             counter++;
         }
 
         System.out.println("9. Always have fun and enjoy your job T/F?");
-        String ans9= this.scanner.nextLine().toUpperCase();
-        if(ans9.equals(TRUE)){
+        answer = sc.nextLine().toUpperCase();
+        if(answer.equals(TRUE)){
             counter++;
         }
 
         System.out.println("You can use obnoxious sentences to get your point through T/F?");
-        String ans10= this.scanner.nextLine().toUpperCase();
-        if(!ans10.equals(TRUE)){
+        answer = sc.nextLine().toUpperCase();
+        if(!answer.equals(TRUE)){
             counter++;
         }
 
-        if(counter >=7){
+        if (counter >= SCORE_TO_PASS) {
             System.out.println("Congrats on Passing! Your soul will be given back, have fun working!");
-        }else{
+        } else {
+            System.out.println("You have failed the quiz");
             System.out.println("You'll be contacted by the manager. You're Fired");
             this.killResources();
             System.exit(0);

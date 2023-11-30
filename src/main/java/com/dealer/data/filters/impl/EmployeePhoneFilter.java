@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dealer.data.filters.IEmployeeFilter;
-import com.dealer.models.people.Employee;
+import com.dealer.data.models.people.Employee;
 
 /**
  * Implemennts IEmployeeFilter to filter employees by phone number

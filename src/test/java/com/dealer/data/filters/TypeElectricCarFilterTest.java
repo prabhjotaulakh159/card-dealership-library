@@ -8,9 +8,9 @@ import java.util.List;
 import org.junit.Test;
 
 import com.dealer.data.filters.impl.TypeElectricCarFilter;
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.ElectricCar;
-import com.dealer.models.cars.RecreationalVehicle;
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.ElectricCar;
+import com.dealer.data.models.cars.RecreationalVehicle;
 
 public class TypeElectricCarFilterTest {
     @Test

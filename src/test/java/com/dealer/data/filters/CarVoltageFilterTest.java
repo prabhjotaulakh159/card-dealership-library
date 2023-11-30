@@ -8,8 +8,8 @@ import java.util.List;
 import org.junit.Test;
 
 import com.dealer.data.filters.impl.CarVoltageFilter;
-import com.dealer.models.cars.Car;
-import com.dealer.models.cars.ElectricCar;
+import com.dealer.data.models.cars.Car;
+import com.dealer.data.models.cars.ElectricCar;
 
 @SuppressWarnings("unused")
 public class CarVoltageFilterTest {
