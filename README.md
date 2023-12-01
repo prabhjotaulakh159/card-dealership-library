@@ -11,4 +11,8 @@ within the Admin/Employee apps.
 An error message will be displayed if credentials are not provided, and you will be 
 provided instructions to further continue.
 
+## Testing
+
+Since we are testing reading/writing/deleting from sources, it is imperative that tests should be run before the app is run, in order to ensure that the tests cases are working with the same data. 
+
 Have fun with our project !
