@@ -24,6 +24,7 @@ import com.dealer.data.models.people.Employee;
 public class FileLoader implements IDataLoader {
     /**
      * Retrives the list of cars in source
+     * @param mode determines if dataLoading is running in test or production
      * @return All the cars in source
      * @throws LoaderException
      * @throws IOException If loading data from files fails
@@ -69,6 +70,7 @@ public class FileLoader implements IDataLoader {
     /**
      * Retrives the list of customer in source
      * @return All the customers in source
+     * @param mode determines if dataLoading is running in test or production
      * @throws IOException If loading data from files fails
      * @throws SQLException If loading data from database fails
      */
@@ -94,6 +96,7 @@ public class FileLoader implements IDataLoader {
 
     /**
      * Retrives the list of employees in source
+     * @param mode determines if dataLoading is running in test or production
      * @return All the employees in source
      * @throws LoaderException
      * @throws IOException If loading data from files fails

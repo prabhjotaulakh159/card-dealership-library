@@ -5,6 +5,6 @@ package com.dealer;
  * @author Prabhjot Aulakh, Safin Haque
  */
 public class DatabaseCredentials {
-    public static final String USERNAME = "A2132492";
-    public static final String PASSWORD = "Robinisthebest1304";
+    public static final String USERNAME = "";
+    public static final String PASSWORD = "";
 }

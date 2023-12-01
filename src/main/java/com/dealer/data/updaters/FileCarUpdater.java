@@ -35,6 +35,7 @@ public class FileCarUpdater implements ICarUpdater {
     /**
      * Creates a car in a CSV file
      * @param car Car to create/append to the CSV
+     * @param mode determines if dataLoading is running in test or production
      * @throws LoaderException If file IO error occurs
      */
     @Override
@@ -53,6 +54,7 @@ public class FileCarUpdater implements ICarUpdater {
      * Updates/overwrites CSV files to update a car
      * @param car Newly updated car data
      * @param index Index/row of the CSV file to update
+     * @param mode determines if dataLoading is running in test or production
      * @throws LoaderException If file IO error occurs
      */
     @Override
@@ -75,6 +77,7 @@ public class FileCarUpdater implements ICarUpdater {
     /**
      * Deletes a car in a CSV file
      * @param index Row index/id to delete
+     * @param mode determines if dataLoading is running in test or production
      * @throws LoaderException If file IO error occurs
      */
     @Override

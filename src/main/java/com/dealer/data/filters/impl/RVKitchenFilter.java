@@ -27,14 +27,12 @@ public class RVKitchenFilter implements ICarFilter {
         List<Car> recreationalWithKitchens = new ArrayList<Car>();
         if (this.hasKitchen) {
             for (Car car : cars) {
-                //RecreationalVehicle rv = (RecreationalVehicle) car;
                 if ((car instanceof RecreationalVehicle) && ((RecreationalVehicle) car).isHasKitchen()) {
                     recreationalWithKitchens.add(car);
                 }
             }
         } else {
             for (Car car : cars) {
-                //RecreationalVehicle rv = (RecreationalVehicle) car;
                 if ((car instanceof RecreationalVehicle) && !((RecreationalVehicle) car).isHasKitchen()) {
                     recreationalWithKitchens.add(car);
                 }

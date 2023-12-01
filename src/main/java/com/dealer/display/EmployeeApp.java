@@ -34,7 +34,7 @@ public class EmployeeApp {
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Source source = Source.CSV;
+        Source source = Source.ORACLE;
         if (source == Source.ORACLE) {
             if (    DatabaseCredentials.USERNAME.isEmpty() ||
             DatabaseCredentials.PASSWORD.isEmpty() ||

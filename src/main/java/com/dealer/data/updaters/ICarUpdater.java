@@ -12,6 +12,7 @@ public interface ICarUpdater {
     /**
      * Creates a car
      * @param car Car to create
+     * @param mode determines if dataLoading is running in test or production
      * @throws LoaderException If IO/SQL errors occur
      */
     void create(Car car, Mode mode) throws LoaderException;
@@ -20,6 +21,7 @@ public interface ICarUpdater {
      * Updates a car at a certain index in the db
      * @param car New car information
      * @param index Index of the car to update
+     * @param mode determines if dataLoading is running in test or production
      * @throws LoaderException If IO/SQL errors occur
      */
     void update(Car car, int index, Mode mode) throws LoaderException;
@@ -27,6 +29,7 @@ public interface ICarUpdater {
     /**
      * Deletes a car at an index
      * @param index Index to delete car at
+     * @param mode determines if dataLoading is running in test or production
      * @throws LoaderException If IO/SQL errors occur
      */
     void delete(int index, Mode mode) throws LoaderException;
