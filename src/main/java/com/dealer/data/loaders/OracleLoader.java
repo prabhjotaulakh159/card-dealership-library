@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dealer.data.Constants;
+import com.dealer.data.Mode;
 import com.dealer.data.OracleConnector;
 import com.dealer.data.exceptions.LoaderException;
 import com.dealer.data.models.cars.Car;
@@ -26,10 +27,10 @@ public class OracleLoader extends OracleConnector implements IDataLoader {
      * @throws LoaderException If an SQLException occurs
      */
     @Override
-    public List<Car> getCars() throws LoaderException {
+    public List<Car> getCars(Mode mode) throws LoaderException {
         try {
             List<Car> cars = new ArrayList<Car>();
-            String SQL = "SELECT * FROM car ORDER BY id ASC";
+            String SQL = mode == Mode.PRODUCTION ? "SELECT * FROM car ORDER BY id ASC" : "SELECT * FROM car_test ORDER BY id ASC";
             PreparedStatement statement = this.getConnection().prepareStatement(SQL);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
@@ -65,10 +66,10 @@ public class OracleLoader extends OracleConnector implements IDataLoader {
      * @throws LoaderException If an SQLException occurs
      */
     @Override
-    public List<Customer> getCustomers() throws LoaderException {
+    public List<Customer> getCustomers(Mode mode) throws LoaderException {
         try {
             List<Customer> customers = new ArrayList<Customer>();
-            String SQL = "SELECT * FROM customer";
+            String SQL = mode == Mode.PRODUCTION ? "SELECT * FROM customer" : "SELECT * FROM customer_test";
             PreparedStatement statement = this.getConnection().prepareStatement(SQL);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
@@ -88,10 +89,10 @@ public class OracleLoader extends OracleConnector implements IDataLoader {
      * @throws LoaderException If an SQLException occurs
      */
     @Override
-    public List<Employee> getEmployees() throws LoaderException {
+    public List<Employee> getEmployees(Mode mode) throws LoaderException {
         try {
             List<Employee> employees = new ArrayList<Employee>();
-            String SQL = "SELECT * FROM employee";
+            String SQL = mode == Mode.PRODUCTION ? "SELECT * FROM employee" : "SELECT * FROM employee_test";
             PreparedStatement statement = this.getConnection().prepareStatement(SQL);
             ResultSet result = statement.executeQuery();
             while (result.next()) {

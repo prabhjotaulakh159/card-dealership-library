@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dealer.data.Constants;
+import com.dealer.data.Mode;
 import com.dealer.data.exceptions.LoaderException;
 import com.dealer.data.models.cars.Car;
 import com.dealer.data.models.cars.ElectricCar;
@@ -30,9 +31,10 @@ public class FileLoader implements IDataLoader {
      * @throws NumberFormatException If parsing strings into integers fails
      */
     @Override
-    public List<Car> getCars() throws LoaderException {
+    public List<Car> getCars(Mode mode) throws LoaderException {
         try {
-            Path path = Paths.get(Constants.CARS_CSV);
+            String csv = mode == Mode.PRODUCTION ? Constants.CARS_CSV : Constants.CARS_CSV_TEST;
+            Path path = Paths.get(csv);
             List<String> lines = Files.readAllLines(path);
             List<Car> cars = new ArrayList<Car>();
             for (String line : lines) {
@@ -71,9 +73,10 @@ public class FileLoader implements IDataLoader {
      * @throws SQLException If loading data from database fails
      */
     @Override
-    public List<Customer> getCustomers() throws LoaderException {
+    public List<Customer> getCustomers(Mode mode) throws LoaderException {
         try {
-            Path path = Paths.get(Constants.CUSTOMERS_CSV);
+            String csv = mode == Mode.PRODUCTION ? Constants.EMPLOYEES_CSV : Constants.EMPLOYEES_CSV_TEST;
+            Path path = Paths.get(csv);
             List<String> lines = Files.readAllLines(path);
             List<Customer> customers = new ArrayList<Customer>();
             for (String line : lines) {
@@ -97,9 +100,10 @@ public class FileLoader implements IDataLoader {
      * @throws SQLException If loading data from database fails
      */
     @Override
-    public List<Employee> getEmployees() throws LoaderException {
+    public List<Employee> getEmployees(Mode mode) throws LoaderException {
         try {
-            Path path = Paths.get(Constants.EMPLOYEES_CSV);
+            String csv = mode == Mode.PRODUCTION ? Constants.CUSTOMERS_CSV : Constants.CUSTOMERS_CSV_TEST;
+            Path path = Paths.get(csv);
             List<String> lines = Files.readAllLines(path);
             List<Employee> employees = new ArrayList<Employee>();
             for (String line : lines) {

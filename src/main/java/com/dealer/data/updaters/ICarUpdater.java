@@ -1,5 +1,6 @@
 package com.dealer.data.updaters;
 
+import com.dealer.data.Mode;
 import com.dealer.data.exceptions.LoaderException;
 import com.dealer.data.models.cars.Car;
 
@@ -13,7 +14,7 @@ public interface ICarUpdater {
      * @param car Car to create
      * @throws LoaderException If IO/SQL errors occur
      */
-    void create(Car car) throws LoaderException;
+    void create(Car car, Mode mode) throws LoaderException;
 
     /**
      * Updates a car at a certain index in the db
@@ -21,12 +22,12 @@ public interface ICarUpdater {
      * @param index Index of the car to update
      * @throws LoaderException If IO/SQL errors occur
      */
-    void update(Car car, int index) throws LoaderException;
+    void update(Car car, int index, Mode mode) throws LoaderException;
 
     /**
      * Deletes a car at an index
      * @param index Index to delete car at
      * @throws LoaderException If IO/SQL errors occur
      */
-    void delete(int index) throws LoaderException;
+    void delete(int index, Mode mode) throws LoaderException;
 }

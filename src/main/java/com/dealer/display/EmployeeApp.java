@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import com.dealer.DatabaseCredentials;
 import com.dealer.business.EmployeeManager;
 import com.dealer.data.Source;
 import com.dealer.data.exceptions.LoaderException;
@@ -31,8 +32,25 @@ import com.dealer.data.sorters.impl.CarYearSorter;
 
 public class EmployeeApp {
     private static Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
-        mainLoop(new EmployeeManager(Source.CSV));
+        Source source = Source.ORACLE;
+        if (source == Source.ORACLE) {
+            if (    DatabaseCredentials.USERNAME.isEmpty() ||
+            DatabaseCredentials.PASSWORD.isEmpty() ||
+            DatabaseCredentials.USERNAME.isBlank() ||
+            DatabaseCredentials.PASSWORD.isBlank() ||
+            DatabaseCredentials.USERNAME == null   ||
+            DatabaseCredentials.PASSWORD == null) {
+                System.out.println("You have attempted to connect to a database, but empty/invalid credentials were provided");
+                System.out.println("Please ensure that your credentials in DatabaseCredentials.java are correct");
+                System.out.println("NOTE: Please ensure to run the script.sql file in resources before running the app");
+                System.out.println("If you wish to not connect to a database, simply change the source");
+                System.exit(0);
+            }            
+        }
+        EmployeeManager app = new EmployeeManager(source);
+        mainLoop(app);
     }
 
     private static void mainLoop(EmployeeManager app) {
@@ -52,6 +70,7 @@ public class EmployeeApp {
                 System.out.println("Please enter a valid number !");
             }
         }
+        app.killResources();
     }
 
     private static void viewCars(EmployeeManager app) {
