@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dealer.data.Constants;
+import com.dealer.data.Mode;
 import com.dealer.data.exceptions.LoaderException;
 import com.dealer.data.loaders.FileLoader;
 import com.dealer.data.models.cars.Car;
@@ -37,11 +38,12 @@ public class FileCarUpdater implements ICarUpdater {
      * @throws LoaderException If file IO error occurs
      */
     @Override
-    public void create(Car car) throws LoaderException {
+    public void create(Car car, Mode mode) throws LoaderException {
         String placeholder = null;
         placeholder = "\n" + this.getCarAsCsv(car);
         try {
-            Files.write(Paths.get(Constants.CARS_CSV), placeholder.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+            String csv = mode == Mode.PRODUCTION ? Constants.CARS_CSV : Constants.CARS_CSV_TEST;
+            Files.write(Paths.get(csv), placeholder.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
         } catch (IOException e) {
             throw new LoaderException(e);
         }
@@ -54,16 +56,17 @@ public class FileCarUpdater implements ICarUpdater {
      * @throws LoaderException If file IO error occurs
      */
     @Override
-    public void update(Car car, int index) throws LoaderException {
+    public void update(Car car, int index, Mode mode) throws LoaderException {
         try {
             List<String> data = new ArrayList<String>();
-            List<Car> cars = this.fileLoader.getCars();
+            List<Car> cars = this.fileLoader.getCars(mode);
             cars.set(index, car);
             for (Car c : cars) {
                 data.add(this.getCarAsCsv(c));
             }
             String line = String.join("\n", data);
-            Files.write(Paths.get(Constants.CARS_CSV), line.getBytes(Charset.forName("UTF-8")));
+            String csv = mode == Mode.PRODUCTION ? Constants.CARS_CSV : Constants.CARS_CSV_TEST;
+            Files.write(Paths.get(csv), line.getBytes(Charset.forName("UTF-8")));
         } catch (IOException e) {
             throw new LoaderException(e);
         }        
@@ -75,16 +78,17 @@ public class FileCarUpdater implements ICarUpdater {
      * @throws LoaderException If file IO error occurs
      */
     @Override
-    public void delete(int index) throws LoaderException {
+    public void delete(int index, Mode mode) throws LoaderException {
         try {
             List<String> data = new ArrayList<String>();
-            List<Car> cars = this.fileLoader.getCars();
+            List<Car> cars = this.fileLoader.getCars(mode);
             cars.remove(index);
             for (Car c : cars) {
                 data.add(this.getCarAsCsv(c));
             }
             String line = String.join("\n", data);
-            Files.write(Paths.get(Constants.CARS_CSV), line.getBytes(Charset.forName("UTF-8")));
+            String csv = mode == Mode.PRODUCTION ? Constants.CARS_CSV : Constants.CARS_CSV_TEST;
+            Files.write(Paths.get(csv), line.getBytes(Charset.forName("UTF-8")));
         } catch (IOException e) {
             throw new LoaderException(e);
         }

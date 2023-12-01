@@ -22,9 +22,6 @@ public class CarPriceFilter extends NumberFilters implements ICarFilter {
      */
     public CarPriceFilter(ListFilter filter, int price){
         super(filter);
-        if(price <= 0){
-            throw new IllegalArgumentException("price is megative or zero");
-        }
         this.price = price;
     }
 

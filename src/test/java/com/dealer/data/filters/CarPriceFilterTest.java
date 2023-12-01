@@ -17,11 +17,6 @@ public class CarPriceFilterTest {
         CarPriceFilter filter = new CarPriceFilter(ListFilter.EQUALS, 50000);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void constructor_price_invalid(){
-        CarPriceFilter filter = new CarPriceFilter(ListFilter.EQUALS, -50000);
-    }
-
     @Test
     public void filter_is_equal_to_price(){
         List<Car> cars = new ArrayList<Car>();

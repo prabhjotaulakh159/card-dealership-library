@@ -3,6 +3,7 @@ package com.dealer.display;
 import java.util.List;
 import java.util.Scanner;
 
+import com.dealer.DatabaseCredentials;
 import com.dealer.business.AdminManager;
 import com.dealer.data.Source;
 import com.dealer.data.exceptions.LoaderException;
@@ -47,7 +48,23 @@ public class AdminApp {
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        mainLoop(new AdminManager(Source.CSV));
+        Source source = Source.ORACLE;
+        if (source == Source.ORACLE) {
+            if (    DatabaseCredentials.USERNAME.isEmpty() ||
+            DatabaseCredentials.PASSWORD.isEmpty() ||
+            DatabaseCredentials.USERNAME.isBlank() ||
+            DatabaseCredentials.PASSWORD.isBlank() ||
+            DatabaseCredentials.USERNAME == null   ||
+            DatabaseCredentials.PASSWORD == null) {
+                System.out.println("You have attempted to connect to a database, but empty/invalid credentials were provided");
+                System.out.println("Please ensure that your credentials in DatabaseCredentials.java are correct");
+                System.out.println("NOTE: Please ensure to run the script.sql file in resources before running the app");
+                System.out.println("If you wish to not connect to a database, simply change the source within the first line of the main method");
+                System.exit(0);
+            }            
+        }
+        AdminManager app = new AdminManager(source);
+        mainLoop(app);
     }
 
     /**
@@ -75,6 +92,7 @@ public class AdminApp {
                 System.out.println("Please enter a valid number !");
             }
         }
+        app.killResources();
     }
 
     /**

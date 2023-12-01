@@ -3,6 +3,7 @@ package com.dealer.business;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.dealer.data.Mode;
 import com.dealer.data.Source;
 import com.dealer.data.exceptions.LoaderException;
 import com.dealer.data.filters.ICarFilter;
@@ -36,7 +37,7 @@ public abstract class Manager {
      * @throws LoaderException If fetching resources fail
      */
     public List<Car> cars() throws LoaderException {
-        return this.dataLoader.getCars();
+        return this.dataLoader.getCars(Mode.PRODUCTION);
     }
 
     /**

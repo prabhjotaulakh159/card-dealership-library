@@ -3,6 +3,7 @@ package com.dealer.business;
 
 import java.util.List;
 
+import com.dealer.data.Mode;
 import com.dealer.data.Source;
 import com.dealer.data.exceptions.LoaderException;
 import com.dealer.data.filters.ICustomerFilter;
@@ -111,7 +112,7 @@ public class AdminManager extends Manager {
      * @throws LoaderException If there is an error while loading the data
      */
     public List<Customer> customers() throws LoaderException {
-        return this.getDataLoader().getCustomers();
+        return this.getDataLoader().getCustomers(Mode.PRODUCTION);
     }
 
     /**
@@ -120,7 +121,7 @@ public class AdminManager extends Manager {
      * @throws LoaderException If there is an error while loading the data
      */
     public List<Employee> employees() throws LoaderException {
-        return this.getDataLoader().getEmployees();
+        return this.getDataLoader().getEmployees(Mode.PRODUCTION);
     }
 
     /**
@@ -129,7 +130,7 @@ public class AdminManager extends Manager {
      * @throws LoaderException If writing to source fails
      */
     public void createCar(Car car) throws LoaderException {
-        this.carUpdater.create(car);
+        this.carUpdater.create(car, Mode.PRODUCTION);
     }
 
     /**
@@ -140,7 +141,7 @@ public class AdminManager extends Manager {
      */
     public void updateCar(Car car, int index) throws LoaderException {
         if (super.getDataLoader() instanceof FileLoader) index = index - 1;
-        this.carUpdater.update(car, index);
+        this.carUpdater.update(car, index, Mode.PRODUCTION);
     }
 
     /**
@@ -150,6 +151,6 @@ public class AdminManager extends Manager {
      */
     public void deleteCar(int index) throws LoaderException {
         if (super.getDataLoader() instanceof FileLoader) index = index - 1;
-        this.carUpdater.delete(index);
+        this.carUpdater.delete(index, Mode.PRODUCTION);
     }
 }

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.dealer.DatabaseCredentials;
 import com.dealer.data.exceptions.LoaderException;
 
 /**
@@ -14,12 +15,13 @@ import com.dealer.data.exceptions.LoaderException;
 public abstract class OracleConnector {
     private Connection connection;
     /**
-     * Initializes a connection to the database
+     * Initializes a connection to the database, 
+     * and checks for any credentials errors
      * @throws LoaderException If the connection fails
      */
     public OracleConnector() {
         try {
-            this.connection = DriverManager.getConnection("jdbc:oracle:thin:@198.168.52.211:1521/pdbora19c.dawsoncollege.qc.ca", "A2034747", "Jagdish123");
+            this.connection = DriverManager.getConnection("jdbc:oracle:thin:@198.168.52.211:1521/pdbora19c.dawsoncollege.qc.ca", DatabaseCredentials.USERNAME, DatabaseCredentials.PASSWORD);
             this.connection.setAutoCommit(false);
         } catch (SQLException e) {
             e.printStackTrace();
