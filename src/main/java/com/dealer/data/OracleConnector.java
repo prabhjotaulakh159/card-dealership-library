@@ -15,7 +15,8 @@ import com.dealer.data.exceptions.LoaderException;
 public abstract class OracleConnector {
     private Connection connection;
     /**
-     * Initializes a connection to the database
+     * Initializes a connection to the database, 
+     * and checks for any credentials errors
      * @throws LoaderException If the connection fails
      */
     public OracleConnector() {
@@ -23,10 +24,7 @@ public abstract class OracleConnector {
             this.connection = DriverManager.getConnection("jdbc:oracle:thin:@198.168.52.211:1521/pdbora19c.dawsoncollege.qc.ca", DatabaseCredentials.USERNAME, DatabaseCredentials.PASSWORD);
             this.connection.setAutoCommit(false);
         } catch (SQLException e) {
-            System.out.println("It appears that you have attempted to connect to oracle, but the credentials were invalid and/or empty");
-            System.out.println("Please provide valid credentials in the DatabaseCredentials.java file");
-            System.out.println("If you do not wish to connect to oracle, simply change the source to Source.CSV within the main methods of display/AdminApp.java or display/EmployeeApp.java");
-            System.exit(0);
+            e.printStackTrace();
         }
     }
 
