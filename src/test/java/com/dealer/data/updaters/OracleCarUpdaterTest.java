@@ -1,6 +1,7 @@
 package com.dealer.data.updaters;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assume.assumeNotNull;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class OracleCarUpdaterTest {
         try {
             OracleLoader loader = new OracleLoader();
             OracleCarUpdater oracle = new OracleCarUpdater();
+            assumeNotNull(((OracleLoader)loader).getConnection());
             RecreationalVehicle created = new RecreationalVehicle("Honda RV Rover", 2023, "Brown", 10000, 1, 1, true);
             oracle.create(created);
             List<Car> carsAfterCreation = loader.getCars();
