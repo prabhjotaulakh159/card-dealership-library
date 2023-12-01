@@ -3,7 +3,6 @@ package com.dealer.data.loaders;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeNotNull;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.Test;
@@ -18,12 +17,6 @@ public class OracleLoaderTest {
     public void return_list_of_atleast_12_cars() throws LoaderException {
         IDataLoader oracleLoader = new OracleLoader();
         assumeNotNull(((OracleLoader)oracleLoader).getConnection());
-        try {   
-            ((OracleLoader)oracleLoader).getConnection().prepareStatement("DELETE FROM programming_cars WHERE id > 12");
-            ((OracleLoader)oracleLoader).getConnection().commit();
-        } catch (SQLException e) {
-            throw new LoaderException(e);
-        }
         List<Car> list = oracleLoader.getCars();
         assertTrue(list.size() >= 12);
     }
