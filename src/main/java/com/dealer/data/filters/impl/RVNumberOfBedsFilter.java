@@ -31,31 +31,31 @@ public class RVNumberOfBedsFilter extends NumberFilters implements ICarFilter {
         List<Car> carsFiltered= new ArrayList<Car>();
         if(super.equalsTo()){
             for(Car car : cars){
-                if (((RecreationalVehicle) car).getNumberOfBeds() == this.numberOfBeds){
+                if ((car instanceof RecreationalVehicle) && ((RecreationalVehicle) car).getNumberOfBeds() == this.numberOfBeds){
                     carsFiltered.add(car);
                 }
             }
         } else if(super.greaterThan()){
             for(Car car : cars){
-                if (((RecreationalVehicle) car).getNumberOfBeds() > this.numberOfBeds){
+                if ((car instanceof RecreationalVehicle) && ((RecreationalVehicle) car).getNumberOfBeds() > this.numberOfBeds){
                     carsFiltered.add(car);
                 }
             }
         } else if(super.lessThan()){
             for(Car car : cars){
-                if(((RecreationalVehicle) car).getNumberOfBeds() < this.numberOfBeds){
+                if((car instanceof RecreationalVehicle) && ((RecreationalVehicle) car).getNumberOfBeds() < this.numberOfBeds){
                     carsFiltered.add(car);
                 }
             }
         } else if(super.greaterThanEqualsTo()){
             for(Car car : cars){
-                if(((RecreationalVehicle) car).getNumberOfBeds() >= this.numberOfBeds){
+                if((car instanceof RecreationalVehicle) && ((RecreationalVehicle) car).getNumberOfBeds() >= this.numberOfBeds){
                     carsFiltered.add(car);
                 }
             }
         } else if(super.lessThanEqualsTo()){
             for(Car car : cars){
-                if(((RecreationalVehicle) car).getNumberOfBeds() <= this.numberOfBeds){
+                if((car instanceof RecreationalVehicle) && ((RecreationalVehicle) car).getNumberOfBeds() <= this.numberOfBeds){
                     carsFiltered.add(car);
                 }
             }
