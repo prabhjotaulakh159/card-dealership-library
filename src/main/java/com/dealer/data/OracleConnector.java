@@ -19,7 +19,7 @@ public abstract class OracleConnector {
      */
     public OracleConnector() {
         try {
-            this.connection = DriverManager.getConnection("jdbc:oracle:thin:@198.168.52.211:1521/pdbora19c.dawsoncollege.qc.ca", "A2034747", "Jagdish123");
+            this.connection = DriverManager.getConnection("jdbc:oracle:thin:@198.168.52.211:1521/pdbora19c.dawsoncollege.qc.ca", "", "");
             this.connection.setAutoCommit(false);
         } catch (SQLException e) {
             e.printStackTrace();

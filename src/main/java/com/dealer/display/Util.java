@@ -1,6 +1,5 @@
 package com.dealer.display;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -81,7 +80,7 @@ public class Util {
                 else if (input == LESS) return ListFilter.LESSTHAN;
                 else if (input == GREATER_EQUALS) return ListFilter.GREATEREQUALS;
                 else if (input == LESS_EQUALS) return ListFilter.LESSEQUALS;
-                else throw new InputMismatchException();
+                else throw new NumberFormatException();
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid option !");
             }
