@@ -70,6 +70,7 @@ public class EmployeeApp {
                 System.out.println("Please enter a valid number !");
             }
         }
+        System.out.println("GoodBye!");
         app.killResources();
     }
 
@@ -165,7 +166,7 @@ public class EmployeeApp {
                 else if (input == FILTER_KITCHEN) app.carFilteringStrategy(new RVKitchenFilter(true));
                 else if (input == FILTER_MAX_PASSENGERS) app.carFilteringStrategy(new RVMaxPassengersFilter(Util.askFilterOperation(sc), Util.askIntQuery(sc)));
                 else if (input == FILTER_NUM_BEDS) app.carFilteringStrategy(new RVNumberOfBedsFilter(Util.askFilterOperation(sc), Util.askIntQuery(sc)));
-                else if (input == FILTER_NUM_BEDS) app.carFilteringStrategy(new TypeRegularCarFilter());
+                else if (input == FILTER_REGULAR_CARS) app.carFilteringStrategy(new TypeRegularCarFilter());
                 else if (input == FILTER_ELECTRIC) app.carFilteringStrategy(new TypeElectricCarFilter());
                 else if (input == FILTER_RV) app.carFilteringStrategy(new TypeRVFilter());
                 else throw new NumberFormatException();

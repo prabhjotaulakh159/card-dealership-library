@@ -22,6 +22,8 @@ public class EmployeeManager extends Manager {
      * @param sc Scanner for user input
      */
     public void becomeGreatSaleSperson(Scanner sc) {
+        System.out.print("\033[H\033[2J");  
+        System.out.flush(); 
         System.out.println("Link to blogpost we took inspiration from: https://blog.hubspot.com/sales/how-to-be-a-good-car-salesperson");
         System.out.println("Welcome to the BB Dealership, we have officially sold your soul for 62 cents and now there is no going back");
         System.out.println("Unless you pass this quiz and understand how we run this place and prioritize customers, you may have your soul back, but you're still working with us.");
@@ -43,7 +45,6 @@ public class EmployeeManager extends Manager {
         System.out.println();
         System.out.println("Are you ready to take the Quiz? y/n");
         sc.nextLine().toLowerCase();
-        System.out.println("Alright then, see you soon when you're ready! Sike, you're doing it teehee");
         employeeQuiz(sc);
     }
     
@@ -60,7 +61,7 @@ public class EmployeeManager extends Manager {
         System.out.println("Good Luck on our quiz! if you get 7/10 you pass! The Questions are True[1] or False[2].");
         System.out.println("1. You can yell at an angry customer. T/F? Enter T for true. anything else is False");
         String answer = sc.nextLine().toUpperCase();
-        if(answer.equals(TRUE)){
+        if(!answer.equals(TRUE)){
             counter++;
         }
 

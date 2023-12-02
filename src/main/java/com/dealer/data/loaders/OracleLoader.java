@@ -23,6 +23,7 @@ import com.dealer.data.models.people.Employee;
 public class OracleLoader extends OracleConnector implements IDataLoader {
     /**
      * Retrives cars from the database and turns it into a list
+     * @param mode determines if dataLoading is running in test or production
      * @return List of cars from the database
      * @throws LoaderException If an SQLException occurs
      */
@@ -62,6 +63,7 @@ public class OracleLoader extends OracleConnector implements IDataLoader {
 
     /**
      * Retrives customers from the database and turns it into a list
+     * @param mode determines if dataLoading is running in test or production
      * @return List of customers from the database
      * @throws LoaderException If an SQLException occurs
      */
@@ -85,6 +87,7 @@ public class OracleLoader extends OracleConnector implements IDataLoader {
 
     /**
      * Retrives employees from the database and turns it into a list
+     * @param mode determines if dataLoading is running in test or production
      * @return List of employees from the database
      * @throws LoaderException If an SQLException occurs
      */

@@ -66,6 +66,7 @@ public class OracleCarUpdater extends OracleConnector implements ICarUpdater {
      * Updates a car in the oracle database
      * @param car New car information
      * @param index Index/row to update
+     * @param mode determines if dataLoading is running in test or production
      * @throws LoaderException If SQLException occurs
      */
     @Override
